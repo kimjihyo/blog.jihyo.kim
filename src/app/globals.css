@@ -1,4 +1,5 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Knewave&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -6,6 +7,7 @@
 
 @theme inline {
   --font-pretendard: "Pretendard Variable", Pretendard;
+  --font-knewave: Knewave, system-ui;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -113,6 +115,12 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+
+/* 
+  Fix an issue where hover not working on mobile devices with an external mouse.
+  See: https://tailwindcss.com/docs/upgrade-guide#hover-styles-on-mobile
+*/
+@custom-variant hover (&:hover);
 
 @layer base {
   * {

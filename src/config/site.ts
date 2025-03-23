@@ -1,7 +1,5 @@
-export type SiteConfig = typeof siteConfig;
-
 export const siteConfig = {
-  name: "Jihyo Kim's Blog",
+  name: "Blog",
   description: "Personal blog of Jihyo Kim, built with Next.js.",
   url: "https://blog.jihyo.kim",
   ogImage: "https://blog.jihyo.kim/opengraph-image.png",
@@ -10,3 +8,5 @@ export const siteConfig = {
     githubProfile: "https://github.com/kimjihyo",
   },
 };
+
+export type SiteConfig = typeof siteConfig;
