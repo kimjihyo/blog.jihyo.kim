@@ -2,11 +2,6 @@
 
 ## Tech Stack
 
-- Framework: [Next.js](https://nextjs.org)
-- [Tailwind CSS](https://tailwindcss.com)
-- [shadcn/ui](https://ui.shadcn.com)
-- [velite](https://velite.js.org)
-
 - **Framework:** [Next.js](https://nextjs.org)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com)
 - **UI Components:** [shadcn/ui](https://ui.shadcn.com)
