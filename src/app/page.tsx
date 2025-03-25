@@ -1,9 +1,25 @@
+import { Categories } from "@/components/categories";
+import { Posts } from "@/components/posts";
+import { Translations } from "@/components/translations";
+import { ProfileCard } from "@/components/profile-card";
+
 export default function Page() {
   return (
-    <div>
-      TypeScript로 말하는 낮에는 개발자, 밤에는 헬창. 영어와 한국어로 포스트를
-      작성합니다. 보통은 한국어로 쓰지만, 영어가 그리울 때는 영어로 써서 나의
-      영어 실력에 작은 도전장을 던집니다.
+    <div className="w-full max-w-4xl p-8 mx-auto flex flex-col">
+      <ProfileCard />
+      <div className="flex flex-col gap-4 mt-8">
+        <h1 className="text-2xl font-bold">최근에 작성한 글</h1>
+        <Categories />
+      </div>
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8">
+        <Posts />
+      </div>
+      <div className="mt-12">
+        <h1 className="text-2xl font-bold">최근에 번역한 글</h1>
+      </div>
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-4">
+        <Translations />
+      </div>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Knewave&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Knewave&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -129,4 +129,64 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.markdown h1 {
+  @apply mt-2 scroll-m-20 font-bold font-pretendard text-4xl;
+}
+
+.markdown h2 {
+  @apply mt-12 scroll-m-20 border-b pb-2 font-pretendard font-semibold text-2xl;
+}
+
+.markdown h3 {
+  @apply mt-8 scroll-m-20 font-pretendard text-xl tracking-tight;
+}
+
+.markdown h4 {
+  @apply mt-8 scroll-m-20 font-pretendard text-lg tracking-tight;
+}
+
+.markdown h5 {
+  @apply mt-8 scroll-m-20 font-pretendard text-lg tracking-tight;
+}
+
+.markdown h6 {
+  @apply mt-8 scroll-m-20 font-pretendard text-base tracking-tight;
+}
+
+.markdown a {
+  @apply font-medium underline underline-offset-4;
+}
+
+.markdown p {
+  @apply not-first:mt-6 leading-7;
+}
+
+.markdown ul {
+  @apply my-6 ml-6 list-disc;
+}
+
+.markdown ol {
+  @apply my-6 ml-6 list-decimal;
+}
+
+.markdown li {
+  @apply mt-2;
+}
+
+.markdown pre {
+  @apply my-4 flex items-center gap-2 rounded-lg bg-neutral-900 px-4 py-2.5 text-muted-foreground text-sm;
+}
+
+.markdown code {
+  @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] text-sm;
+}
+
+.markdown pre code {
+  @apply bg-neutral-900;
+}
+
+.markdown blockquote {
+  @apply mt-6 border-l-2 pl-6 italic;
 }

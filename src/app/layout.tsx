@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import { siteConfig } from "@/config/site";
 import { SiteHeader } from "@/components/layouts/site-header";
 import { SiteFooter } from "@/components/layouts/site-footer";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+
+import "@/styles/globals.css";
+import "@/styles/highlightjs-github-dark.css"
+import "@/styles/highlightjs-github-light.css"
 
 export const metadata: Metadata = {
   title: {
