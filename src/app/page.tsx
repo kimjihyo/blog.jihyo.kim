@@ -14,7 +14,7 @@ export default function Page() {
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8">
         <Posts />
       </div>
-      <div className="mt-12">
+      <div className="mt-14">
         <h1 className="text-2xl font-bold">최근에 번역한 글</h1>
       </div>
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-4">
