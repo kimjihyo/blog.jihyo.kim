@@ -5,9 +5,32 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme inline {
+@theme {
   --font-pretendard: "Pretendard Variable", Pretendard;
-  --font-knewave: Knewave, system-ui;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f2f4f6;
+  --color-gray-200: #e5e8eb;
+  --color-gray-300: #d1d6db;
+  --color-gray-400: #b0b8c1;
+  --color-gray-500: #8b95a1;
+  --color-gray-600: #6b7684;
+  --color-gray-700: #4e5968;
+  --color-gray-800: #333d4b;
+  --color-gray-900: #191f28;
+
+  --color-blue-50: #e8f3ff;
+  --color-blue-100: #c9e2ff;
+  --color-blue-200: #90c2ff;
+  --color-blue-300: #64a8ff;
+  --color-blue-400: #4593fc;
+  --color-blue-500: #3182f6;
+  --color-blue-600: #2272eb;
+  --color-blue-700: #1b64da;
+  --color-blue-800: #1957c2;
+  --color-blue-900: #194aa6;
+}
+
+@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -49,20 +72,20 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --background: var(--color-white);
+  --foreground: var(--color-gray-900);
+  --card: var(--color-gray-50);
+  --card-foreground: var(--color-gray-700);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  --primary: var(--color-blue-500);
+  --primary-foreground: var(--color-white);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --muted: var(--color-gray-100);
+  --muted-foreground: var(--color-gray-700);
+  --accent: var(--color-gray-200);
+  --accent-foreground: var(--color-gray-800);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
@@ -82,7 +105,7 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-.dark {
+/* .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -114,7 +137,7 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-}
+} */
 
 /* 
   Fix an issue where hover not working on mobile devices with an external mouse.

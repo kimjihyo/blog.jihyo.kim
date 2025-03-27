@@ -26,7 +26,7 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   return (
-    <div className="w-full max-w-4xl p-8 mx-auto">
+    <div className="w-full max-w-5xl p-8 mx-auto">
       <div className="markdown">
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>

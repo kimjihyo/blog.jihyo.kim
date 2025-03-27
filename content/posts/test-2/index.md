@@ -10,7 +10,7 @@ tags: ["Blog", "Web"]
 ```tsx
 export default function Page() {
   return (
-    <div className="w-full max-w-4xl p-8 mx-auto">
+    <div className="w-full max-w-5xl p-8 mx-auto">
       <div className="flex flex-col gap-4">
         <h1 className="text-2xl font-bold">태그</h1>
         <Categories />

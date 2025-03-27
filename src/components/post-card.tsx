@@ -1,36 +1,64 @@
 import type { Post } from "content-collections";
 import Link from "next/link";
 import { Badge } from "./ui/badge";
-import { formatDate } from "@/lib/utils";
+
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
 interface PostCardProps {
   post: Post;
 }
 
 export function PostCard({ post }: PostCardProps) {
+  const createdAt = new Date(post.date);
+
   return (
     <article>
       <Link
         href={`/posts/${post._meta.path}`}
-        className="group flex flex-col gap-1 h-full justify-between"
+        className="group h-full flex gap-5"
       >
-        <h2 className="text-2xl font-semibold text-foreground/80 transition-colors group-hover:text-foreground">
-          {post.title}
-        </h2>
-        <p className="text-muted-foreground">{post.summary}</p>
-        <ul className="flex flex-wrap gap-1">
-          {post.tags.map((tag) => (
-            <li key={tag}>
-              <Badge>{tag}</Badge>
-            </li>
-          ))}
-        </ul>
-        <time
-          className="block line-clamp-1 text-sm text-muted-foreground"
-          dateTime={post.date}
-        >
-          {formatDate(post.date)}
-        </time>
+        <div className="flex-1">
+          <h2 className="text-xl font-semibold mb-1.5 text-foreground group-hover:text-blue-500 transition-colors">
+            {post.title}
+          </h2>
+          <p className="text-muted-foreground text-base mb-4">{post.summary}</p>
+          <div className="flex items-center gap-1">
+            {/* <time
+              className="block line-clamp-1 text-sm text-muted-foreground"
+              dateTime={post.date}
+            >
+              {formatDate(post.date)}
+            </time> */}
+            {post.tags.map((tag) => (
+              <Badge key={tag}>{tag}</Badge>
+            ))}
+          </div>
+        </div>
+        <div>
+          <div className="w-20 h-20 sm:w-32 sm:h-32 rounded bg-gray-200 mb-auto overflow-hidden relative">
+            <div className="bg-white flex flex-col items-center justify-center w-full h-full -translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <div className="text-2xl sm:text-4xl font-extrabold">
+                {createdAt.getDate()}
+              </div>
+              <div className="text-sm sm:text-base">
+                {months[createdAt.getMonth()]}
+              </div>
+            </div>
+          </div>
+        </div>
       </Link>
     </article>
   );

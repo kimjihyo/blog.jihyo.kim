@@ -9,7 +9,7 @@ export function formatDate(
   date: Date | string | number,
   options: Intl.DateTimeFormatOptions = {}
 ) {
-  return new Intl.DateTimeFormat("en-US", {
+  return new Intl.DateTimeFormat("ko-KR", {
     month: "long",
     day: "numeric",
     year: "numeric",
