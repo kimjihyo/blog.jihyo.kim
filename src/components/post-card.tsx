@@ -46,9 +46,9 @@ export function PostCard({ post }: PostCardProps) {
             <img
               className="w-full h-full object-center object-cover"
               alt=""
-              src={post.thumbnail?.local}
+              src={post.thumbnail}
             />
-            <div className="bg-background flex flex-col items-center justify-center w-full h-full -translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+            <div className="absolute left-0 top-0 z-10 bg-background flex flex-col items-center justify-center w-full h-full -translate-y-full group-hover:translate-y-0 transition-transform duration-300">
               <div className="text-2xl sm:text-4xl font-extrabold">
                 {createdAt.getDate()}
               </div>

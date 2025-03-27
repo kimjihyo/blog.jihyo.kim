@@ -11,12 +11,7 @@ const posts = defineCollection({
     summary: z.string(),
     date: z.string(),
     tags: z.array(z.string()),
-    thumbnail: z
-      .object({
-        local: z.string(),
-        cloud: z.string().optional(),
-      })
-      .optional(),
+    thumbnail: z.string().optional(),
   }),
   transform: async (document, context) => {
     const html = await compileMarkdown(context, document, {

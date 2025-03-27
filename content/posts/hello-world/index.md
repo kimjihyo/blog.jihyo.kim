@@ -3,6 +3,7 @@ title: Test
 summary: "lorem ipsum tes test test"
 date: "2023-06-10T00:00:00Z"
 tags: ["Blog", "Next.js"]
+thumbnail: "https://static1.srcdn.com/wordpress/wp-content/uploads/2024/07/colalge-style-image-featuring-pikachu-skitty-and-mew-from-pokemon.jpg?q=70&fit=crop&w=1140&h=&dpr=1"
 ---
 
 # Integrating shadcn/ui with Tanstack Table for server-side actions
