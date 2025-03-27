@@ -1,4 +1,4 @@
-import { Categories } from "@/components/categories";
+import { Categories } from "@/components/tags";
 import { Posts } from "@/components/posts";
 
 export default function Page() {

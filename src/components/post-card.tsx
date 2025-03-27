@@ -31,17 +31,11 @@ export function PostCard({ post }: PostCardProps) {
         className="group h-full flex gap-5"
       >
         <div className="flex-1">
-          <h2 className="text-xl font-semibold mb-1.5 text-foreground group-hover:text-blue-500 transition-colors">
+          <h2 className="text-xl font-semibold mb-1.5 text-foreground group-hover:text-primary transition-colors">
             {post.title}
           </h2>
           <p className="text-muted-foreground text-base mb-4">{post.summary}</p>
           <div className="flex items-center gap-1">
-            {/* <time
-              className="block line-clamp-1 text-sm text-muted-foreground"
-              dateTime={post.date}
-            >
-              {formatDate(post.date)}
-            </time> */}
             {post.tags.map((tag) => (
               <Badge key={tag}>{tag}</Badge>
             ))}
@@ -49,7 +43,12 @@ export function PostCard({ post }: PostCardProps) {
         </div>
         <div>
           <div className="w-20 h-20 sm:w-32 sm:h-32 rounded bg-gray-200 mb-auto overflow-hidden relative">
-            <div className="bg-white flex flex-col items-center justify-center w-full h-full -translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+            <img
+              className="w-full h-full object-center object-cover"
+              alt=""
+              src={post.thumbnail?.local}
+            />
+            <div className="bg-background flex flex-col items-center justify-center w-full h-full -translate-y-full group-hover:translate-y-0 transition-transform duration-300">
               <div className="text-2xl sm:text-4xl font-extrabold">
                 {createdAt.getDate()}
               </div>

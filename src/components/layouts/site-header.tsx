@@ -1,6 +1,7 @@
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { ModeToggle } from "./mode-toggle";
 
 export function SiteHeader() {
   return (
@@ -11,11 +12,9 @@ export function SiteHeader() {
         </Link>
         <div className="flex flex-1 items-center justify-end space-x-2">
           <Button variant="primary" size="sm" asChild>
-            <Link href="/posts">작성글</Link>
+            <Link href="/translations">GitHub</Link>
           </Button>
-          <Button size="sm" asChild>
-            <Link href="/translations">번역글</Link>
-          </Button>
+          <ModeToggle variant="default" />
         </div>
       </div>
     </header>

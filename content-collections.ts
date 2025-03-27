@@ -11,6 +11,12 @@ const posts = defineCollection({
     summary: z.string(),
     date: z.string(),
     tags: z.array(z.string()),
+    thumbnail: z
+      .object({
+        local: z.string(),
+        cloud: z.string().optional(),
+      })
+      .optional(),
   }),
   transform: async (document, context) => {
     const html = await compileMarkdown(context, document, {
@@ -23,25 +29,6 @@ const posts = defineCollection({
   },
 });
 
-const translations = defineCollection({
-  name: "translations",
-  directory: "./content/translations",
-  include: "**/*.md",
-  schema: (z) => ({
-    title: z.string(),
-    summary: z.string(),
-    date: z.string(),
-    tags: z.array(z.string()),
-  }),
-  transform: async (document, context) => {
-    const html = await compileMarkdown(context, document);
-    return {
-      ...document,
-      html,
-    };
-  },
-});
-
 export default defineConfig({
-  collections: [posts, translations],
+  collections: [posts],
 });

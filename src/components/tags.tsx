@@ -1,15 +1,14 @@
 import Link from "next/link";
 import { badgeVariants } from "./ui/badge";
+import { allTags } from "@/lib/allTags";
 
-const testCategories = ["All (32)", "Algorithm (10)", "Blog (22)"];
-
-export function Categories() {
+export function Tags() {
   return (
     <ul className="flex flex-wrap gap-2">
-      {testCategories.map((category) => (
-        <li key={category}>
+      {allTags.map((tag) => (
+        <li key={tag}>
           <Link className={badgeVariants()} href="">
-            {category}
+            {tag}
           </Link>
         </li>
       ))}
