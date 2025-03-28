@@ -1,6 +1,7 @@
 import type { Post } from "content-collections";
 import Link from "next/link";
 import { Badge } from "./ui/badge";
+import Image from "next/image";
 
 const months = [
   "Jan",
@@ -43,11 +44,15 @@ export function PostCard({ post }: PostCardProps) {
         </div>
         <div>
           <div className="w-20 h-20 sm:w-32 sm:h-32 rounded bg-gray-200 mb-auto overflow-hidden relative">
-            <img
-              className="w-full h-full object-center object-cover"
-              alt=""
-              src={post.thumbnail}
-            />
+            {post.thumbnail && (
+              <Image
+                fill
+                sizes="(min-width) 80px, 128px"
+                alt=""
+                className="object-center object-fill"
+                src={post.thumbnail!}
+              />
+            )}
             <div className="absolute left-0 top-0 z-10 bg-background flex flex-col items-center justify-center w-full h-full -translate-y-full group-hover:translate-y-0 transition-transform duration-300">
               <div className="text-2xl sm:text-4xl font-extrabold">
                 {createdAt.getDate()}
