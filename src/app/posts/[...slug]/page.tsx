@@ -1,3 +1,4 @@
+import { formatDate } from "@/lib/utils";
 import { allPosts } from "content-collections";
 import { notFound } from "next/navigation";
 
@@ -27,6 +28,16 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <div className="w-full max-w-5xl p-8 mx-auto">
+      <div className="space-y-2">
+        <div className="flex flex-wrap items-center text-muted-foreground text-sm gap-1.5">
+          <time dateTime={post.date} className="block">
+            {formatDate(post.date)}
+          </time>
+        </div>
+        <h1 className="font-bold leading-tight tracking-tighter lg:leading-[1.1] text-2xl md:text-3xl">
+          {post.title}
+        </h1>
+      </div>
       <div className="markdown">
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>

@@ -11,7 +11,7 @@ export function SiteFooter() {
         <section className="flex flex-col gap-10 lg:flex-row lg:gap-20">
           <section>
             <Link href="/" className="flex w-fit items-center space-x-2">
-              <span className="font-knewave">{siteConfig.name}</span>
+              <span className="font-extrabold">{siteConfig.name}</span>
             </Link>
           </section>
         </section>

@@ -49,7 +49,7 @@ export function PostCard({ post }: PostCardProps) {
                 fill
                 sizes="(min-width) 80px, 128px"
                 alt=""
-                className="object-center object-fill"
+                className="object-center object-cover"
                 src={post.thumbnail!}
               />
             )}
