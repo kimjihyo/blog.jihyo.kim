@@ -11,6 +11,7 @@ const posts = defineCollection({
     summary: z.string(),
     date: z.string(),
     tags: z.array(z.string()),
+    type: z.enum(["post", "translation"]),
     thumbnail: z.string().optional(),
   }),
   transform: async (document, context) => {

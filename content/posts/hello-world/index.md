@@ -1,8 +1,9 @@
 ---
-title: Test
+type: "post"
+title: "Test"
 summary: "lorem ipsum tes test test"
-date: "2023-06-10T00:00:00Z"
-tags: ["Blog", "Next.js"]
+date: "2025-03-25T00:00:00Z"
+tags: ["test"]
 thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1743126300/IMG_0395_vrwb6o.jpg"
 ---
 

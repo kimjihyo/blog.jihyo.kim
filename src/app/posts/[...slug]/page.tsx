@@ -1,4 +1,5 @@
 import { formatDate } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
 import { allPosts } from "content-collections";
 import { notFound } from "next/navigation";
 
@@ -28,6 +29,11 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <div className="w-full max-w-5xl p-8 mx-auto">
+      <div className="flex items-center gap-1 mb-4">
+        {post.tags.map((tag) => (
+          <Badge key={tag}>{tag}</Badge>
+        ))}
+      </div>
       <div className="space-y-2">
         <div className="flex flex-wrap items-center text-muted-foreground text-sm gap-1.5">
           <time dateTime={post.date} className="block">
@@ -38,7 +44,7 @@ export default async function PostPage({ params }: PostPageProps) {
           {post.title}
         </h1>
       </div>
-      <div className="markdown">
+      <div className="markdown mb-14">
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>
     </div>

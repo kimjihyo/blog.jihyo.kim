@@ -12,7 +12,7 @@ export function SiteHeader() {
         </Link>
         <div className="flex flex-1 items-center justify-end space-x-2">
           <Button variant="primary" size="sm" asChild>
-            <Link href="/translations">GitHub</Link>
+            <Link href={siteConfig.links.github}>GitHub</Link>
           </Button>
           <ModeToggle variant="default" />
         </div>

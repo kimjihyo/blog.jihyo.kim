@@ -1,12 +1,30 @@
 import { allPosts } from "content-collections";
 import { PostCard } from "./post-card";
 
-export function Posts() {
+interface PostsProps {
+  type?: string;
+  tag?: string;
+}
+
+export function Posts({ type, tag }: PostsProps) {
   return (
     <>
-      {allPosts.map((post) => (
-        <PostCard key={post._meta.path} post={post} />
-      ))}
+      {allPosts
+        .filter((post) => {
+          if (type) {
+            return post.type === type;
+          }
+          return true;
+        })
+        .filter((post) => {
+          if (tag) {
+            return post.tags.includes(tag);
+          }
+          return true;
+        })
+        .map((post) => (
+          <PostCard key={post._meta.path} post={post} />
+        ))}
     </>
   );
 }
