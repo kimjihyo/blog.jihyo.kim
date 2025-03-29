@@ -5,13 +5,13 @@ export function ProfileCard() {
     <Card>
       <CardContent className="flex items-center gap-6">
         <Avatar className="w-16 h-16 hidden sm:block">
-          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarImage src="https://res.cloudinary.com/dab33vdij/image/upload/v1743246504/IMG_0397_nfpwy9.png" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <div>
           <CardTitle className="mb-2 flex items-center gap-2">
             <Avatar className="w-8 h-8 sm:hidden">
-              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarImage src="https://res.cloudinary.com/dab33vdij/image/upload/v1743246504/IMG_0397_nfpwy9.png" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <span>김지효</span>

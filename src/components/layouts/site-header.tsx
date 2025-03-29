@@ -2,11 +2,12 @@ import { siteConfig } from "@/config/site";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "./mode-toggle";
+import { Shell } from "../shell";
 
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full h-16 border-b bg-background">
-      <div className="w-full h-full max-w-5xl px-8 mx-auto flex items-center gap-6">
+      <Shell className="py-0 h-full flex items-center gap-6">
         <Link href="/" className="flex items-center space-x-2">
           <span className="font-extrabold">{siteConfig.name}</span>
         </Link>
@@ -16,7 +17,7 @@ export function SiteHeader() {
           </Button>
           <ModeToggle variant="default" />
         </div>
-      </div>
+      </Shell>
     </header>
   );
 }

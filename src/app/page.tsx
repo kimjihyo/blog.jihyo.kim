@@ -1,3 +1,4 @@
+import { Shell } from "@/components/shell";
 import { Tags } from "@/components/tags";
 import { Posts } from "@/components/posts";
 import { ProfileCard } from "@/components/profile-card";
@@ -11,7 +12,7 @@ const tabs = [
 
 export default function Page() {
   return (
-    <div className="w-full max-w-5xl py-8 px-4 md:p-8 mx-auto flex flex-col">
+    <Shell className="flex flex-col">
       <ProfileCard />
       <div className="flex mt-8">
         <Tabs defaultValue="all" className="flex-1">
@@ -26,7 +27,7 @@ export default function Page() {
           </div>
           {tabs.map((tab) => (
             <TabsContent key={tab.value} value={tab.value}>
-              <div className="flex flex-col gap-8 py-5 mb-20">
+              <div className="flex flex-col gap-8 py-5 mb-10">
                 <Posts type={tab.value === "all" ? undefined : tab.value} />
               </div>
             </TabsContent>
@@ -37,6 +38,6 @@ export default function Page() {
           <Tags />
         </div>
       </div>
-    </div>
+    </Shell>
   );
 }

@@ -4,6 +4,7 @@ title: "군대에서 아이패드로 개발하기"
 summary: "군대에서 개발하는 방법은 많지 않습니다. 오늘은 제가 어떻게 아이패드로 개발을 할 수 있었는지 몇가지 방법을 공유해보고자 합니다."
 date: "2025-03-28T00:00:00Z"
 tags: ["code-server", "개발 세팅"]
+thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1743245843/IMG_0396_uizbi2.png"
 ---
 
 ## 시작

@@ -3,11 +3,12 @@ import { siteConfig } from "@/config/site";
 import { Button } from "../ui/button";
 import { Icons } from "../icons";
 import { ModeToggle } from "./mode-toggle";
+import { Shell } from "../shell";
 
 export function SiteFooter() {
   return (
     <footer className="w-full border-t">
-      <div className="w-full max-w-5xl mx-auto px-8 pb-8 pt-6 lg:py-6 flex flex-col gap-2">
+      <Shell className="flex flex-col gap-2">
         <section className="flex flex-col gap-10 lg:flex-row lg:gap-20">
           <section>
             <Link href="/" className="flex w-fit items-center space-x-2">
@@ -42,7 +43,7 @@ export function SiteFooter() {
             <ModeToggle />
           </div>
         </section>
-      </div>
+      </Shell>
     </footer>
   );
 }

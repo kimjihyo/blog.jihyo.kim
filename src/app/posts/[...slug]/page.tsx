@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+import { Shell } from "@/components/shell";
 import { formatDate } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { allPosts } from "content-collections";
@@ -16,6 +18,21 @@ async function getPostFromParams(params: PostPageProps["params"]) {
   return post;
 }
 
+export async function generateMetadata({
+  params,
+}: PostPageProps): Promise<Metadata> {
+  const post = await getPostFromParams(params);
+
+  if (!post) {
+    return {};
+  }
+
+  return {
+    title: post.title,
+    description: post.summary,
+  };
+}
+
 export async function generateStaticParams() {
   return allPosts.map((post) => ({ slug: post._meta.path.split("/") }));
 }
@@ -28,7 +45,7 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   return (
-    <div className="w-full max-w-5xl p-8 mx-auto">
+    <Shell>
       <div className="flex items-center gap-1 mb-4">
         {post.tags.map((tag) => (
           <Badge key={tag}>{tag}</Badge>
@@ -47,6 +64,6 @@ export default async function PostPage({ params }: PostPageProps) {
       <div className="markdown mb-14">
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>
-    </div>
+    </Shell>
   );
 }
