@@ -32,10 +32,12 @@ export function PostCard({ post }: PostCardProps) {
         className="group h-full flex gap-5"
       >
         <div className="flex-1">
-          <h2 className="text-xl font-semibold mb-1.5 text-foreground group-hover:text-primary transition-colors">
+          <h2 className="text-lg sm:text-xl font-semibold mb-1.5 text-foreground group-hover:text-primary transition-colors">
             {post.title}
           </h2>
-          <p className="text-muted-foreground text-base mb-4">{post.summary}</p>
+          <p className="text-muted-foreground text-sm sm:text-base mb-4">
+            {post.summary}
+          </p>
           <div className="flex items-center gap-1">
             {post.tags.map((tag) => (
               <Badge key={tag}>{tag}</Badge>
