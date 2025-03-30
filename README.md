@@ -5,7 +5,7 @@
 - **Framework:** [Next.js](https://nextjs.org)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com)
 - **UI Components:** [shadcn/ui](https://ui.shadcn.com)
-- **Content Management:** [content-collections](https://velite.js.org)
+- **Content Management:** [content-collections](https://www.content-collections.dev)
 
 ## Running locally
 
