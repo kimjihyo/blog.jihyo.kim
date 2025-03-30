@@ -20,6 +20,7 @@ const posts = defineCollection({
     });
     return {
       ...document,
+      date: new Date(document.date),
       html,
     };
   },

@@ -1,4 +1,4 @@
-import { allPosts } from "content-collections";
+import { allPostsSortedByDate } from "@/lib/allPostsSortedByDate";
 import { PostCard } from "./post-card";
 
 interface PostsProps {
@@ -9,7 +9,7 @@ interface PostsProps {
 export function Posts({ type, tag }: PostsProps) {
   return (
     <>
-      {allPosts
+      {allPostsSortedByDate
         .filter((post) => {
           if (type) {
             return post.type === type;
