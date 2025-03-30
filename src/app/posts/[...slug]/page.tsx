@@ -4,6 +4,7 @@ import { formatDate } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { allPosts } from "content-collections";
 import { notFound } from "next/navigation";
+import { TableOfContents } from "@/components/table-of-contents";
 
 interface PostPageProps {
   params: Promise<{ slug: string[] }>;
@@ -49,24 +50,29 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   return (
-    <Shell>
-      <div className="flex items-center gap-1 mb-4">
-        {post.tags.map((tag) => (
-          <Badge key={tag}>{tag}</Badge>
-        ))}
-      </div>
-      <div className="space-y-2">
-        <div className="flex flex-wrap items-center text-muted-foreground text-sm gap-1.5">
-          <time dateTime={post.date.toString()} className="block">
-            {formatDate(post.date)}
-          </time>
+    <Shell className="relative md:grid md:grid-cols-[1fr_200px] gap-10">
+      <div>
+        <div className="flex items-center gap-1 mb-4">
+          {post.tags.map((tag) => (
+            <Badge key={tag}>{tag}</Badge>
+          ))}
         </div>
-        <h1 className="font-bold leading-tight tracking-tighter lg:leading-[1.1] text-2xl md:text-3xl">
-          {post.title}
-        </h1>
+        <div className="space-y-2">
+          <div className="flex flex-wrap items-center text-muted-foreground text-sm gap-1.5">
+            <time dateTime={post.date.toString()} className="block">
+              {formatDate(post.date)}
+            </time>
+          </div>
+          <h1 className="font-bold leading-tight tracking-tighter lg:leading-[1.1] text-2xl md:text-3xl">
+            {post.title}
+          </h1>
+        </div>
+        <div className="markdown mb-14">
+          <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        </div>
       </div>
-      <div className="markdown mb-14">
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      <div className="hidden sticky top-24 h-fit md:block">
+        {post.toc && <TableOfContents tocEntries={post.toc} />}
       </div>
     </Shell>
   );
