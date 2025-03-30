@@ -5,8 +5,8 @@ import { SiteFooter } from "@/components/layouts/site-footer";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 
 import "@/styles/globals.css";
-import "@/styles/highlightjs-github-dark.css"
-import "@/styles/highlightjs-github-light.css"
+import "@/styles/highlightjs-github-dark.css";
+import "@/styles/highlightjs-github-light.css";
 
 export const metadata: Metadata = {
   title: {
@@ -45,7 +45,7 @@ export default function RootLayout({
       <body className="min-h-screen font-pretendard antialiased">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
