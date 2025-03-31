@@ -4,6 +4,8 @@ import { SiteHeader } from "@/components/layouts/site-header";
 import { SiteFooter } from "@/components/layouts/site-footer";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 
+import { Analytics } from "@vercel/analytics/next";
+
 import "@/styles/globals.css";
 import "@/styles/highlightjs-github-dark.css";
 import "@/styles/highlightjs-github-light.css";
@@ -55,6 +57,7 @@ export default function RootLayout({
             <SiteFooter />
           </div>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
