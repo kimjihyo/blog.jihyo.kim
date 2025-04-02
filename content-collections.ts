@@ -111,7 +111,8 @@ const posts = defineCollection({
   schema: (z) => ({
     title: z.string(),
     summary: z.string(),
-    date: z.string(),
+    createdTime: z.string(),
+    updatedTime: z.string(),
     tags: z.array(z.string()),
     type: z.enum(["post", "translation"]),
     thumbnail: z.string().optional(),
@@ -121,7 +122,8 @@ const posts = defineCollection({
 
     return {
       ...document,
-      date: new Date(document.date),
+      createdTime: new Date(document.createdTime),
+      updatedTime: new Date(document.updatedTime),
       html,
       toc,
     };

@@ -59,8 +59,8 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
         <div className="space-y-2">
           <div className="flex flex-wrap items-center text-muted-foreground text-sm gap-1.5">
-            <time dateTime={post.date.toString()} className="block">
-              {formatDate(post.date)}
+            <time dateTime={post.createdTime.toString()} className="block">
+              {formatDate(post.createdTime)}
             </time>
           </div>
           <h1 className="font-bold leading-tight tracking-tighter lg:leading-[1.1] text-2xl md:text-3xl">

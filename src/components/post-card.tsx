@@ -57,10 +57,10 @@ export function PostCard({ post }: PostCardProps) {
             )}
             <div className="absolute left-0 top-0 z-10 bg-background flex flex-col items-center justify-center w-full h-full -translate-y-full group-hover:translate-y-0 transition-transform duration-300">
               <div className="text-2xl sm:text-4xl font-extrabold">
-                {post.date.getDate()}
+                {post.createdTime.getDate()}
               </div>
               <div className="text-sm sm:text-base">
-                {months[post.date.getMonth()]}
+                {months[post.createdTime.getMonth()]}
               </div>
             </div>
           </div>
