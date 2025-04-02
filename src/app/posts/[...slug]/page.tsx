@@ -51,7 +51,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <Shell className="relative md:grid md:grid-cols-[1fr_200px] gap-10">
-      <div>
+      <div className="min-w-0">
         <div className="flex items-center gap-1 mb-4">
           {post.tags.map((tag) => (
             <Badge key={tag}>{tag}</Badge>
