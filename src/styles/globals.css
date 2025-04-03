@@ -203,7 +203,7 @@
 }
 
 .markdown pre {
-  @apply my-4 flex items-center rounded-lg px-4 py-2.5 text-muted-foreground text-sm overflow-auto;
+  @apply my-4 flex items-center gap-2 rounded-lg px-4 py-2.5 text-muted-foreground text-sm overflow-auto;
 }
 
 .dark .markdown pre,
@@ -211,8 +211,13 @@
   @apply bg-neutral-900;
 }
 
+.markdown pre,
+.markdown pre code {
+  @apply bg-muted;
+}
+
 .markdown code {
-  @apply rounded bg-muted px-[0.3rem] py-[0.2rem] text-sm;
+  @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] text-sm;
 }
 
 .markdown blockquote {
