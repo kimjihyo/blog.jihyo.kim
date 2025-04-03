@@ -1,9 +1,9 @@
 ---
 tags: ["개발 세팅"]
-createdTime: "2025-03-30T00:00:00.000+09:00"
+createdTime: "2025-03-30T00:00:00.000Z"
 thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1743593448/IMG_0408_ewhspi.png"
 summary: "저는 아이패드를 활용해 개발하고 있습니다. 지금 보시는 이 블로그도 군대에서 아이패드로 개발했습니다. 오늘은 제가 어떻게 아이패드에서 개발을 할 수 있었는지 몇 가지 방법을 공유해보겠습니다."
-updatedTime: "2025-04-02T09:01:00.000Z"
+updatedTime: "2025-04-02T00:00:00.000Z"
 type: "post"
 title: "군대에서 아이패드로 코딩하기"
 ---

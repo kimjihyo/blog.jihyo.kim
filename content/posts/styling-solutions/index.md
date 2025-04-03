@@ -1,9 +1,9 @@
 ---
 tags: ["CSS", "Web"]
-createdTime: "2025-04-03T00:00:00.000+09:00"
-thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1743593448/IMG_0408_ewhspi.png"
-summary: "블로그 개발하기 두번째 글을 작성하려고 했습니다. 두번쨰 글은 제가 사용한 스타일링 라이브러리와 UI Components 라이브러리를 소개하고 어떻게 설정하여 사용하고 있는지 간략하게 적어보려고 했는데 스타일링 라이브러리에 관해서 적다가 글이 매우 길어져서 그냥 스타일링 라이브러리에 관한 내용만 담은 글을 작성했습니다. "
-updatedTime: "2025-04-03T09:01:00.000Z"
+createdTime: "2025-04-03T00:00:00.000Z"
+thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1743684064/IMG_0413_hf7j6x.jpg"
+summary: "이번 글에서는 여러가지 스타일링 관리 방법들을 소개하고 각 방법들에서 사용되는 유명한 라이브러리들을 간략하게 적어보겠습니다."
+updatedTime: "2025-04-03T00:00:00.000Z"
 type: "post"
 title: "정말 다양하고도 다양한 CSS를 사용하는 법"
 ---
@@ -35,25 +35,27 @@ CSS Modules은 말 그대로 CSS를 모듈화 하여 사용하는 방식입니�
 
 Next.js 에서 별도의 설치나 설정 없이 바로 사용해볼 수 있습니다.
 
-```tsx
+```css
 /* MyButton.module.css */
 .my-button {
-	background-color: red;
-	color: white;
-	padding: 1rem;
-	border: 1px solid black;
-	border-radius: 0.5rem;
+  background-color: red;
+  color: white;
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
 }
+```
 
+```tsx
 /* MyButton.tsx */
-import styles from './MyButton.module.css';
+import styles from "./MyButton.module.css";
 
 function MyButton() {
-	return (
-		<button type="button" className={styles['my-button']}>
-			My Button
-		</button>
-	);
+  return (
+    <button type="button" className={styles["my-button"]}>
+      My Button
+    </button>
+  );
 }
 ```
 
@@ -149,12 +151,12 @@ export default function App() {
 
 #### CSS-in-JS 장점과 단점
 
-장점으로는
+#### 장점
 
 - 컴포넌트 단위 스타일링, 스타일이 컴포넌트와 함께 정의되어 스타일 충돌 X
 - 스타일을 쉽게 동적으로 변경 가능
 
-단점으로는
+#### 단점
 
 - 런타임으로 스타일이 생성되기 때문에 기존 CSS보다 성능이 떨어질 수 있음
 
@@ -164,7 +166,7 @@ export default function App() {
 
 다시 TailwindCSS로 돌아와서, 일반 CSS나 Sass처럼 직접 스타일을 작성하는 게 아니라, HTML 요소에 유틸리니 클래스를 추가하는 방식으로 사용됩니다.
 
-```jsx
+```html
 <button className="bg-blue-500 text-white font-bold">Click me</button>
 ```
 
@@ -176,12 +178,12 @@ export default function App() {
 
 #### CSS Framework 장단점
 
-장점으로는
+#### 장점
 
 - CSS를 직접 작성할 필요 없이 유틸리티 클래스를 잘 조합하면 돼 빠른 개발 속도
 - 반응형 디자인 편리 -> TailwindCSS 같은 경우 `sm:`, `md:` 로 쉽게 적용 가능
 
-단점으로는
+#### 단점
 
 - CSS 클래스가 길어 짐
 - 클래스 이름이 익숙해질 때 까지 찾아봐야 해서 러닝 커브가 있음
