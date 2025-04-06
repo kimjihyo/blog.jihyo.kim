@@ -49,7 +49,6 @@ export default async function PostPage({ params }: PostPageProps) {
     return notFound();
   }
 
-  console.dir(post.toc, { depth: null });
 
   return (
     <Shell className="relative md:grid md:grid-cols-[1fr_200px] gap-10">
