@@ -1,7 +1,7 @@
 ---
 tags: ["개발 세팅"]
 createdTime: "2025-03-30T00:00:00.000Z"
-thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1743593448/IMG_0408_ewhspi.png"
+thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1743940170/IMG_0421_eowccv.png"
 summary: "저는 아이패드를 활용해 개발하고 있습니다. 지금 보시는 이 블로그도 군대에서 아이패드로 개발했습니다. 오늘은 제가 어떻게 아이패드에서 개발을 할 수 있었는지 몇 가지 방법을 공유해보겠습니다."
 updatedTime: "2025-04-02T00:00:00.000Z"
 type: "post"
@@ -24,7 +24,7 @@ title: "군대에서 아이패드로 코딩하기"
 
 iSH는 iOS와 아이패드에서 Alpine Linux 쉘을 샌드박스로 띄워 사용할 수 있게 만든 앱입니다. `apt install` 이나 `curl` 커맨드를 사용하여 여러가지 패키지들을 설치해 볼 수 있습니다. 저는 node.js 와 neovim을 설치 해보았습니다. 설치까지는 무리 없이 잘 되었습니다.
 
-하지만 node.js 같은 경우에는 14 버전이 설치되었습니다. 요즘 나오는 툴과 프레임워크들을 사용하려면 최소 node 20은 되어야 합니다. 패키ㅣ매니저가 참조하는 리파지토리 주소 값을 알파인 리눅스 공식 리파지토리로 변경하면 node 20 버전 설치가 가능합니다.
+하지만 node.js 같은 경우에는 14 버전이 설치되었습니다. 요즘 나오는 툴과 프레임워크들을 사용하려면 최소 node 20은 되어야 합니다. 패키지 매니저가 참조하는 리파지토리 주소 값을 알파인 리눅스 공식 리파지토리로 변경하면 node 20 버전 설치가 가능합니다.
 
 성공적으로 node 20을 설치 후 기대하는 마음으로 `create-next-app`으로 next.js 까지 생성해보았습니다.
 
