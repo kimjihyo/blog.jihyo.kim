@@ -6,17 +6,20 @@ import { allPosts } from "content-collections";
 
 type TOCEntry = NonNullable<(typeof allPosts)[0]["toc"]>[0];
 
+const getAllIds = (entries: TOCEntry[]): string[] => {
+  return entries.flatMap((entry) => [
+    entry.id,
+    ...(entry.children ? getAllIds(entry.children) : []),
+  ]);
+};
+
 interface TableOfContentsProps {
   tocEntries: TOCEntry[];
 }
 
 export function TableOfContents({ tocEntries }: TableOfContentsProps) {
   const itemIds = React.useMemo<string[]>(
-    () =>
-      tocEntries
-        .flatMap((item) => [item.id, item?.children?.map((item) => item.id)])
-        .flat()
-        .filter(Boolean) as string[],
+    () => getAllIds(tocEntries),
     [tocEntries]
   );
 
@@ -44,11 +47,11 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
   return (
     <ul className={cn("m-0 list-none", { "pl-4": level !== 1 })}>
       {tree.map((node: TOCEntry) => (
-        <li key={node.id} className="mt-0 pt-2">
+        <li key={node.id} className="mt-0">
           <a
             href={`#${node.id}`}
             className={cn(
-              "inline-block no-underline transition-colors hover:text-foreground text-muted-foreground",
+              "inline-block no-underline transition-colors hover:text-foreground text-muted-foreground text-sm",
               node.id === activeItem
                 ? "font-medium text-foreground"
                 : "text-muted-foreground"

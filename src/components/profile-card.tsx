@@ -1,17 +1,19 @@
 import { Card, CardContent, CardTitle } from "./ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
+import { siteConfig } from "@/config/site";
+
 export function ProfileCard() {
   return (
     <Card>
       <CardContent className="flex items-center gap-6">
         <Avatar className="w-16 h-16 hidden sm:block">
-          <AvatarImage src="https://res.cloudinary.com/dab33vdij/image/upload/v1743246504/IMG_0397_nfpwy9.png" />
+          <AvatarImage src={siteConfig.avatarImage} />
           <AvatarFallback>JK</AvatarFallback>
         </Avatar>
         <div>
           <CardTitle className="mb-2 flex items-center gap-2 text-base sm:text-lg">
             <Avatar className="w-8 h-8 sm:hidden">
-              <AvatarImage src="https://res.cloudinary.com/dab33vdij/image/upload/v1743246504/IMG_0397_nfpwy9.png" />
+              <AvatarImage src={siteConfig.avatarImage} />
               <AvatarFallback>JK</AvatarFallback>
             </Avatar>
             <span>김지효</span>

@@ -42,6 +42,7 @@ function addMetaToVFile(_meta: Meta) {
 
 async function compile(document: Document) {
   const toc: TOCEntry[] = [];
+  const stack: { depth: number; entry: TOCEntry }[] = [];
 
   const generateTOC = () => {
     return (mdast: MDastNode) => {
@@ -56,17 +57,33 @@ async function compile(document: Document) {
           node.data.hProperties = { id };
 
           // Create the TOC entry
-          let tocEntry: TOCEntry = { id, title };
-
-          // If there's a deeper level, append it to the current TOC entry
-          if (node.depth === 2) {
-            toc.push(tocEntry);
-          } else if (node.depth === 3 && toc.length > 0) {
-            // Check if last entry has children (level 2) and add to it
-            const lastEntry = toc[toc.length - 1];
-            if (!lastEntry.children) lastEntry.children = [];
-            lastEntry.children.push(tocEntry);
+          const entry: TOCEntry = { id, title };
+          const depth = node.depth ?? 1;
+          // Remove deeper or equal levels from the stack
+          while (stack.length > 0 && stack[stack.length - 1].depth >= depth) {
+            stack.pop();
           }
+
+          if (stack.length === 0) {
+            toc.push(entry); // Top-level
+          } else {
+            const parent = stack[stack.length - 1].entry;
+            if (!parent.children) parent.children = [];
+            parent.children.push(entry); // Nested under its parent
+          }
+
+          // Add current heading to stack
+          stack.push({ depth, entry });
+
+          // // If there's a deeper level, append it to the current TOC entry
+          // if (node.depth === 2) {
+          //   toc.push(tocEntry);
+          // } else if (node.depth === 3 && toc.length > 0) {
+          //   // Check if last entry has children (level 2) and add to it
+          //   const lastEntry = toc[toc.length - 1];
+          //   if (!lastEntry.children) lastEntry.children = [];
+          //   lastEntry.children.push(tocEntry);
+          // }
         }
       });
     };
