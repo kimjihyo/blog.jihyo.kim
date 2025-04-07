@@ -51,7 +51,7 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   return (
-    <Shell className="relative md:grid md:grid-cols-[1fr_200px] gap-10">
+    <Shell className="relative md:grid md:grid-cols-[1fr_230px] gap-10">
       <div className="min-w-0">
         <Image
           className="w-full h-auto rounded-lg mb-8 bg-card"
@@ -79,7 +79,7 @@ export default async function PostPage({ params }: PostPageProps) {
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
       </div>
-      <div className="hidden sticky top-24 h-fit md:block">
+      <div className="hidden sticky top-24 h-fit md:block border-l pl-6">
         {post.toc && <TableOfContents tocEntries={post.toc} />}
       </div>
     </Shell>
