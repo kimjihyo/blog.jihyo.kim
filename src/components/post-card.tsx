@@ -49,11 +49,11 @@ export function PostCard({ post }: PostCardProps) {
                 fill
                 sizes="(min-width) 160px, 256px"
                 alt=""
-                className="object-center object-cover rounded"
+                className="object-center object-cover rounded bg-card"
                 src={post.thumbnail!}
               />
             ) : (
-              <div className="w-full h-full rounded bg-gray-200" />
+              <div className="w-full h-full rounded bg-card" />
             )}
             <div className="absolute left-0 top-0 z-10 bg-background flex flex-col items-center justify-center w-full h-full -translate-y-full group-hover:translate-y-0 transition-transform duration-300">
               <div className="text-2xl sm:text-4xl font-extrabold">
