@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { allPosts } from "content-collections";
 import { notFound } from "next/navigation";
 import { TableOfContents } from "@/components/table-of-contents";
+import Image from "next/image";
 
 interface PostPageProps {
   params: Promise<{ slug: string[] }>;
@@ -49,10 +50,16 @@ export default async function PostPage({ params }: PostPageProps) {
     return notFound();
   }
 
-
   return (
     <Shell className="relative md:grid md:grid-cols-[1fr_200px] gap-10">
       <div className="min-w-0">
+        <Image
+          className="w-full h-auto rounded-lg mb-8"
+          width={1200}
+          height={630}
+          alt=""
+          src={post.thumbnail!}
+        />
         <div className="flex items-center gap-1 mb-4">
           {post.tags.map((tag) => (
             <Badge key={tag}>{tag}</Badge>

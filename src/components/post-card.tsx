@@ -47,7 +47,7 @@ export function PostCard({ post }: PostCardProps) {
             {post.thumbnail ? (
               <Image
                 fill
-                sizes="(min-width) 80px, 128px"
+                sizes="(min-width) 160px, 256px"
                 alt=""
                 className="object-center object-cover rounded"
                 src={post.thumbnail!}

@@ -1,7 +1,7 @@
 ---
 tags: ["Blog", "Web"]
 createdTime: "2025-04-02T00:00:00Z"
-thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1743601308/IMG_0410_pv8gij.webp"
+thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1744025393/IMG_0424_dugtl4.png"
 summary: "지금 보고 계시는 블로그는 Next.js로 만들어졌습니다. 제가 Next.js로 블로그 프로젝트 초기 세팅했던 과정들을 적어봅니다."
 updatedTime: "2025-04-02T00:00:00Z"
 type: "post"
