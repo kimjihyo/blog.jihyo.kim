@@ -79,7 +79,7 @@ export default async function PostPage({ params }: PostPageProps) {
         <div className="markdown mb-14">
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
-        <div>
+        <div className="pt-8 border-t">
           <Comments />
         </div>
       </div>
