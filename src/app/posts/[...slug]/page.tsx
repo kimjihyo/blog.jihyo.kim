@@ -6,6 +6,7 @@ import { allPosts } from "content-collections";
 import { notFound } from "next/navigation";
 import { TableOfContents } from "@/components/table-of-contents";
 import Image from "next/image";
+import Comments from "@/components/comments";
 
 interface PostPageProps {
   params: Promise<{ slug: string[] }>;
@@ -77,6 +78,9 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
         <div className="markdown mb-14">
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        </div>
+        <div>
+          <Comments />
         </div>
       </div>
       <div className="hidden sticky top-24 h-fit md:block border-l pl-6">
