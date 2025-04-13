@@ -1,9 +1,19 @@
 "use client";
+import * as React from "react";
 import Giscus from "@giscus/react";
 import { useTheme } from "next-themes";
 
 export default function Comments() {
-  const { theme } = useTheme();
+  const [mounted, setMounted] = React.useState<boolean>(false);
+  const { resolvedTheme } = useTheme();
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <Giscus
@@ -16,7 +26,7 @@ export default function Comments() {
       reactionsEnabled="1"
       emitMetadata="0"
       inputPosition="top"
-      theme={theme}
+      theme={resolvedTheme}
       lang="ko"
       loading="lazy"
     />
