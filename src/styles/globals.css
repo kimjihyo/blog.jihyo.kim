@@ -173,15 +173,15 @@
 }
 
 .markdown h3 {
-  @apply mt-6 scroll-m-20 font-pretendard text-xl font-semibold tracking-tight;
+  @apply mt-6 scroll-m-20 border-b font-pretendard text-xl font-semibold tracking-tight;
 }
 
 .markdown h4 {
-  @apply mt-6 scroll-m-20 font-pretendard text-lg font-semibold tracking-tight;
+  @apply mt-6 scroll-m-20 border-b font-pretendard text-lg font-semibold tracking-tight;
 }
 
 .markdown h5 {
-  @apply mt-6 scroll-m-20 font-pretendard text-lg tracking-tight;
+  @apply mt-6 scroll-m-20 border-b font-pretendard text-lg tracking-tight;
 }
 
 .markdown h6 {

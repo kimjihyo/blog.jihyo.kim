@@ -33,7 +33,7 @@ export default function Page() {
             </TabsContent>
           ))}
         </Tabs>
-        <div className="w-3xs ml-6 px-6 border-l hidden md:block">
+        <div className="w-3xs ml-6 px-6 border-l hidden lg:block">
           <div className="font-semibold mb-4">태그</div>
           <Tags />
         </div>
