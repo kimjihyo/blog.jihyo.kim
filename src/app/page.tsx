@@ -15,7 +15,7 @@ export default function Page() {
     <Shell className="flex flex-col">
       <ProfileCard />
       <div className="flex mt-8">
-        <Tabs defaultValue="all" className="flex-1">
+        <Tabs defaultValue="all" className="flex-1 pr-6">
           <div className="bg-background z-50 sticky top-16 pt-4">
             <TabsList>
               {tabs.map((tab) => (
@@ -33,7 +33,7 @@ export default function Page() {
             </TabsContent>
           ))}
         </Tabs>
-        <div className="w-3xs ml-6 px-6 border-l hidden lg:block">
+        <div className="w-3xs px-6 border-l hidden md:block">
           <div className="font-semibold mb-4">태그</div>
           <Tags />
         </div>
