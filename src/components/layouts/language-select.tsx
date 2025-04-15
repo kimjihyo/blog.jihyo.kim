@@ -6,6 +6,8 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Button, buttonVariants } from "../ui/button";
+import { Icons } from "../icons";
+import { CaretDownIcon } from "@radix-ui/react-icons";
 
 export function LanguageSelect({
   variant = "ghost",
@@ -15,11 +17,13 @@ export function LanguageSelect({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant={variant} size={size}>
-          Korean
+          <Icons.translate />
+          <span>한국어</span>
+          <CaretDownIcon />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem>Korean</DropdownMenuItem>
+        <DropdownMenuItem>한국어</DropdownMenuItem>
         <DropdownMenuItem>English</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
