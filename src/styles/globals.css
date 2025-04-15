@@ -7,27 +7,6 @@
 
 @theme {
   --font-pretendard: "Pretendard Variable", Pretendard;
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f2f4f6;
-  --color-gray-200: #e5e8eb;
-  --color-gray-300: #d1d6db;
-  --color-gray-400: #b0b8c1;
-  --color-gray-500: #8b95a1;
-  --color-gray-600: #6b7684;
-  --color-gray-700: #4e5968;
-  --color-gray-800: #333d4b;
-  --color-gray-900: #191f28;
-
-  --color-blue-50: #e8f3ff;
-  --color-blue-100: #c9e2ff;
-  --color-blue-200: #90c2ff;
-  --color-blue-300: #64a8ff;
-  --color-blue-400: #4593fc;
-  --color-blue-500: #3182f6;
-  --color-blue-600: #2272eb;
-  --color-blue-700: #1b64da;
-  --color-blue-800: #1957c2;
-  --color-blue-900: #194aa6;
 }
 
 @theme inline {
@@ -56,7 +35,6 @@
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
-  --color-muted-accent: var(--muted-accent);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
@@ -65,87 +43,85 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --color-badge-background: var(--badge-background);
-  --color-badge-foreground: var(--badge-foreground);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-badge-default: var(--badge-default);
+  --color-badge-default-foreground: var(--badge-default-foreground);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: var(--color-white);
-  --foreground: var(--color-gray-900);
-  --card: var(--color-gray-50);
-  --card-foreground: var(--color-gray-700);
+  --radius: 0.5rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.141 0.005 285.823);
+  --card: oklch(0.967 0.001 286.375);
+  --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: var(--color-blue-500);
-  --primary-foreground: var(--color-white);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: var(--color-gray-100);
-  --muted-accent: var(--color-gray-200);
-  --muted-foreground: var(--color-gray-700);
-  --accent: var(--color-gray-200);
-  --accent-foreground: var(--color-gray-800);
+  --popover-foreground: oklch(0.141 0.005 285.823);
+  --primary: oklch(0.623 0.214 259.815);
+  --primary-foreground: oklch(0.97 0.014 254.604);
+  --secondary: oklch(0.967 0.001 286.375);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.552 0.016 285.938);
+  --accent: oklch(0.33 0.0107 91.66 / 6%);
+  --accent-foreground: oklch(0.21 0.006 285.885);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.92 0.004 286.32);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: oklch(0.623 0.214 259.815);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-  --badge-background: var(--color-gray-100);
-  --badge-foreground: var(--color-gray-700);
+  --sidebar-foreground: oklch(0.141 0.005 285.823);
+  --sidebar-primary: oklch(0.623 0.214 259.815);
+  --sidebar-primary-foreground: oklch(0.97 0.014 254.604);
+  --sidebar-accent: oklch(0.967 0.001 286.375);
+  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
+  --sidebar-border: oklch(0.92 0.004 286.32);
+  --sidebar-ring: oklch(0.623 0.214 259.815);
+  --badge-default: oklch(0.41 0.0392 83.28 / 10%);
+  --badge-default-foreground: oklch(0.22 0.0099 88.8);
 }
 
 .dark {
-  --background: #1f2428;
-  --foreground: #d1d5da;
-  --card: #24292e;
-  --card-foreground: #e1e4e8;
-  --popover: #444d56;
-  --popover-foreground: #e1e4e8;
-  --primary: var(--color-blue-400);
-  --primary-foreground: var(--color-white);
-  --secondary: oklch(0.269 0 0);
+  --background: oklch(0.21 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.24 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.26 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.62 0.1879 259.8);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: #444d56;
-  --muted-accent: #586069;
-  --muted-foreground: #959da5;
-  --accent: #282e34;
-  --accent-foreground: #e1e4e8;
+  --muted: oklch(0.274 0.006 286.033);
+  --muted-foreground: oklch(0.705 0.015 286.067);
+  --accent: oklch(1 0 0 / 5.5%);
+  --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: oklch(0.62 0.1879 259.8);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
+  --sidebar: oklch(0.21 0.006 285.885);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-primary: oklch(0.546 0.245 262.881);
+  --sidebar-primary-foreground: oklch(0.379 0.146 265.522);
+  --sidebar-accent: oklch(0.274 0.006 286.033);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-  --badge-background: #444d56;
-  --badge-foreground: #e1e4e8;
+  --sidebar-ring: oklch(0.488 0.243 264.376);
+  --badge-default: oklch(1 0 0 / 13%);
+  --badge-default-foreground: oklch(1 0 0 / 81%);
 }
 
 /* 

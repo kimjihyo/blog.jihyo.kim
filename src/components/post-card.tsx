@@ -43,7 +43,7 @@ export function PostCard({ post }: PostCardProps) {
           </div>
         </div>
         <div>
-          <div className="w-20 h-20 sm:w-32 sm:h-32 mb-auto overflow-hidden relative">
+          <div className="w-[90px] h-[65px] sm:w-[130px] sm:h-[90px] mb-auto overflow-hidden relative">
             {post.thumbnail ? (
               <Image
                 fill
