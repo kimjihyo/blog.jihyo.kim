@@ -26,7 +26,7 @@ export default function Comments() {
       reactionsEnabled="1"
       emitMetadata="0"
       inputPosition="top"
-      theme={resolvedTheme}
+      theme={resolvedTheme === "light" ? "light" : "noborder_dark"}
       lang="ko"
       loading="lazy"
     />
