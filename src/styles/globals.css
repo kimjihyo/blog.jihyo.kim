@@ -168,7 +168,7 @@
 }
 
 .markdown a {
-  @apply font-medium underline underline-offset-4;
+  @apply font-medium underline underline-offset-4 text-muted-foreground;
 }
 
 .markdown p {
@@ -193,7 +193,7 @@
 
 .dark .markdown pre,
 .dark .markdown pre code {
-  @apply bg-neutral-900;
+  @apply bg-muted;
 }
 
 .markdown pre,
