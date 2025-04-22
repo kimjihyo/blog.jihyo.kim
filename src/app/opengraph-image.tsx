@@ -24,7 +24,7 @@ export default async function Image() {
       <div
         style={{
           fontSize: 128,
-          background: "black",
+          background: 'linear-gradient(180deg,rgba(0, 0, 0, 1) 0%, rgba(59, 59, 59, 1) 50%, rgba(0, 0, 0, 1) 100%)',
           width: "100%",
           height: "100%",
           display: "flex",
@@ -34,7 +34,7 @@ export default async function Image() {
           color: "white",
         }}
       >
-        Jihyo Kim
+        blog.jihyo.kim
       </div>
     ),
     // ImageResponse options
