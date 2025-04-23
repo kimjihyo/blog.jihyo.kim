@@ -84,7 +84,7 @@ create-next-app으로 Next.js 프로젝트를 초기화 하면 ESLint와 국룰 
 
 VS Code에서 ESLint 규칙들이 실시간으로 검사되고 있는지 확인하려면 VSCode ESLint extension을 Marketplace에서 설치해주어야 합니다. 이렇게 설치해주고 확인해보니 밑에 VS Code ESlint output에 아래와 같이 에러가 떴습니다.
 
-```plain text
+```
 [Info  - 1:16:45 PM] ESLint server is starting.
 [Info  - 1:16:46 PM] ESLint server running in node v22.12.0
 [Info  - 1:16:46 PM] ESLint server is running.
@@ -121,12 +121,45 @@ Referenced from: C:\Workspace\ThnJK\node_modules\.pnpm\eslint-config-next@15.1.0
     at ConfigArrayFactory._normalizeObjectConfigData (file:///C:/Workspace/ThnJK/node_modules/.pnpm/@eslint+eslintrc@3.2.0/node_modules/@eslint/eslintrc/lib/config-array-factory.js:694:20)
 ```
 
-결론적으로 [Issue](https://github.com/pnpm/pnpm/issues/8878#issuecomment-2547568225) 를 보고 해결할 수 있었습니다. pnpm으로 설치되는 ESLint 9 버전과 VS Code ESLint extension의 문제인 것 같습니다. 왜냐하면 커맨드라인으로 `next lint`를 실행해보면 문제없이 잘 되었습니다.
+문제의 원인을 알아보도록 하겠습니다. 저는 Next.js 프로젝트에서 권장하는 config인 `eslint-config-next`을 사용하고 있습니다. 해당 config에는 여러가지 플러그인들을 사용하고 있는데, 저의 에러 로그를 확인해보면 `eslint-plugin-react-hooks`를 찾지 못한다는 말입니다. npm 이나 yarn으로 프로젝트를 초기화했을 때는 문제가 없지만 pnpm를 사용하면 문제가 발생합니다. 
 
-해당 Issue에서 제시해준대로 .npmrc 파일을 만들고 eslint 관련된 패키지들을 전부 root node_modules에 hoisting 해주니 문제없이 잘 작동했습니다.
+이 문제의 원인을 이해하기 위해서는 우선 어떻게 ESLint가 config 와 plugin을 로드하는지, 그리고 pnpm이 어떻게 패키지를 관리하는지에 대해서 알아야 합니다. 
+
+우선 어떻게 ESLint가 config와 plugin을 로드하는지 부터 알아보겠습니다. 아래의 예제 에서는 `eslint-plugin-jsdoc` 플러그인을 로드하고 몇가지 규칙들을 설정해주는 코드입니다.
+
+```js
+// .eslintrc.js
+module.exports = {
+	// ...other config
+	plugins: ["jsdoc"],
+	rules: {
+		"jsdoc/require-description": "error",
+		"jsdoc/check-values": "error",
+	},
+	// ...other config
+};
+```
+
+일반적으로 저희가 JavaScript 패키지를 설치해서 불러오려면 `require` 이나 `import`를 사용하는데, 위 예제 코드에서는 찾아볼 수 없습니다. 단지 `plugins: ["jsdoc"]`에서 문자열로 플러그인을 참조하고 있는걸 확인할 수 있습니다. 이렇게 문자열로 플러그인을 지정하면 ESLint가 알아서 `node_modules`에서 찾아서 로딩하는 방식이였습니다.
+
+이렇게 작동하는 방식이 npm과 yarn을 사용할 때는 문제가 되지 않았습니다. 왜냐면 이 둘은 패키지를 설치할 때 패키지와 해당 패키지의 dependencies를 `node_modules` 최상위에 설치합니다. 이를 Dependency Hoisting이라고 합니다. ESLint는 plugin과 config를 찾을 때 최상위 `node_modules`에서 찾기 때문에 npm과 yarn에서는 문제가 없었습니다.
+
+하지만 pnpm은 패키지들을 `node_modules` 최상위에 설치하지 않습니다. 최상위에 설치하지 않을 뿐, 기본 설정 값으로는 dependency hoisting이 여전히 적용되고 있습니다. 다만, `node_modules/.pnpm/node_modules`이 경로에서 hoisting되고 있기 때문에 프로젝트의 package.json에 리스트 되지 않은 패키지들(phantom package 라고 부릅니다)은 접근이 불가능합니다. 그래서 ESLint가 `eslint-plugin-react-hooks`를 찾지 못했습니다. 저희가 직접적으로 설치한게 아닌 `eslint-config-next`에서 간접적으로 설치됐기 때문이죠.
+
+ESLint 관련 패키지들은 강제로 최상위 `node_modules`에 설치되도록하면 모든 것이 해결될 것 같습니다. 그렇게 하기 위해서는 `.npmrc` 파일을 만들어서 `public-hoist-pattern`을 넣어주면 됩니다.
+```
+// .npmrc
+publicHoistPattern:
+- "*eslint*"
+```
+이렇게 하면 `*eslint*` 패턴의 이름을 가진 패키지들은 자동적으로 최상위 node_modules에 설치되게 됩니다. 이 값을 적용하니 ESLint가 정상적으로 작동됐습니다.
+
 
 ## 마무리
 
 블로그 만들기는 아마 시리즈로 작성하게 될 것 같습니다. 아무래도 분량이 많다보니… 다음 글에서는 어떤 UI Components 와 Styling 라이브러리를 선택하였는지 선택한 라이브러리들 기본 세팅한 것들을 조금 소개드려보려고 합니다.
 
 두서 없는 글 시간내서 읽어주셔서 감사합니다.
+
+## 참고
+- [Using public-hoist-pattern breaks ESLint extension?! #8878](https://github.com/pnpm/pnpm/issues/8878#issuecomment-2547568225)
