@@ -148,7 +148,7 @@ module.exports = {
 
 ESLint 관련 패키지들은 강제로 최상위 `node_modules`에 설치되도록하면 모든 것이 해결될 것 같습니다. 그렇게 하기 위해서는 `.npmrc` 파일을 만들어서 `public-hoist-pattern`을 넣어주면 됩니다.
 
-```rc
+```yaml
 // .npmrc
 publicHoistPattern:
 - "*eslint*"
