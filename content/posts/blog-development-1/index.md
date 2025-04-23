@@ -147,11 +147,13 @@ module.exports = {
 하지만 pnpm은 패키지들을 `node_modules` 최상위에 설치하지 않습니다. 최상위에 설치하지 않을 뿐, 기본 설정 값으로는 dependency hoisting이 여전히 적용되고 있습니다. 다만, `node_modules/.pnpm/node_modules`이 경로에서 hoisting되고 있기 때문에 프로젝트의 package.json에 리스트 되지 않은 패키지들(phantom package 라고 부릅니다)은 접근이 불가능합니다. 그래서 ESLint가 `eslint-plugin-react-hooks`를 찾지 못했습니다. 저희가 직접적으로 설치한게 아닌 `eslint-config-next`에서 간접적으로 설치됐기 때문이죠.
 
 ESLint 관련 패키지들은 강제로 최상위 `node_modules`에 설치되도록하면 모든 것이 해결될 것 같습니다. 그렇게 하기 위해서는 `.npmrc` 파일을 만들어서 `public-hoist-pattern`을 넣어주면 됩니다.
-```
+
+```rc
 // .npmrc
 publicHoistPattern:
 - "*eslint*"
 ```
+
 이렇게 하면 `*eslint*` 패턴의 이름을 가진 패키지들은 자동적으로 최상위 node_modules에 설치되게 됩니다. 이 값을 적용하니 ESLint가 정상적으로 작동됐습니다.
 
 
