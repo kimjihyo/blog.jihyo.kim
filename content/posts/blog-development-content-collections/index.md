@@ -126,13 +126,13 @@ export default defineConfig({
 
 ```md
 ---
-tags: [“Test”]
+tags: ["Test"]
 createdTime: "2025-04-02T00:00:00Z"
 thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1744025393/IMG_0424_dugtl4.png"
-summary: “Hello world yo”
+summary: "Hello world yo"
 updatedTime: "2025-04-02T00:00:00Z"
 type: "post"
-title: “Hello world”
+title: "Hello world"
 ---
 
 # Hello world
