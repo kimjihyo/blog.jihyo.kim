@@ -124,7 +124,7 @@ export default defineConfig({
 
 테스트로 `content/posts/hello-world.md` 만들어봅시다.
 
-```
+```md
 ---
 tags: [“Test”]
 createdTime: "2025-04-02T00:00:00Z"
