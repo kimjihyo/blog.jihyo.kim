@@ -36,7 +36,7 @@ export function PostCard({ post }: PostCardProps) {
             <h2 className="text-base sm:text-xl font-semibold mb-1.5 text-foreground group-hover:text-primary transition-colors">
               {post.title}
             </h2>
-            <p className="text-muted-foreground text-xs sm:text-base">
+            <p className="text-muted-foreground text-xs/5 sm:text-base">
               {post.summary}
             </p>
           </div>

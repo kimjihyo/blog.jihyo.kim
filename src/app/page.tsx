@@ -15,7 +15,7 @@ export default function Page() {
     <Shell className="flex flex-col">
       <ProfileCard />
       <div className="flex mt-8">
-        <Tabs defaultValue="all" className="flex-1 pr-6">
+        <Tabs defaultValue="all" className="flex-1 md:pr-6">
           <div className="bg-background z-50 sticky top-16 pt-4">
             <TabsList>
               {tabs.map((tab) => (
