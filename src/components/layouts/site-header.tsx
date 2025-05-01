@@ -20,7 +20,7 @@ export function SiteHeader() {
         </Link>
         <div className="flex flex-1 items-center justify-end space-x-2">
           <Button size="sm" asChild>
-            <Link href={siteConfig.links.github}>GitHub</Link>
+            <Link href={siteConfig.links.github}>블로그 코드 보기</Link>
           </Button>
           <ModeToggle />
         </div>
