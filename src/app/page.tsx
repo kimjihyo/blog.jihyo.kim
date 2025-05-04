@@ -1,7 +1,6 @@
 import { Shell } from "@/components/shell";
 import { Tags } from "@/components/tags";
 import { Posts } from "@/components/posts";
-import { ProfileCard } from "@/components/profile-card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const tabs = [
@@ -13,10 +12,9 @@ const tabs = [
 export default function Page() {
   return (
     <Shell className="flex flex-col">
-      <ProfileCard />
-      <div className="flex mt-8">
+      <div className="flex">
         <Tabs defaultValue="all" className="flex-1 md:pr-6">
-          <div className="bg-background z-50 sticky top-16 pt-4">
+          <div className="z-50 bg-background sticky top-16 pt-4">
             <TabsList>
               {tabs.map((tab) => (
                 <TabsTrigger key={tab.value} value={tab.value}>
@@ -33,7 +31,7 @@ export default function Page() {
             </TabsContent>
           ))}
         </Tabs>
-        <div className="w-3xs px-6 border-l hidden md:block">
+        <div className="w-3xs px-6 pt-4 border-l hidden md:block">
           <div className="font-semibold mb-4">태그</div>
           <Tags />
         </div>
