@@ -4,7 +4,7 @@ createdTime: "2025-04-10T00:00:00Z"
 thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1744274494/IMG_0433_rpc9c7.png"
 summary: "블로그의 필수 기능이라고 볼 수 있는 댓글 기능 입니다. 처음 이 블로그를 만들 때는 댓글 기능을 도입할 생각은 없었는데 친구가 추가해달라고 제안을 해주었고 생각을 해보니 있으면 재밌을 것 같아 이번에 추가하게 되었습니다."
 updatedTime: "2025-04-10T00:00:00Z"
-type: "post"
+type: "dev-log"
 title: "블로그 개발 - 백엔드/DB 없이 손쉽게 댓글 기능 추가하기"
 ---
 

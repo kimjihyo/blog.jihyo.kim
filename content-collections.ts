@@ -131,7 +131,7 @@ const posts = defineCollection({
     createdTime: z.string(),
     updatedTime: z.string(),
     tags: z.array(z.string()),
-    type: z.enum(["post", "translation"]),
+    type: z.enum(["dev-log", "trouble-shooting", "daily"]),
     thumbnail: z.string(),
   }),
   transform: async (document, context) => {

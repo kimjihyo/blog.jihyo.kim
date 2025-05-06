@@ -5,8 +5,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const tabs = [
   { title: "전체", value: "all" },
-  { title: "작성글", value: "post" },
-  { title: "번역글", value: "translation" },
+  { title: "개발일지", value: "dev-log" },
+  { title: "트러블슈팅", value: "trouble-shooting" },
+  { title: "일상", value: "daily" },
 ];
 
 export default function Page() {

@@ -4,7 +4,7 @@ createdTime: "2025-04-03T00:00:00.000Z"
 thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1743684064/IMG_0413_hf7j6x.jpg"
 summary: "이번 글에서는 여러가지 스타일링 관리 방법들을 소개하고 각 방법들에서 사용되는 유명한 라이브러리들을 간략하게 적어보겠습니다."
 updatedTime: "2025-04-03T00:00:00.000Z"
-type: "post"
+type: "dev-log"
 title: "정말 다양하고도 다양한 CSS를 사용하는 법"
 ---
 

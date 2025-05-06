@@ -4,7 +4,7 @@ createdTime: "2025-04-13T00:00:00Z"
 thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1744535052/blog-development-thumbnail_mj7wzg.png"
 summary: "마크다운으로 된 글을 타입 안전하게 다룰 수 있게 도와주는 content-collections 라이브러리에 대해서 알아봅니다."
 updatedTime: "2025-04-13T00:00:00Z"
-type: "post"
+type: "dev-log"
 title: "블로그 개발 - content-collections으로 콘텐츠 관리하기"
 ---
 
