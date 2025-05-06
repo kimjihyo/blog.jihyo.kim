@@ -132,7 +132,7 @@ const posts = defineCollection({
     updatedTime: z.string(),
     tags: z.array(z.string()),
     type: z.enum(["post", "translation"]),
-    thumbnail: z.string().optional(),
+    thumbnail: z.string(),
   }),
   transform: async (document, context) => {
     const { html, toc } = await compileMarkdown(context, document);
