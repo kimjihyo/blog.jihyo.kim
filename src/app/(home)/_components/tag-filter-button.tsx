@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -12,7 +13,15 @@ export function TagFilterButton({ tag }: TagFilterButtonProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const currentTags = searchParams.getAll("tag");
-  const isSelected = currentTags.includes(tag);
+  const [optimisticTags, setOptimisticTags] = React.useOptimistic(
+    currentTags,
+    (tags: string[], tag: string) => {
+      return tags.includes(tag)
+        ? tags.filter((t) => t !== tag)
+        : [...tags, tag];
+    }
+  );
+  const isSelected = optimisticTags.includes(tag);
 
   return (
     <Badge
@@ -24,19 +33,17 @@ export function TagFilterButton({ tag }: TagFilterButtonProps) {
       )}
       onClick={() => {
         const params = new URLSearchParams(searchParams);
-        const currentTags = params.getAll("tag");
-        const isSelected = currentTags.includes(tag);
+        params.delete("tag");
 
-        if (isSelected) {
-          // Remove tag if already selected
-          const newTags = currentTags.filter((t) => t !== tag);
-          params.delete("tag");
-          newTags.forEach((t) => params.append("tag", t));
-        } else {
-          // Add new tag
-          params.append("tag", tag);
-        }
+        React.startTransition(() => {
+          setOptimisticTags(tag);
+        });
 
+        const newTags = optimisticTags.includes(tag)
+          ? optimisticTags.filter((t) => t !== tag)
+          : [...optimisticTags, tag];
+
+        newTags.forEach((t) => params.append("tag", t));
         router.push(`/?${params.toString()}`);
       }}
     >
