@@ -1,5 +1,10 @@
 import type { NextConfig } from "next";
 import { withContentCollections } from "@content-collections/next";
+import createNextBundleAnalyzer from "@next/bundle-analyzer";
+
+const withBundleAnalyzer = createNextBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -14,4 +19,4 @@ const nextConfig: NextConfig = {
 };
 
 // withContentCollections must be the outermost plugin
-export default withContentCollections(nextConfig);
+export default withContentCollections(withBundleAnalyzer(nextConfig));

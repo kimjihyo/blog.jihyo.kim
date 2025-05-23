@@ -1,9 +1,9 @@
-import { allPosts } from "content-collections";
+import { allPostMetas } from "content-collections";
 
 // Collect all tags
 const tagsSet = new Set<string>();
 
-allPosts.forEach((post) => {
+allPostMetas.forEach((post) => {
   if (post.tags) {
     post.tags.forEach((tag) => tagsSet.add(tag));
   }

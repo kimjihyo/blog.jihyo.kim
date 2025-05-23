@@ -1,5 +1,5 @@
 import { allPostsSortedByDate } from "@/lib/allPostsSortedByDate";
-import { PostCard } from "../../../components/post-card";
+import { PostCard } from "@/components/post-card";
 import * as React from "react";
 
 interface PostsProps {

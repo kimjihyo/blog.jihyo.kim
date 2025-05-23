@@ -37,6 +37,7 @@
     "@content-collections/markdown": "^0.1.4",
     "@content-collections/next": "^0.2.6",
     "@eslint/eslintrc": "^3",
+    "@next/bundle-analyzer": "^15.1.8",
     "@next/env": "^15.2.4",
     "@notionhq/client": "^2.3.0",
     "@tailwindcss/postcss": "^4",

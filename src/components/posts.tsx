@@ -3,26 +3,21 @@ import { PostCard } from "./post-card";
 import * as React from "react";
 
 interface PostsProps {
-  type?: string;
-  tags?: string[] | string;
+  searchParams: Promise<{ tag: string[] }>;
 }
 
-export function Posts({ type, tags }: PostsProps) {
+export async function Posts({ searchParams }: PostsProps) {
+  const { tag } = await searchParams;
+
   return (
     <>
       {allPostsSortedByDate
         .filter((post) => {
-          if (type) {
-            return post.type === type;
-          }
-          return true;
-        })
-        .filter((post) => {
-          if (tags) {
-            if (Array.isArray(tags)) {
-              return tags.every((tag) => post.tags.includes(tag));
+          if (tag) {
+            if (Array.isArray(tag)) {
+              return tag.every((t) => post.tags.includes(t));
             }
-            return post.tags.includes(tags);
+            return post.tags.includes(tag);
           }
           return true;
         })

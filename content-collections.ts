@@ -147,6 +147,29 @@ const posts = defineCollection({
   },
 });
 
+const postMetas = defineCollection({
+  name: "postMetas",
+  directory: "./content/posts",
+  include: "**/*.md",
+  schema: (z) => ({
+    title: z.string(),
+    summary: z.string(),
+    createdTime: z.string(),
+    updatedTime: z.string(),
+    tags: z.array(z.string()),
+    type: z.enum(["dev-log", "trouble-shooting", "daily"]),
+    thumbnail: z.string(),
+  }),
+  transform: async (document, context) => {
+    return {
+      title: document.title,
+      tags: document.tags,
+      createdTime: new Date(document.createdTime),
+      updatedTime: new Date(document.updatedTime),
+    };
+  },
+});
+
 export default defineConfig({
-  collections: [posts],
+  collections: [posts, postMetas],
 });
