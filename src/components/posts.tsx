@@ -1,12 +1,13 @@
 import { allPostsSortedByDate } from "@/lib/allPostsSortedByDate";
 import { PostCard } from "./post-card";
+import * as React from "react";
 
 interface PostsProps {
   type?: string;
-  tag?: string;
+  tags?: string[] | string;
 }
 
-export function Posts({ type, tag }: PostsProps) {
+export function Posts({ type, tags }: PostsProps) {
   return (
     <>
       {allPostsSortedByDate
@@ -17,8 +18,11 @@ export function Posts({ type, tag }: PostsProps) {
           return true;
         })
         .filter((post) => {
-          if (tag) {
-            return post.tags.includes(tag);
+          if (tags) {
+            if (Array.isArray(tags)) {
+              return tags.every((tag) => post.tags.includes(tag));
+            }
+            return post.tags.includes(tags);
           }
           return true;
         })
