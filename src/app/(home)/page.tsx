@@ -5,7 +5,7 @@ import { Posts } from "@/components/posts";
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { tag: string[] };
+  searchParams: Promise<{ tag: string[] }>;
 }) {
   const tags = (await searchParams).tag;
 
