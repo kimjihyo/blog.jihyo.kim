@@ -17,9 +17,7 @@ export default async function Page({
         <div className="w-3xs px-6 pt-4 border-l hidden md:block">
           <div className="sticky top-20">
             <div className="font-semibold mb-4">태그</div>
-            <React.Suspense>
-              <Tags />
-            </React.Suspense>
+            <Tags searchParams={searchParams} />
           </div>
         </div>
       </div>
