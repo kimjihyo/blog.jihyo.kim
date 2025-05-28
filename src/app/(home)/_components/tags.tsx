@@ -3,12 +3,11 @@ import { allTags } from "@/lib/allTags";
 import { TagBadge } from "./tag-badge";
 
 interface TagsProps {
-  searchParams: Promise<{ tag: string[] | string | undefined }>;
+  // searchParams: Promise<{ tag: string[] | string | undefined }>;
+  selectedTags: string[];
 }
 
-export async function Tags({ searchParams }: TagsProps) {
-  const selectedTags = (await searchParams).tag;
-
+export async function Tags({ selectedTags }: TagsProps) {
   return (
     <React.Suspense>
       <ul className="flex flex-wrap gap-2">

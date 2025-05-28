@@ -1,7 +1,7 @@
 import type { Post } from "content-collections";
 import Link from "next/link";
-import { Image } from "./ui/image";
-import { Badge } from "./ui/badge";
+import { Image } from "@/components/ui/image";
+import { Badge } from "@/components/ui/badge";
 
 const months = [
   "Jan",

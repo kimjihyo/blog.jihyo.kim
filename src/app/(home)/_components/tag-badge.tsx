@@ -30,6 +30,9 @@ export function TagBadge({ tag, isSelected }: TagBadgeProps) {
           params.append("tag", tag);
         }
 
+        // Reset page to 1 whenever tags change
+        params.set("page", "1");
+
         router.push(`?${params.toString()}`);
       }}
     >
