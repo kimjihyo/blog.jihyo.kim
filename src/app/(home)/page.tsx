@@ -11,7 +11,7 @@ export default async function Page({
   return (
     <Shell className="flex flex-col">
       <div className="flex">
-        <div className="flex-1 flex flex-col gap-8 py-5 mb-10 md:pr-6">
+        <div className="flex-1 flex flex-col gap-8 mb-10 md:pr-6">
           <Posts searchParams={searchParams} />
         </div>
         <div className="w-3xs px-6 pt-4 border-l hidden md:block">

@@ -33,10 +33,10 @@ export function PostCard({ post }: PostCardProps) {
         </div>
         <div className="flex gap-5">
           <div className="flex-1">
-            <h2 className="text-base sm:text-xl font-semibold mb-1.5 text-foreground group-hover:text-primary transition-colors">
+            <h2 className="text-base xs:text-xl font-semibold mb-1.5 text-foreground group-hover:text-primary transition-colors">
               {post.title}
             </h2>
-            <p className="text-muted-foreground text-xs/5 sm:text-base">
+            <p className="text-muted-foreground text-sm sm:text-base">
               {post.summary}
             </p>
           </div>

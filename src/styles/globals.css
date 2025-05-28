@@ -7,6 +7,8 @@
 
 @theme {
   --font-pretendard: "Pretendard Variable", Pretendard;
+  --text-2xs: 0.625rem;
+  --breakpoint-xs: 30rem;
 }
 
 @theme inline {
@@ -84,8 +86,8 @@
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.623 0.214 259.815);
-  --badge-default: oklch(0.41 0.0392 83.28 / 10%);
-  --badge-default-foreground: oklch(0.22 0.0099 88.8);
+  --badge-default: oklch(0.9662 0.0034 247.86);
+  --badge-default-foreground: oklch(0.4602 0.0281 256.19);
 }
 
 .dark {
