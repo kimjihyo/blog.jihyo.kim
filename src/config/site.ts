@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "김지효 블로그",
+  name: "blog.jihyo.kim",
   description: "김지효씨의 개인 블로그",
   url: "https://blog.jihyo.kim",
   avatarImage:
