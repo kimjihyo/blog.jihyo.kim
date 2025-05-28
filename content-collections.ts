@@ -131,7 +131,6 @@ const posts = defineCollection({
     createdTime: z.string(),
     updatedTime: z.string(),
     tags: z.array(z.string()),
-    type: z.enum(["dev-log", "trouble-shooting", "daily"]),
     thumbnail: z.string(),
   }),
   transform: async (document, context) => {
@@ -157,12 +156,13 @@ const postMetas = defineCollection({
     createdTime: z.string(),
     updatedTime: z.string(),
     tags: z.array(z.string()),
-    type: z.enum(["dev-log", "trouble-shooting", "daily"]),
     thumbnail: z.string(),
   }),
-  transform: async (document, context) => {
+  transform: async (document) => {
     return {
       title: document.title,
+      summary: document.summary,
+      thumbnail: document.thumbnail,
       tags: document.tags,
       createdTime: new Date(document.createdTime),
       updatedTime: new Date(document.updatedTime),
@@ -170,6 +170,21 @@ const postMetas = defineCollection({
   },
 });
 
+const tags = defineCollection({
+  name: "tags",
+  directory: "./content/tags",
+  include: "**/*.md",
+  schema: (z) => ({}),
+  transform: async (_, { documents }) => {
+    const postList = await documents(postMetas);
+    const tags = postList.flatMap((post) => post.tags);
+    const uniqueTags = [...new Set(tags)];
+
+    return {
+      tags: uniqueTags,
+    };
+  },
+});
 export default defineConfig({
-  collections: [posts, postMetas],
+  collections: [posts, postMetas, tags],
 });
