@@ -23,6 +23,9 @@ interface PostCardProps {
 }
 
 export function PostCard({ post }: PostCardProps) {
+  const thumbnailUrl =
+    post.thumbnail ?? `/api/post-thumbnail/${post._meta.path}`;
+
   return (
     <article>
       <Link href={`/posts/${post._meta.path}`} className="group h-full">
@@ -50,15 +53,13 @@ export function PostCard({ post }: PostCardProps) {
           </div>
           <div>
             <div className="w-[90px] h-[65px] sm:w-[130px] sm:h-[90px] overflow-hidden relative rounded bg-card">
-              {post.thumbnail && (
-                <Image
-                  fill
-                  sizes="(min-width) 180px, 260px"
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-center object-cover rounded group-hover:scale-120 transition-transform duration-300"
-                  src={post.thumbnail!}
-                />
-              )}
+              <Image
+                fill
+                sizes="(min-width) 180px, 260px"
+                alt=""
+                className="absolute inset-0 w-full h-full object-center object-cover rounded group-hover:scale-120 transition-transform duration-300"
+                src={thumbnailUrl}
+              />
             </div>
           </div>
         </div>

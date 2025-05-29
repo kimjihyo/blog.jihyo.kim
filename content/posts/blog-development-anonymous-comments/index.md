@@ -1,8 +1,7 @@
 ---
 tags: ["Blog", "Web"]
 createdTime: "2025-05-29T00:00:00Z"
-thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1744025252/IMG_0423_m1zet6.png"
-summary: "이번 글에서는 제가 이 블로그 프로젝트에서 어떤 스타일링 라이브러리와 UI 컴포넌트 라이브러리를 사용했는지 소개하고 어떻게 세팅해 주었는지 보여드리겠습니다."
+summary: "Next.js의 Partial Pre-rendering을 활용하여 정적 블로그에 익명 댓글 기능을 구현한 과정을 소개한다."
 updatedTime: "2025-05-29T00:00:00Z"
 title: "Next.js Partial Pre-rendering으로 익명 댓글 기능 만들기"
 ---

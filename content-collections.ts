@@ -131,7 +131,7 @@ const posts = defineCollection({
     createdTime: z.string(),
     updatedTime: z.string(),
     tags: z.array(z.string()),
-    thumbnail: z.string(),
+    thumbnail: z.string().optional(),
   }),
   transform: async (document, context) => {
     const { html, toc } = await compileMarkdown(context, document);
@@ -156,7 +156,7 @@ const postMetas = defineCollection({
     createdTime: z.string(),
     updatedTime: z.string(),
     tags: z.array(z.string()),
-    thumbnail: z.string(),
+    thumbnail: z.string().optional(),
   }),
   transform: async (document) => {
     return {

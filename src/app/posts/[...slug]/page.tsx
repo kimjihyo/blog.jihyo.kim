@@ -54,16 +54,20 @@ export default async function PostPage({ params }: PostPageProps) {
     return notFound();
   }
 
+  const thumbnailUrl =
+    post.thumbnail ?? `/api/post-thumbnail/${post._meta.path}`;
+
   return (
     <Shell className="relative md:grid md:grid-cols-[1fr_230px] gap-10">
       <div className="min-w-0">
         <div className="rounded-lg bg-card">
           <Image
             className="w-full h-auto rounded-lg mb-8"
+            priority
             width={1200}
             height={630}
             alt=""
-            src={post.thumbnail!}
+            src={thumbnailUrl}
           />
         </div>
         <div className="flex items-center gap-1 mb-4">
