@@ -30,7 +30,7 @@ export function CommentForm({ postSlug }: CommentFormProps) {
               <div
                 className={cn(
                   "flex gap-2 items-center w-60 h-12",
-                  "dark:bg-input/30 border-input flex rounded-md border bg-transparent px-3 py-1 shadow-xs transition-[color,box-shadow] outline-none",
+                  "dark:bg-input/30 border-input flex rounded-md border bg-transparent px-3 py-1 shadow-xs transition-colors outline-none hover:border-primary",
                   "has-[:focus-visible]:border-ring has-[:focus-visible]:ring-ring/50 has-[:focus-visible]:ring-[3px]",
                   formState?.errors?.nickname && "border-destructive"
                 )}

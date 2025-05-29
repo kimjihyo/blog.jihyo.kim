@@ -126,12 +126,6 @@
   --badge-default-foreground: oklch(1 0 0 / 81%);
 }
 
-/* 
-  Fix an issue where hover not working on mobile devices with an external mouse.
-  See: https://tailwindcss.com/docs/upgrade-guide#hover-styles-on-mobile
-*/
-@custom-variant hover (&:hover);
-
 @layer base {
   html {
     @apply scroll-smooth;

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { siteConfig } from "@/config/site";
 import { SiteHeader } from "@/components/layouts/site-header";
 import { SiteFooter } from "@/components/layouts/site-footer";
@@ -9,6 +9,13 @@ import { Analytics } from "@vercel/analytics/next";
 import "@/styles/globals.css";
 import "@/styles/highlightjs-github-dark.css";
 import "@/styles/highlightjs-github-light.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export const metadata: Metadata = {
   title: {
@@ -53,7 +60,7 @@ export default function RootLayout({
         >
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
-              <main className="flex-1">{children}</main>
+            <main className="flex-1">{children}</main>
             <SiteFooter />
           </div>
         </ThemeProvider>
