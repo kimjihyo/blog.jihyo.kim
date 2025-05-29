@@ -57,7 +57,7 @@
   --radius: 0.5rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(0.9662 0.0034 247.86);
+  --card: oklch(0.9846 0.0017 247.84);
   --card-foreground: oklch(0.4602 0.0281 256.19);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
@@ -189,12 +189,12 @@
 
 .dark .markdown pre,
 .dark .markdown pre code {
-  @apply bg-muted;
+  @apply bg-card;
 }
 
 .markdown pre,
 .markdown pre code {
-  @apply bg-muted;
+  @apply bg-card;
 }
 
 .markdown code {

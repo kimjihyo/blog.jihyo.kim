@@ -2,7 +2,6 @@ import { ImageResponse } from "next/og";
 import { allPosts } from "content-collections";
 
 export const runtime = "edge";
-export const contentType = "image/png";
 
 const CONTENT_ASPECT_RATIO = 130 / 90;
 const CONTENT_HEIGHT = 630;
