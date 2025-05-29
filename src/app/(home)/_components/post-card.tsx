@@ -23,9 +23,6 @@ interface PostCardProps {
 }
 
 export function PostCard({ post }: PostCardProps) {
-  const thumbnailUrl =
-    post.thumbnail ?? `/api/post-thumbnail/${post._meta.path}`;
-
   return (
     <article>
       <Link href={`/posts/${post._meta.path}`} className="group h-full">
@@ -58,7 +55,7 @@ export function PostCard({ post }: PostCardProps) {
                 sizes="(min-width) 180px, 260px"
                 alt=""
                 className="absolute inset-0 w-full h-full object-center object-cover rounded group-hover:scale-120 transition-transform duration-300"
-                src={thumbnailUrl}
+                src={post.thumbnail}
               />
             </div>
           </div>

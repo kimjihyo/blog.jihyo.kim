@@ -54,9 +54,6 @@ export default async function PostPage({ params }: PostPageProps) {
     return notFound();
   }
 
-  const thumbnailUrl =
-    post.thumbnail ?? `/api/post-thumbnail/${post._meta.path}`;
-
   return (
     <Shell className="relative md:grid md:grid-cols-[1fr_230px] gap-10">
       <div className="min-w-0">
@@ -67,7 +64,7 @@ export default async function PostPage({ params }: PostPageProps) {
             width={1200}
             height={630}
             alt=""
-            src={thumbnailUrl}
+            src={post.thumbnail}
           />
         </div>
         <div className="flex items-center gap-1 mb-4">
