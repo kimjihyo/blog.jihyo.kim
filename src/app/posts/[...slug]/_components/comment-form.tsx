@@ -91,10 +91,8 @@ export function CommentForm({ postSlug }: CommentFormProps) {
         className="ml-auto mt-2 mb-5 relative"
         disabled={isPending}
       >
-        {isPending && (
-          <Loader2 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 animate-spin" />
-        )}
-        <span className={cn(isPending ? "opacity-0" : "")}>댓글 남기기</span>
+        <span>댓글 남기기</span>
+        {isPending && <Loader2 className="w-4 h-4 animate-spin ml-2" />}
       </Button>
     </form>
   );

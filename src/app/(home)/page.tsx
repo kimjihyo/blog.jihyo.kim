@@ -2,6 +2,8 @@ import { Shell } from "@/components/shell";
 import { Tags } from "./_components/tags";
 import { Posts } from "./_components/posts";
 import * as React from "react";
+import { LatestComments } from "./_components/latest-comments";
+import { LoadingLatestComments } from "./_components/loading-latest-comments";
 
 export default async function Page({
   searchParams,
@@ -25,10 +27,20 @@ export default async function Page({
             currentPage={currentPage}
           />
         </div>
-        <div className="w-3xs px-6 pt-4 border-l hidden md:block">
-          <div className="sticky top-20">
-            <div className="font-semibold mb-4">태그</div>
+        <div className="w-80 px-6 pt-4 border-l hidden md:flex md:flex-col md:gap-8">
+          <div>
+            <div className="font-semibold mb-4 text-muted-foreground text-sm">
+              태그
+            </div>
             <Tags selectedTags={tagList} />
+          </div>
+          <div>
+            <div className="font-semibold mb-4 text-muted-foreground text-sm">
+              최근 댓글
+            </div>
+            <React.Suspense fallback={<LoadingLatestComments />}>
+              <LatestComments />
+            </React.Suspense>
           </div>
         </div>
       </div>

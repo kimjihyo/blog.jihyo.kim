@@ -16,7 +16,7 @@ export async function CommentSection({ postSlug }: CommentSectionProps) {
     .orderBy(desc(commentsTable.createdAt));
 
   return (
-    <div className="relative">
+    <div className="relative" id="comments">
       <div className="flex items-center justify-between gap-2 mb-4">
         <div className="font-medium">댓글 {comments.length}</div>
         <div className="text-sm text-muted-foreground">
