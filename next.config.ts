@@ -9,7 +9,7 @@ const withBundleAnalyzer = createNextBundleAnalyzer({
 const nextConfig: NextConfig = {
   /* config options here */
   experimental: {
-    ppr: true,
+    ppr: "incremental",
   },
   images: {
     remotePatterns: [
