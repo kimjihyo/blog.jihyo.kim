@@ -22,8 +22,12 @@ export const contentType = "image/png";
 // Image generation
 export default async function Image() {
   // Font loading, process.cwd() is Next.js project directory
-  const pretendardSemibold = await readFile(
-    join(process.cwd(), "src/assets/fonts/Pretendard-SemiBold.ttf")
+  const pretendardBold = await readFile(
+    join(process.cwd(), "src/assets/fonts/Pretendard-Bold.ttf")
+  );
+
+  const pretendardBlack = await readFile(
+    join(process.cwd(), "src/assets/fonts/Pretendard-Black.ttf")
   );
 
   return new ImageResponse(
@@ -36,9 +40,8 @@ export default async function Image() {
           alignItems: "center",
           width: "100%",
           height: "100%",
-          backgroundColor: "blue",
-          background: "#4e54c8",
-          backgroundImage: "linear-gradient(to right, #8f94fb, #4e54c8)",
+          backgroundImage: "linear-gradient(to right, #60a5fa, #1d4ed8)",
+          fontFamily: "Pretendard",
         }}
       >
         <div
@@ -46,20 +49,24 @@ export default async function Image() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
+            alignItems: "center",
             width: `${CONTENT_WIDTH}px`,
             height: `${CONTENT_HEIGHT}px`,
             padding: "0px 120px",
           }}
         >
-          <span
+          <div
             style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
               fontSize: "85px",
-              fontWeight: "bold",
               color: "white",
             }}
           >
-            김지효 블로그
-          </span>
+            <span style={{ fontWeight: 900 }}>blog</span>
+            <span style={{ fontWeight: 700, opacity: 0.6 }}>.jihyo.kim</span>
+          </div>
         </div>
       </div>
     ),
@@ -71,9 +78,15 @@ export default async function Image() {
       fonts: [
         {
           name: "Pretendard",
-          data: pretendardSemibold,
+          data: pretendardBold,
           style: "normal",
           weight: 700,
+        },
+        {
+          name: "Pretendard",
+          data: pretendardBlack,
+          style: "normal",
+          weight: 900,
         },
       ],
     }

@@ -4,6 +4,7 @@ import { Posts } from "./_components/posts";
 import * as React from "react";
 import { LatestComments } from "./_components/latest-comments";
 import { LoadingLatestComments } from "./_components/loading-latest-comments";
+import { Banner } from "./_components/banner";
 
 export default async function Page({
   searchParams,
@@ -19,15 +20,18 @@ export default async function Page({
 
   return (
     <Shell className="flex flex-col">
+      <div className="mb-10">
+        <Banner />
+      </div>
       <div className="flex">
-        <div className="flex-1 flex flex-col gap-8 mb-10 md:pr-6">
+        <div className="flex-1 flex flex-col gap-8 mb-10 lg:pr-6">
           <Posts
             tags={tagList}
             numberOfPostsPerPage={10}
             currentPage={currentPage}
           />
         </div>
-        <div className="w-80 px-6 pt-4 border-l hidden md:flex md:flex-col md:gap-8">
+        <div className="w-80 px-6 pt-4 border-l hidden lg:flex lg:flex-col lg:gap-8">
           <div>
             <div className="font-semibold mb-4 text-muted-foreground text-sm">
               태그
