@@ -58,9 +58,13 @@ export async function Posts({
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious
-              href={`?page=${currentPage - 1}${
-                tags.length > 0 ? `&tag=${tags.join(",")}` : ""
-              }`}
+              href={
+                currentPage === 1
+                  ? ""
+                  : `?page=${currentPage - 1}${
+                      tags.length > 0 ? `&tag=${tags.join(",")}` : ""
+                    }`
+              }
               aria-disabled={currentPage === 1}
             />
           </PaginationItem>
@@ -89,7 +93,7 @@ export async function Posts({
                   ? `?page=${currentPage + 1}${tags
                       .map((tag) => `&tag=${tag}`)
                       .join("")}`
-                  : undefined
+                  : ""
               }
               aria-disabled={currentPage === totalPages}
             />
