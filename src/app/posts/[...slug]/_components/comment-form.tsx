@@ -9,7 +9,11 @@ import { submitComment } from "../_actions/submit-comment";
 import { generateRandomNickname } from "../_utils/generate-random";
 import { generateRandomAvatar } from "../_utils/generate-random";
 
-export function CommentForm() {
+interface CommentFormProps {
+  postSlug: string;
+}
+
+export function CommentForm({ postSlug }: CommentFormProps) {
   const [formState, formAction] = React.useActionState(submitComment, null);
   const nicknameInputRef = React.useRef<HTMLInputElement>(null);
   const defaultNickname = React.useRef(generateRandomNickname());
@@ -45,6 +49,7 @@ export function CommentForm() {
                   onClick={() => {
                     if (nicknameInputRef.current) {
                       nicknameInputRef.current.value = generateRandomNickname();
+                      defaultNickname.current = nicknameInputRef.current.value;
                     }
                   }}
                 >
@@ -75,9 +80,7 @@ export function CommentForm() {
           )}
         </div>
       </div>
-      {formState?.message && (
-        <p className="text-sm text-green-500 mt-1.5">{formState.message}</p>
-      )}
+      <input type="hidden" name="postSlug" value={postSlug} />
       <Button type="submit" className="ml-auto mt-2 mb-5">
         댓글 남기기
       </Button>

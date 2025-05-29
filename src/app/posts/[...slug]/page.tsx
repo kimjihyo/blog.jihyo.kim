@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Metadata } from "next";
 import { Shell } from "@/components/shell";
 import { formatDate } from "@/lib/utils";
@@ -44,6 +45,8 @@ export async function generateStaticParams() {
   return allPosts.map((post) => ({ slug: post._meta.path.split("/") }));
 }
 
+export const experimental_ppr = true;
+
 export default async function PostPage({ params }: PostPageProps) {
   const post = await getPostFromParams(params);
 
@@ -82,7 +85,9 @@ export default async function PostPage({ params }: PostPageProps) {
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
         <div className="pt-8 border-t">
-          <CommentSection />
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <CommentSection postSlug={post._meta.path} />
+          </React.Suspense>
         </div>
       </div>
       <div className="hidden sticky top-24 h-fit md:block border-l pl-6">
