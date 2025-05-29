@@ -40,7 +40,7 @@ export function CommentForm({ postSlug }: CommentFormProps) {
                   type="text"
                   name="nickname"
                   placeholder="닉네임"
-                  className="h-full min-w-0 focus:outline-none bg-transparent"
+                  className="h-full min-w-0 focus:outline-none bg-transparent text-sm xs:text-base"
                   defaultValue={defaultNickname.current}
                 />
                 <Button
@@ -69,7 +69,7 @@ export function CommentForm({ postSlug }: CommentFormProps) {
             name="content"
             placeholder="입력한 댓글은 수정하거나 삭제할 수 없어요."
             className={cn(
-              "resize-none min-h-16",
+              "resize-none min-h-16 text-sm xs:text-base",
               formState?.errors?.content && "border-destructive"
             )}
           />
