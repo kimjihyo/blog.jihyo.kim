@@ -30,7 +30,7 @@ export function CommentForm({ postSlug }: CommentFormProps) {
               <div
                 className={cn(
                   "flex gap-2 items-center w-60 h-12",
-                  "dark:bg-input/30 border-input flex rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none md:text-sm",
+                  "dark:bg-input/30 border-input flex rounded-md border bg-transparent px-3 py-1 shadow-xs transition-[color,box-shadow] outline-none",
                   "has-[:focus-visible]:border-ring has-[:focus-visible]:ring-ring/50 has-[:focus-visible]:ring-[3px]",
                   formState?.errors?.nickname && "border-destructive"
                 )}
@@ -40,7 +40,7 @@ export function CommentForm({ postSlug }: CommentFormProps) {
                   type="text"
                   name="nickname"
                   placeholder="닉네임"
-                  className="h-full min-w-0 focus:outline-none bg-transparent text-sm xs:text-base"
+                  className="h-full min-w-0 focus:outline-none bg-transparent text-sm sm:text-base"
                   defaultValue={defaultNickname.current}
                 />
                 <Button
@@ -69,7 +69,7 @@ export function CommentForm({ postSlug }: CommentFormProps) {
             name="content"
             placeholder="입력한 댓글은 수정하거나 삭제할 수 없어요."
             className={cn(
-              "resize-none min-h-16 text-sm xs:text-base",
+              "resize-none min-h-16",
               formState?.errors?.content && "border-destructive"
             )}
           />

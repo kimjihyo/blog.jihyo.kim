@@ -24,8 +24,12 @@ function Comment({ comment }: { comment: typeof commentsTable.$inferSelect }) {
           <AvatarFallback>{comment.nickname[0]}</AvatarFallback>
         </Avatar>
         <div className="flex flex-col gap-1.5">
-          <p className="text-sm font-medium leading-none">{comment.nickname}</p>
-          <p className="text-sm text-foreground/90">{comment.content}</p>
+          <p className="text-xs sm:text-sm font-medium leading-none">
+            {comment.nickname}
+          </p>
+          <p className="text-sm sm:text-base text-foreground/90">
+            {comment.content}
+          </p>
           <p className="text-xs text-muted-foreground">
             {comment.createdAt.toLocaleString("ko-KR", {
               year: "numeric",
