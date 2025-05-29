@@ -1,8 +1,6 @@
 import { ImageResponse } from "next/og";
 import { allPosts } from "content-collections";
 
-export const runtime = "edge";
-
 const CONTENT_ASPECT_RATIO = 130 / 90;
 const CONTENT_HEIGHT = 630;
 const CONTENT_WIDTH = CONTENT_HEIGHT * CONTENT_ASPECT_RATIO;
