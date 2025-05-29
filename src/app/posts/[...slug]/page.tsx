@@ -6,7 +6,7 @@ import { allPosts } from "content-collections";
 import { notFound } from "next/navigation";
 import { TableOfContents } from "@/components/table-of-contents";
 import { Image } from "@/components/ui/image";
-import Comments from "@/components/comments";
+import { CommentSection } from "./_components/comment-section";
 
 interface PostPageProps {
   params: Promise<{ slug: string[] }>;
@@ -82,7 +82,7 @@ export default async function PostPage({ params }: PostPageProps) {
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
         <div className="pt-8 border-t">
-          <Comments />
+          <CommentSection />
         </div>
       </div>
       <div className="hidden sticky top-24 h-fit md:block border-l pl-6">

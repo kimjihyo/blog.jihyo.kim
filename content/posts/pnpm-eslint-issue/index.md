@@ -2,7 +2,7 @@
 tags: ["pnpm", "ESLint"]
 createdTime: "2025-05-06T00:00:00.000Z"
 thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1746513050/IMG_0487_ttews9.png"
-summary: "pnpm과 eslint-config-next 사용 시 발생하는 eslint-plugin-react-hooks 로딩 오류의 원인과 해결 방식을 명확하게 설명한다."
+summary: "pnpm과 eslint-config-next 사용 시 발생하는 eslint-plugin-react-hooks 로딩 오류의 원인과 해결 방식을 설명하는 글"
 updatedTime: "2025-05-06T00:00:00.000Z"
 type: "trouble-shooting"
 title: "pnpm 사용 시 ESLint 플러그인을 찾지 못하는 오류 해결하기"

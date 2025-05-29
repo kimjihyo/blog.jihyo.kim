@@ -2,7 +2,7 @@
 tags: ["Blog", "Web"]
 createdTime: "2025-05-06T00:00:00Z"
 thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1746534986/IMG_0488_f8jh2y.png"
-summary: "allPosts()는 블로그 글 목록을 렌더링할 때 자주 사용된다. 하지만 이 함수는 각 글의 본문까지 포함한 전체 데이터를 반환한다. 글 목록에는 본문이 필요 없기 때문에, 이 동작이 의도치 않은 문제를 일으킬 수 있다."
+summary: "불필요하게 커지는 클라이언트 번들 사이즈 미연에 방지하기 워한 고민"
 updatedTime: "2025-05-06T00:00:00Z"
 type: "trouble-shooting"
 title: "글 목록에서 본문까지 불러온다고? 무심코 만든 구조의 숨은 비용"

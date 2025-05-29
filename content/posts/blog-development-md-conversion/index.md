@@ -2,7 +2,7 @@
 tags: ["Blog", "Web"]
 createdTime: "2025-04-22T00:00:00Z"
 thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1745330114/IMG_0450_znh85a.png"
-summary: "이전 글에서 `content-collections`를 이용해 정적 블로그에서 컨텐츠를 관리하는 과정을 소개했습니다. 이번 글에서는 그 연장선으로, 블로그에 자동 목차 생성과 코드 하이라이팅 기능을 어떻게 적용했는지 소개하려고 합니다."
+summary: "블로그에 자동 목차 생성과 코드 하이라이팅 기능을 어떻게 적용했는지 소개하는 글"
 updatedTime: "2025-04-22T00:00:00Z"
 type: "dev-log"
 title: "블로그 개발 - 목차와 Syntax Highlighting 적용하기"
