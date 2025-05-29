@@ -44,6 +44,7 @@ export function PostCard({ post }: PostCardProps) {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
+                timeZone: "Asia/Seoul",
               })}
             </p>
           </div>

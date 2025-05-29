@@ -8,13 +8,17 @@ import { cn } from "@/lib/utils";
 import { submitComment } from "../_actions/submit-comment";
 import { generateRandomNickname } from "../_utils/generate-random";
 import { generateRandomAvatar } from "../_utils/generate-random";
+import { Loader2 } from "lucide-react";
 
 interface CommentFormProps {
   postSlug: string;
 }
 
 export function CommentForm({ postSlug }: CommentFormProps) {
-  const [formState, formAction] = React.useActionState(submitComment, null);
+  const [formState, formAction, isPending] = React.useActionState(
+    submitComment,
+    null
+  );
   const nicknameInputRef = React.useRef<HTMLInputElement>(null);
   const defaultNickname = React.useRef(generateRandomNickname());
 
@@ -68,6 +72,7 @@ export function CommentForm({ postSlug }: CommentFormProps) {
           <Textarea
             name="content"
             placeholder="입력한 댓글은 수정하거나 삭제할 수 없어요."
+            disabled={isPending}
             className={cn(
               "resize-none min-h-16",
               formState?.errors?.content && "border-destructive"
@@ -81,8 +86,15 @@ export function CommentForm({ postSlug }: CommentFormProps) {
         </div>
       </div>
       <input type="hidden" name="postSlug" value={postSlug} />
-      <Button type="submit" className="ml-auto mt-2 mb-5">
-        댓글 남기기
+      <Button
+        type="submit"
+        className="ml-auto mt-2 mb-5 relative"
+        disabled={isPending}
+      >
+        {isPending && (
+          <Loader2 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 animate-spin" />
+        )}
+        <span className={cn(isPending ? "opacity-0" : "")}>댓글 남기기</span>
       </Button>
     </form>
   );

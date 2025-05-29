@@ -13,6 +13,7 @@ export function formatDate(
     month: "long",
     day: "numeric",
     year: "numeric",
+    timeZone: "Asia/Seoul",
     ...options,
   }).format(new Date(date));
 }
