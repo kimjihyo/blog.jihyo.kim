@@ -1,6 +1,6 @@
 export function generateRandomAvatar() {
-  const randomId = Math.floor(Math.random() * 10);
-  return `https://i.pravatar.cc/150?img=${randomId}`;
+  const randomId = Math.floor(Math.random() * 100);
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${randomId}.png`;
 }
 
 export function generateRandomNickname() {

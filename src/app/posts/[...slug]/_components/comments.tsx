@@ -20,7 +20,7 @@ function Comment({ comment }: { comment: typeof commentsTable.$inferSelect }) {
     <li className="rounded-lg bg-card text-card-foreground p-4">
       <div className="flex items-start gap-3">
         <Avatar>
-          <AvatarImage src={comment.avatar} />
+          <AvatarImage src={comment.avatar} className="bg-sky-100" />
           <AvatarFallback>{comment.nickname[0]}</AvatarFallback>
         </Avatar>
         <div className="flex flex-col gap-1.5">
