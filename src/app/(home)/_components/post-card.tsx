@@ -3,21 +3,6 @@ import Link from "next/link";
 import { Image } from "@/components/ui/image";
 import { Badge } from "@/components/ui/badge";
 
-const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-
 interface PostCardProps {
   post: Post;
 }

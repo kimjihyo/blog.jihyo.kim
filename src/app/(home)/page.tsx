@@ -5,6 +5,10 @@ import * as React from "react";
 import { LatestComments } from "./_components/latest-comments";
 import { LoadingLatestComments } from "./_components/loading-latest-comments";
 import { Banner } from "./_components/banner";
+import { allTags } from "@/lib/allTags";
+import { Suspense } from "react";
+import { PostsLoadingProvider } from "./_components/posts-loading-context";
+import { PostsLabel } from "./_components/posts-label";
 
 export default async function Page({
   searchParams,
@@ -23,34 +27,36 @@ export default async function Page({
       <div className="mb-6">
         <Banner />
       </div>
-      <div className="flex">
-        <div className="flex-1 flex flex-col mb-10 lg:pr-6 lg:pt-2">
-          <div className="text-muted-foreground text-sm font-semibold hidden lg:block">
-            최신 글
+      <PostsLoadingProvider>
+        <div className="flex">
+          <div className="flex-1 flex flex-col mb-10 lg:pr-6 lg:pt-2">
+            <PostsLabel />
+            <Posts
+              tags={tagList}
+              numberOfPostsPerPage={10}
+              currentPage={currentPage}
+            />
           </div>
-          <Posts
-            tags={tagList}
-            numberOfPostsPerPage={10}
-            currentPage={currentPage}
-          />
-        </div>
-        <div className="w-80 px-6 py-2 border-l hidden lg:flex lg:flex-col lg:gap-8">
-          <div>
-            <div className="font-semibold mb-4 text-muted-foreground text-sm">
-              태그
+          <div className="w-80 px-6 py-2 border-l hidden lg:flex lg:flex-col lg:gap-8">
+            <div>
+              <div className="font-semibold mb-4 text-muted-foreground text-sm">
+                태그
+              </div>
+              <Suspense>
+                <Tags tags={allTags} />
+              </Suspense>
             </div>
-            <Tags selectedTags={tagList} />
-          </div>
-          <div>
-            <div className="font-semibold mb-4 text-muted-foreground text-sm">
-              최근 댓글
+            <div>
+              <div className="font-semibold mb-4 text-muted-foreground text-sm">
+                최근 댓글
+              </div>
+              <React.Suspense fallback={<LoadingLatestComments />}>
+                <LatestComments />
+              </React.Suspense>
             </div>
-            <React.Suspense fallback={<LoadingLatestComments />}>
-              <LatestComments />
-            </React.Suspense>
           </div>
         </div>
-      </div>
+      </PostsLoadingProvider>
     </Shell>
   );
 }
