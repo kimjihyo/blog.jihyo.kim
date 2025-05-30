@@ -18,10 +18,6 @@ export default async function Page({
     page: string | undefined;
   }>;
 }) {
-  const { tag, page } = await searchParams;
-  const currentPage = parseInt(page ?? "1");
-  const tagList = Array.isArray(tag) ? tag : tag ? [tag] : [];
-
   return (
     <Shell className="flex flex-col">
       <div className="mb-6">
@@ -31,11 +27,9 @@ export default async function Page({
         <div className="flex">
           <div className="flex-1 flex flex-col mb-10 lg:pr-6 lg:pt-2">
             <PostsLabel />
-            <Posts
-              tags={tagList}
-              numberOfPostsPerPage={10}
-              currentPage={currentPage}
-            />
+            <Suspense>
+              <Posts searchParams={searchParams} numberOfPostsPerPage={10} />
+            </Suspense>
           </div>
           <div className="w-80 px-6 py-2 border-l hidden lg:flex lg:flex-col lg:gap-8">
             <div>

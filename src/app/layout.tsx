@@ -51,18 +51,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body className="min-h-screen font-pretendard antialiased">
+      <body className="font-pretendard antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative flex min-h-screen flex-col">
-            <SiteHeader />
-            <main className="flex-1">{children}</main>
-            <SiteFooter />
-          </div>
+          <SiteHeader />
+          <main className="min-h-screen">{children}</main>
+          <SiteFooter />
         </ThemeProvider>
         <Analytics />
       </body>
