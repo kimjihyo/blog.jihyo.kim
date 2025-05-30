@@ -48,13 +48,13 @@ export function PostCard({ post }: PostCardProps) {
               })}
             </p>
           </div>
-          <div>
-            <div className="w-[90px] h-[65px] sm:w-[130px] sm:h-[90px] overflow-hidden relative rounded bg-card">
+          <div className="w-[90px] h-[65px] sm:w-[130px] sm:h-[90px] overflow-hidden rounded bg-card group">
+            <div className="relative w-full h-full group-hover:scale-120 transition-transform duration-300">
               <Image
                 fill
                 sizes="(min-width) 180px, 260px"
                 alt=""
-                className="absolute inset-0 w-full h-full object-center object-cover rounded group-hover:scale-120 transition-transform duration-300"
+                className="w-full h-full object-center object-cover"
                 src={post.thumbnail}
               />
             </div>
