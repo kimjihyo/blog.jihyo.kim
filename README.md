@@ -6,6 +6,8 @@
 - **Styling:** [Tailwind CSS](https://tailwindcss.com)
 - **UI Components:** [shadcn/ui](https://ui.shadcn.com)
 - **Content Management:** [content-collections](https://www.content-collections.dev)
+- **DB:** [Neon](https://neon.com)
+- **ORM:** [Drizzle](https://orm.drizzle.team)
 
 ## Running locally
 
@@ -21,13 +23,19 @@
    pnpm install
    ```
 
-3. Build markdown contents using content-collections
+3. Create a `.env` file in the root directory and add your database URL:
 
    ```bash
-   pnpm content:build
+   echo "DATABASE_URL=your_neon_database_url" > .env
    ```
 
-4. Start the development server
+4. Sync the database schema with Neon
+
+   ```bash
+   pnpm db:push
+   ```
+
+5. Start the development server
 
    ```bash
    pnpm run dev
