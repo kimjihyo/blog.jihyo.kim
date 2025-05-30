@@ -44,29 +44,35 @@ export function Tags({ tags }: TagsProps) {
             <Badge
               variant={isSelected ? "primary" : "default"}
               className="cursor-pointer hover:opacity-80"
-              onClick={() => {
-                startTransition(() => {
-                  toggleOptimisticSelectedTag(tag);
-                  startTransition(() => {
-                    const params = new URLSearchParams(searchParams);
-                    params.delete("tag");
-
-                    const newTags = [...selectedTags];
-
-                    if (selectedTags.includes(tag)) {
-                      newTags.splice(newTags.indexOf(tag), 1);
-                    } else {
-                      newTags.push(tag);
-                    }
-
-                    newTags.forEach((t) => params.append("tag", t));
-                    setSelectedTags(newTags);
-                    router.push(`/?${params.toString()}`);
-                  });
-                });
-              }}
+              asChild
             >
-              {tag}
+              <button
+                type="button"
+                disabled={isPending}
+                onClick={() => {
+                  startTransition(() => {
+                    toggleOptimisticSelectedTag(tag);
+                    startTransition(() => {
+                      const params = new URLSearchParams(searchParams);
+                      params.delete("tag");
+
+                      const newTags = [...selectedTags];
+
+                      if (selectedTags.includes(tag)) {
+                        newTags.splice(newTags.indexOf(tag), 1);
+                      } else {
+                        newTags.push(tag);
+                      }
+
+                      newTags.forEach((t) => params.append("tag", t));
+                      setSelectedTags(newTags);
+                      router.push(`/?${params.toString()}`);
+                    });
+                  });
+                }}
+              >
+                {tag}
+              </button>
             </Badge>
           </li>
         );
