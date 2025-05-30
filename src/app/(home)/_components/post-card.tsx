@@ -25,7 +25,7 @@ interface PostCardProps {
 export function PostCard({ post }: PostCardProps) {
   return (
     <article>
-      <Link href={`/posts/${post._meta.path}`} className="group h-full">
+      <Link href={`/posts/${post._meta.path}`} className="block group py-6">
         <div className="flex items-center gap-1 mb-1.5">
           {post.tags.map((tag) => (
             <Badge key={tag}>{tag}</Badge>

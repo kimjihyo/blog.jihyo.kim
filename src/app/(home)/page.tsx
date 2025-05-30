@@ -20,18 +20,21 @@ export default async function Page({
 
   return (
     <Shell className="flex flex-col">
-      <div className="mb-10">
+      <div className="mb-6">
         <Banner />
       </div>
       <div className="flex">
-        <div className="flex-1 flex flex-col gap-8 mb-10 lg:pr-6">
+        <div className="flex-1 flex flex-col mb-10 lg:pr-6 lg:pt-2">
+          <div className="text-muted-foreground text-sm font-semibold hidden lg:block">
+            최신 글
+          </div>
           <Posts
             tags={tagList}
             numberOfPostsPerPage={10}
             currentPage={currentPage}
           />
         </div>
-        <div className="w-80 px-6 pt-4 border-l hidden lg:flex lg:flex-col lg:gap-8">
+        <div className="w-80 px-6 py-2 border-l hidden lg:flex lg:flex-col lg:gap-8">
           <div>
             <div className="font-semibold mb-4 text-muted-foreground text-sm">
               태그
