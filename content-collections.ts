@@ -136,6 +136,9 @@ const posts = defineCollection({
   transform: async (document, context) => {
     const { html, toc } = await compileMarkdown(context, document);
 
+    // This is a workaround to fix the path of the document on Windows.
+    document._meta.path = document._meta.directory;
+
     return {
       ...document,
       createdTime: new Date(document.createdTime),
