@@ -16,6 +16,11 @@ export function SiteFooter() {
             </Link>
           </section>
         </section>
+        <section>
+          <span className="text-muted-foreground text-sm">
+            With design inspiration from toss.tech
+          </span>
+        </section>
         <section className="flex items-center space-x-4">
           <div className="flex-1 text-left text-sm leading-loose text-muted-foreground">
             Built by{" "}
@@ -23,9 +28,8 @@ export function SiteFooter() {
               href="/"
               className="font-semibold transition-colors hover:text-foreground"
             >
-              Jihyo Kim
+              Jihyo Kim{" "}
             </Link>
-            .
           </div>
           <div className="flex items-center space-x-1">
             <Button asChild size="icon" variant="ghost">

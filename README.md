@@ -44,3 +44,8 @@
 ## Author
 
 MIT @ [Jihyo Kim](https://github.com/kimjihyo)
+
+## Inspiration
+
+This blog project is heavily inspired by the design and structure of [toss.tech](https://toss.tech).  
+I truly admire their clean UX, typography, and attention to detail — and aimed to reflect that in my own way.
