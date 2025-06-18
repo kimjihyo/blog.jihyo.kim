@@ -5,10 +5,11 @@ import { formatDate } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { allPosts } from "content-collections";
 import { notFound } from "next/navigation";
-import { TableOfContents } from "@/components/table-of-contents";
+import { TableOfContents } from "@/app/posts/[...slug]/_components/table-of-contents";
 import { Image } from "@/components/ui/image";
 import { CommentSection } from "./_components/comment-section";
 import { LoadingCommentSection } from "./_components/loading-comment-section";
+import { MobileTableOfContents } from "./_components/mobile-table-of-contents";
 
 interface PostPageProps {
   params: Promise<{ slug: string[] }>;
@@ -91,10 +92,12 @@ export default async function PostPage({ params }: PostPageProps) {
             <CommentSection postSlug={post._meta.path} />
           </React.Suspense>
         </div>
+        {/* Floating action button to toggle TOC for mobile devices. */}
+        <React.Suspense>
+          <MobileTableOfContents tocEntries={post.toc} />
+        </React.Suspense>
       </div>
-      <div className="hidden sticky top-24 h-fit md:block border-l pl-6">
-        {post.toc && <TableOfContents tocEntries={post.toc} />}
-      </div>
+      {post.toc && <TableOfContents tocEntries={post.toc} />}
     </Shell>
   );
 }

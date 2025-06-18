@@ -31,6 +31,7 @@ type Document = {
 type TOCEntry = {
   id: string;
   title: string;
+  index: number;
   children?: TOCEntry[];
 };
 
@@ -57,7 +58,7 @@ async function compile(document: Document) {
           node.data.hProperties = { id };
 
           // Create the TOC entry
-          const entry: TOCEntry = { id, title };
+          const entry: TOCEntry = { id, title, index };
           const depth = node.depth ?? 1;
           // Remove deeper or equal levels from the stack
           while (stack.length > 0 && stack[stack.length - 1].depth >= depth) {
