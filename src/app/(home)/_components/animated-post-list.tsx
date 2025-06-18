@@ -21,7 +21,7 @@ export function AnimatedPostList({ posts }: AnimatedPostListProps) {
             duration: 0.6,
             delay: index * 0.12,
             stiffness: 100,
-            damping: 20,
+            damping: 15,
           }}
           style={{ originY: 0 }}
           layout
