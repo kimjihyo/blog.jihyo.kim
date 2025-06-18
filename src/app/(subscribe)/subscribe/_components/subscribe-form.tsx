@@ -7,6 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
 import { submitSubscription } from "../_actions/submit-subscription";
 import { Loader2 } from "lucide-react";
+import EmailField from "./email-field";
 
 export function SubscribeForm() {
   const [formState, formAction, isPending] = React.useActionState(
@@ -59,7 +60,7 @@ export function SubscribeForm() {
           <Label htmlFor="email" className="text-sm font-medium">
             이메일
           </Label>
-          <Input
+          <EmailField
             id="email"
             name="email"
             type="email"
