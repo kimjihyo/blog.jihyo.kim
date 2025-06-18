@@ -48,7 +48,7 @@ function LatestCommentCard({
   return (
     <Link
       href={`/posts/${postSlug}#comments`}
-      className="flex flex-col gap-2 py-2 bg-card text-card-foreground rounded-lg p-4 hover:bg-accent transition-colors"
+      className="flex flex-col gap-2 py-2 bg-card text-card-foreground rounded-lg p-4 hover:bg-accent transition-colors animate-fadeIn"
     >
       <div className="flex items-center gap-2">
         <Avatar className="w-6 h-6">

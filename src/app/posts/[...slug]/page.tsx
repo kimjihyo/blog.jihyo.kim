@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import { TableOfContents } from "@/components/table-of-contents";
 import { Image } from "@/components/ui/image";
 import { CommentSection } from "./_components/comment-section";
+import { LoadingCommentSection } from "./_components/loading-comment-section";
 
 interface PostPageProps {
   params: Promise<{ slug: string[] }>;
@@ -86,7 +87,7 @@ export default async function PostPage({ params }: PostPageProps) {
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
         <div id="comments" className="pt-8 border-t">
-          <React.Suspense fallback={<div>Loading...</div>}>
+          <React.Suspense fallback={<LoadingCommentSection />}>
             <CommentSection postSlug={post._meta.path} />
           </React.Suspense>
         </div>
