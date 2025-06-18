@@ -8,3 +8,11 @@ export const commentsTable = pgTable("comments", {
   postSlug: text("post_slug").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
+
+export const subscriptionsTable = pgTable("subscriptions", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  email: text("email").notNull().unique(),
+  name: text("name").notNull(),
+  unsubscribedAt: timestamp("unsubscribed_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});

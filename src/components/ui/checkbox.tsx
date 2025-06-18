@@ -22,18 +22,23 @@ const tickVariants = {
 
 interface CheckboxProps {
   id: string;
+  name?: string;
+  defaultChecked?: boolean;
 }
 
-export function Checkbox({ id }: CheckboxProps) {
-  const [isChecked, setIsChecked] = React.useState(false);
+export function Checkbox({ id, name, defaultChecked }: CheckboxProps) {
+  const [isChecked, setIsChecked] = React.useState(defaultChecked ?? false);
 
   return (
     <button className="relative flex items-center">
       <input
         type="checkbox"
+        value={isChecked ? "true" : "false"}
         className="border-blue-gray-200 relative h-5 w-5 cursor-pointer appearance-none rounded-md border-2 transition-all duration-500 checked:border-blue-500 checked:bg-blue-500"
         onChange={() => setIsChecked(!isChecked)}
         id={id}
+        name={name}
+        defaultChecked={defaultChecked}
       />
       <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white">
         <motion.svg

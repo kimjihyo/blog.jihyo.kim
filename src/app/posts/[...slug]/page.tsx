@@ -86,7 +86,7 @@ export default async function PostPage({ params }: PostPageProps) {
         <div className="markdown mb-14">
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
-        <div id="comments" className="pt-8 border-t">
+        <div id="comments" className="pt-8 pb-20 border-t">
           <React.Suspense fallback={<LoadingCommentSection />}>
             <CommentSection postSlug={post._meta.path} />
           </React.Suspense>

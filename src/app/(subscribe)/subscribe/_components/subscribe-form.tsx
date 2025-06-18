@@ -45,6 +45,7 @@ export function SubscribeForm() {
               "w-full",
               formState?.errors?.name && "border-destructive"
             )}
+            defaultValue={formState?.values?.name ?? ""}
           />
           {formState?.errors?.name && (
             <p className="text-sm text-destructive">
@@ -67,6 +68,7 @@ export function SubscribeForm() {
               "w-full",
               formState?.errors?.email && "border-destructive"
             )}
+            defaultValue={formState?.values?.email ?? ""}
           />
           {formState?.errors?.email && (
             <p className="text-sm text-destructive">
@@ -76,8 +78,12 @@ export function SubscribeForm() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Checkbox id="terms" />
-          <Label htmlFor="terms" className="text-gray-600">
+          <Checkbox
+            id="privacy"
+            name="privacy"
+            defaultChecked={formState?.values?.privacy === "true"}
+          />
+          <Label htmlFor="privacy" className="text-muted-foreground">
             뉴스레터 수신을 위한 개인정보 수집 및 이용에 동의합니다
           </Label>
         </div>
