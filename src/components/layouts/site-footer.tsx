@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { Button } from "../ui/button";
+import { buttonVariants } from "../ui/button";
 import { Icons } from "../icons";
 import { ModeToggle } from "./mode-toggle";
 import { Shell } from "../shell";
@@ -32,18 +32,17 @@ export function SiteFooter() {
             </Link>
           </div>
           <div className="flex items-center space-x-1">
-            <Button asChild size="icon" variant="ghost">
-              <Link
-                href={siteConfig.links.github}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Icons.github
-                  className="size-4 text-muted-foreground"
-                  aria-hidden="true"
-                />
-              </Link>
-            </Button>
+            <Link
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noreferrer"
+              className={buttonVariants({ variant: "ghost", size: "icon" })}
+            >
+              <Icons.github
+                className="size-4 text-muted-foreground"
+                aria-hidden="true"
+              />
+            </Link>
             <ModeToggle />
           </div>
         </section>

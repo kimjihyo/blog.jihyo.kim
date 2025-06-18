@@ -1,5 +1,5 @@
 import { allPostsSortedByDate } from "@/lib/allPostsSortedByDate";
-import { PostCard } from "./post-card";
+import { AnimatedPostList } from "./animated-post-list";
 import * as React from "react";
 import {
   Pagination,
@@ -47,9 +47,15 @@ export async function Posts({
     );
   }
 
+  const posts = filteredPosts.slice(
+    (currentPage - 1) * numberOfPostsPerPage,
+    currentPage * numberOfPostsPerPage
+  );
+
   return (
     <>
-      {filteredPosts
+      <AnimatedPostList posts={posts} />
+      {/* {filteredPosts
         .slice(
           (currentPage - 1) * numberOfPostsPerPage,
           currentPage * numberOfPostsPerPage
@@ -57,7 +63,7 @@ export async function Posts({
 
         .map((post) => (
           <PostCard key={post._meta.path} post={post} />
-        ))}
+        ))} */}
 
       <Pagination className="mt-6">
         <PaginationContent>

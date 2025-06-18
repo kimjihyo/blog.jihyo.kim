@@ -28,7 +28,7 @@ export default async function Page({
           <div className="flex-1 flex flex-col mb-10 lg:pr-6 lg:pt-2">
             <PostsLabel />
             <Suspense>
-              <Posts searchParams={searchParams} numberOfPostsPerPage={10} />
+              <Posts searchParams={searchParams} numberOfPostsPerPage={5} />
             </Suspense>
           </div>
           <div className="w-80 px-6 py-2 border-l hidden lg:flex lg:flex-col lg:gap-8">
