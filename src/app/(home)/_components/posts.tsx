@@ -54,7 +54,7 @@ export async function Posts({
 
   return (
     <>
-      <AnimatedPostList posts={posts} />
+      <AnimatedPostList key={page} posts={posts} />
       {/* {filteredPosts
         .slice(
           (currentPage - 1) * numberOfPostsPerPage,
