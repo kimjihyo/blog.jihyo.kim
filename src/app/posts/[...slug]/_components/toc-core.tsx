@@ -16,7 +16,7 @@ export const getAllIds = (entries?: TOCEntry[]): string[] => {
 };
 
 export function useActiveItem(itemIds: string[]) {
-  const [activeId, setActiveId] = React.useState<string>();
+  const [activeId, setActiveId] = React.useState<string>(itemIds[0]);
   React.useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
