@@ -10,7 +10,7 @@
   --text-2xs: 0.625rem;
   --breakpoint-xs: 30rem;
 
-  --animate-fadeIn: fadeIn 0.3s ease-in-out;
+  --animate-fadeIn: fadeIn 0.6s ease-in-out;
 
   @keyframes fadeIn {
     from {
