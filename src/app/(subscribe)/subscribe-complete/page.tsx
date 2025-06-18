@@ -9,8 +9,12 @@ import { Confetti, type ConfettiRef } from "@/components/magicui/confetti";
 export default function SubscribeCompletePage() {
   const confettiRef = React.useRef<ConfettiRef>(null);
 
+  React.useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   React.useEffect(() => {
-    console.log(confettiRef.current);
+    // Workaround for page not being scrolled to top on redirect from server action
     confettiRef.current?.fire();
   }, []);
 

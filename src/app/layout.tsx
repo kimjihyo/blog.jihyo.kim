@@ -59,7 +59,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SiteHeader />
-          <main className="min-h-screen">{children}</main>
+          <main>{children}</main>
           <SiteFooter />
         </ThemeProvider>
         <Analytics />
