@@ -28,7 +28,15 @@ export function TableOfContents({ tocEntries }: TableOfContentsProps) {
         activeItem={activeHeading}
         renderLink={(node, isActive) => (
           <React.Fragment key={node.id}>
-            <a
+            <motion.a
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 20,
+                delay: node.index * 0.05,
+              }}
               href={`#${node.id}`}
               className={cn(
                 "inline-block no-underline transition-colors hover:text-foreground text-muted-foreground text-sm",
@@ -38,7 +46,7 @@ export function TableOfContents({ tocEntries }: TableOfContentsProps) {
               )}
             >
               {node.title}
-            </a>
+            </motion.a>
             {isActive && (
               <motion.div
                 layout

@@ -10,7 +10,10 @@ interface PostCardProps {
 export function PostCard({ post }: PostCardProps) {
   return (
     <article>
-      <Link href={`/posts/${post._meta.path}`} className="block group py-6">
+      <Link
+        href={`/posts/${post._meta.path}`}
+        className="block group py-6 active:scale-97 duration-300 ease-in-out"
+      >
         <div className="flex items-center gap-1 mb-1.5">
           {post.tags.map((tag) => (
             <Badge key={tag}>{tag}</Badge>
