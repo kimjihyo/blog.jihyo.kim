@@ -66,14 +66,14 @@
   @apply mt-4 border-l-2 pl-6 italic;
 }
 
-.light .markdown code[data-theme*=" "],
-.light .markdown code[data-theme*=" "] span {
+.light .markdown code[data-theme],
+.light .markdown code[data-theme] span {
   color: var(--shiki-light);
   background-color: var(--shiki-light-bg);
 }
 
-.dark .markdown code[data-theme*=" "],
-.dark .markdown code[data-theme*=" "] span {
+.dark .markdown code[data-theme],
+.dark .markdown code[data-theme] span {
   color: var(--shiki-dark);
   background-color: var(--shiki-dark-bg);
 }
@@ -84,7 +84,7 @@
 }
 
 .markdown pre code {
-  @apply block px-3 py-2 font-mono text-sm leading-relaxed;
+  @apply block py-2 font-mono text-sm leading-relaxed;
 }
 
 .light .markdown pre code {
@@ -103,7 +103,7 @@
 }
 
 [data-highlighted-line] {
-  @apply !bg-green-500/10;
+  @apply !bg-primary/10 border-l-2 border-primary;
 }
 
 figure[data-rehype-pretty-code-figure]:has(> [data-rehype-pretty-code-title])
@@ -113,6 +113,10 @@ figure[data-rehype-pretty-code-figure]:has(> [data-rehype-pretty-code-title])
 
 .markdown code:not(pre code) {
   @apply text-sm rounded bg-muted px-1.5 py-0.5 text-blue-600 dark:text-blue-400;
+}
+
+span[data-line] {
+  @apply px-4;
 }
 
 code[data-line-numbers] {
