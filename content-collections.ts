@@ -4,13 +4,14 @@ import {
   defineCollection,
   defineConfig,
 } from "@content-collections/core";
-import rehypeHighlight from "rehype-highlight";
+import rehypePrettyCode from "rehype-pretty-code";
 import { visit } from "unist-util-visit";
 
 import rehypeStringify from "rehype-stringify";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { Transformer, unified } from "unified";
+import { z } from "zod";
 
 // Define the types for MDast nodes
 interface MDastNode {
@@ -94,7 +95,14 @@ async function compile(document: Document) {
   builder.use(addMetaToVFile(document._meta));
   builder.use(generateTOC);
   builder.use(remarkRehype);
-  builder.use(rehypeHighlight);
+  builder.use(rehypePrettyCode, {
+    theme: {
+      dark: "one-dark-pro",
+      light: "one-light",
+    },
+    keepBackground: false,
+    bypassInlineCode: false,
+  });
 
   const html = await builder.use(rehypeStringify).process(document.content);
 
@@ -126,7 +134,7 @@ const posts = defineCollection({
   name: "posts",
   directory: "./content/posts",
   include: "**/*.md",
-  schema: (z) => ({
+  schema: z.object({
     title: z.string(),
     summary: z.string(),
     createdTime: z.string(),
@@ -154,7 +162,7 @@ const postMetas = defineCollection({
   name: "postMetas",
   directory: "./content/posts",
   include: "**/*.md",
-  schema: (z) => ({
+  schema: z.object({
     title: z.string(),
     summary: z.string(),
     createdTime: z.string(),
@@ -178,7 +186,7 @@ const tags = defineCollection({
   name: "tags",
   directory: "./content/tags",
   include: "**/*.md",
-  schema: (z) => ({}),
+  schema: z.object({}),
   transform: async (_, { documents }) => {
     const postList = await documents(postMetas);
     const tags = postList.flatMap((post) => post.tags);

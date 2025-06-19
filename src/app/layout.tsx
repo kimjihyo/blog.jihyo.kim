@@ -7,8 +7,6 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 
 import "@/styles/globals.css";
-import "@/styles/highlightjs-github-dark.css";
-import "@/styles/highlightjs-github-light.css";
 
 export const viewport: Viewport = {
   width: "device-width",

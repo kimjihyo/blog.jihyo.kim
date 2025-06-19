@@ -11,6 +11,10 @@ import { CommentSection } from "./_components/comment-section";
 import { LoadingCommentSection } from "./_components/loading-comment-section";
 import { MobileTableOfContents } from "./_components/mobile-table-of-contents";
 
+import "@/styles/markdown.css";
+// import "@/styles/highlightjs-github-dark.css";
+// import "@/styles/highlightjs-github-light.css";
+
 interface PostPageProps {
   params: Promise<{ slug: string[] }>;
 }
