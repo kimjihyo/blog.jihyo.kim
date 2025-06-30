@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 w-full h-16 border-b bg-background">
+    <header className="sticky top-0 z-50 w-full h-16 border-b bg-background/80 backdrop-blur-sm">
       <Shell className="py-0 h-full flex items-center gap-6">
         <Link
           href="/"
