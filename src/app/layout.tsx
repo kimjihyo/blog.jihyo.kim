@@ -6,6 +6,16 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 
 import { Analytics } from "@vercel/analytics/next";
 
+import localFont from "next/font/local";
+
+const pretendard = localFont({
+  src: [
+    {
+      path: "../assets/fonts/PretendardVariable.woff2",
+    },
+  ],
+});
+
 import "@/styles/globals.css";
 
 export const viewport: Viewport = {
@@ -48,8 +58,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" suppressHydrationWarning>
-      <body className="font-pretendard antialiased">
+    <html lang="ko" suppressHydrationWarning className={pretendard.className}>
+      <body className="antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

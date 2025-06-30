@@ -1,27 +1,27 @@
 @reference "./globals.css";
 
 .markdown h1 {
-  @apply mt-10 scroll-m-20 font-bold font-pretendard text-4xl;
+  @apply mt-10 scroll-m-20 font-bold text-4xl;
 }
 
 .markdown h2 {
-  @apply mt-10 scroll-m-20 border-b pb-2 font-pretendard font-semibold text-2xl;
+  @apply mt-10 scroll-m-20 border-b pb-2 font-semibold text-2xl;
 }
 
 .markdown h3 {
-  @apply mt-6 scroll-m-20 border-b font-pretendard text-xl font-semibold tracking-tight;
+  @apply mt-6 scroll-m-20 border-b text-xl font-semibold tracking-tight;
 }
 
 .markdown h4 {
-  @apply mt-6 scroll-m-20 border-b font-pretendard text-lg font-semibold tracking-tight;
+  @apply mt-6 scroll-m-20 border-b text-lg font-semibold tracking-tight;
 }
 
 .markdown h5 {
-  @apply mt-6 scroll-m-20 border-b font-pretendard text-lg tracking-tight;
+  @apply mt-6 scroll-m-20 border-b text-lg tracking-tight;
 }
 
 .markdown h6 {
-  @apply mt-6 scroll-m-20 font-pretendard text-base tracking-tight;
+  @apply mt-6 scroll-m-20 text-base tracking-tight;
 }
 
 .markdown a {
