@@ -11,8 +11,6 @@ import { CommentSection } from "./_components/comment-section";
 import { LoadingCommentSection } from "./_components/loading-comment-section";
 import { MobileTableOfContents } from "./_components/mobile-table-of-contents";
 
-import "@/styles/markdown.css";
-
 interface PostPageProps {
   params: Promise<{ slug: string[] }>;
 }
