@@ -50,6 +50,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "/icon.png",
   },
+  alternates: {
+    canonical: siteConfig.url,
+  },
 };
 
 export default function RootLayout({
