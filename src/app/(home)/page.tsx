@@ -36,7 +36,9 @@ export default async function Page({
               <div className="font-semibold mb-4 text-muted-foreground text-sm">
                 태그
               </div>
-              <Tags tags={tags} />
+              <React.Suspense>
+                <Tags tags={tags} />
+              </React.Suspense>
             </div>
             <div>
               <div className="font-semibold mb-4 text-muted-foreground text-sm">
