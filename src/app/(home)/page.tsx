@@ -5,10 +5,9 @@ import * as React from "react";
 import { LatestComments } from "./_components/latest-comments";
 import { LoadingLatestComments } from "./_components/loading-latest-comments";
 import { Banner } from "./_components/banner";
-import { allTags } from "@/lib/allTags";
-import { Suspense } from "react";
 import { PostsLoadingProvider } from "./_components/posts-loading-context";
 import { PostsLabel } from "./_components/posts-label";
+import { getAllTags } from "@/actions/content-collections";
 
 export default async function Page({
   searchParams,
@@ -18,6 +17,7 @@ export default async function Page({
     page: string | undefined;
   }>;
 }) {
+  const tags = await getAllTags();
   return (
     <Shell className="flex flex-col">
       <div className="mb-6">
@@ -27,18 +27,16 @@ export default async function Page({
         <div className="flex">
           <div className="flex-1 flex flex-col mb-10 lg:pr-6 lg:pt-2">
             <PostsLabel />
-            <Suspense>
+            <React.Suspense>
               <Posts searchParams={searchParams} numberOfPostsPerPage={5} />
-            </Suspense>
+            </React.Suspense>
           </div>
           <div className="w-80 px-6 py-2 border-l hidden lg:flex lg:flex-col lg:gap-8">
             <div>
               <div className="font-semibold mb-4 text-muted-foreground text-sm">
                 태그
               </div>
-              <Suspense>
-                <Tags tags={allTags} />
-              </Suspense>
+              <Tags tags={tags} />
             </div>
             <div>
               <div className="font-semibold mb-4 text-muted-foreground text-sm">
