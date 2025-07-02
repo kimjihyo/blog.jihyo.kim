@@ -9,11 +9,7 @@ import { Analytics } from "@vercel/analytics/next";
 import localFont from "next/font/local";
 
 const pretendard = localFont({
-  src: [
-    {
-      path: "../assets/fonts/PretendardVariable.woff2",
-    },
-  ],
+  src: "../assets/fonts/PretendardVariable.woff2",
 });
 
 import "@/styles/globals.css";
