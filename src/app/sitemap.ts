@@ -7,17 +7,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     {
       url: `${baseUrl}`,
-      lastModified: new Date().toISOString(),
-      priority: 1,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.7,
     },
-  ];
+  ] as MetadataRoute.Sitemap;
 
   const postRoutes = allPosts.map((post) => ({
     url: `${baseUrl}/${post._meta.path}`.replace(/\/$/, ""),
-    lastModified: post.updatedTime
-      ? new Date(post.updatedTime).toISOString()
-      : new Date().toISOString(),
-  }));
+    changeFrequency: "daily",
+    priority: 0.7,
+    lastModified: post.updatedTime || new Date(),
+  })) as MetadataRoute.Sitemap;
 
   return [...staticRoutes, ...postRoutes];
 }
