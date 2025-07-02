@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
   },
   icons: {
-    icon: "/icon.png",
+    icon: "/favicon.ico",
   },
   alternates: {
     canonical: siteConfig.url,
@@ -56,6 +56,13 @@ export const metadata: Metadata = {
   verification: {
     google: "wVEPS5qlRFBKhKAzxd8vSVKupU92v7STVgJzvm15tNo",
   },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteConfig.name,
+  url: siteConfig.url,
 };
 
 export default function RootLayout({
@@ -77,6 +84,10 @@ export default function RootLayout({
           <SiteFooter />
         </ThemeProvider>
         <Analytics />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </body>
     </html>
   );
