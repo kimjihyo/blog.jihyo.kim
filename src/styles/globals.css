@@ -4,7 +4,6 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  /* --font-pretendard: "Pretendard Variable", Pretendard; */
   --text-2xs: 0.625rem;
   --breakpoint-xs: 30rem;
 

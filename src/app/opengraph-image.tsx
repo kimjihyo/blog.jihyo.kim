@@ -23,11 +23,11 @@ export const contentType = "image/png";
 export default async function Image() {
   // Font loading, process.cwd() is Next.js project directory
   const pretendardBold = await readFile(
-    join(process.cwd(), "src/assets/fonts/Pretendard-Bold.ttf")
+    join(process.cwd(), "src/assets/fonts/ttf/Pretendard-Bold.ttf")
   );
 
   const pretendardBlack = await readFile(
-    join(process.cwd(), "src/assets/fonts/Pretendard-Black.ttf")
+    join(process.cwd(), "src/assets/fonts/ttf/Pretendard-Black.ttf")
   );
 
   return new ImageResponse(
