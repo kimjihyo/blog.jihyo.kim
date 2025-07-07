@@ -40,7 +40,7 @@ export function PostCard({ post }: PostCardProps) {
             <div className="relative w-full h-full group-hover:scale-120 transition-transform duration-300">
               <Image
                 fill
-                sizes="(min-width) 180px, 260px"
+                sizes="(max-width: 640px) 90px, 130px"
                 alt=""
                 className="w-full h-full object-center object-cover"
                 src={post.thumbnail}

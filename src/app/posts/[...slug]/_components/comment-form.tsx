@@ -44,7 +44,7 @@ export function CommentForm({ postSlug }: CommentFormProps) {
                   type="text"
                   name="nickname"
                   placeholder="닉네임"
-                  className="h-full min-w-0 focus:outline-none bg-transparent text-sm sm:text-base"
+                  className="h-full min-w-0 focus:outline-none bg-transparent text-base"
                   defaultValue={defaultNickname.current}
                 />
                 <Button

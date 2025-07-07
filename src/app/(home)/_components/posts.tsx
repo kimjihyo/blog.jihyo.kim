@@ -1,4 +1,4 @@
-import { allPostsSortedByDate } from "@/lib/allPostsSortedByDate";
+import { getAllPostsSortedByDate } from "@/actions/content-collections";
 import { AnimatedPostList } from "./animated-post-list";
 import * as React from "react";
 import {
@@ -26,7 +26,7 @@ export async function Posts({
   const currentPage = parseInt(page ?? "1");
   const tagList = Array.isArray(tag) ? tag : tag ? [tag] : [];
 
-  const filteredPosts = allPostsSortedByDate.filter((post) => {
+  const filteredPosts = (await getAllPostsSortedByDate()).filter((post) => {
     if (tagList && tagList.length > 0) {
       if (Array.isArray(tagList)) {
         return tagList.every((t) => post.tags.includes(t));

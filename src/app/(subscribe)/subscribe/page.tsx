@@ -4,7 +4,7 @@ import { SubscribeForm } from "./_components/subscribe-form";
 
 export const metadata: Metadata = {
   title: "구독하기",
-  description: "블로그 뉴스레터를 구독하고 최신 포스트를 받아보세요.",
+  description: "새로운 포스트가 올라오면 이메일로 알려드릴게요.",
 };
 
 export default function SubscribePage() {
@@ -15,7 +15,7 @@ export default function SubscribePage() {
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold mb-2">구독하기</h1>
           <p className="text-muted-foreground">
-            블로그 뉴스레터를 구독하고 최신 포스트를 받아보세요.
+            새로운 포스트가 올라오면 이메일로 알려드릴게요.
           </p>
         </div>
 

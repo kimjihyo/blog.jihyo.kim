@@ -26,9 +26,7 @@ Giscus는 이런 편리한 기능을 제공하지만, GitHub에 로그인 해야
 
 일단 PPR 없이 먼저 구현해보자. 아래 코드는 `app/posts/[...slug]/page.tsx` 이다 `generateStaticParams` 가 사용돼서 빌드 타임때 정적 HTML으로 미리 렌더링된다.
 
-```tsx
-/* ... */
-
+```tsx title="app/posts/[...slug]/page.tsx" showLineNumbers {1-3}
 export async function generateStaticParams() {
   return allPosts.map((post) => ({ slug: post._meta.path.split("/") }));
 }
@@ -46,13 +44,11 @@ export default async function PostPage({ params }: PostPageProps) {
     </Shell>
   );
 }
-
-/* ... */
 ```
 
 자 여기에 DB에서 동적으로 데이터를 가져오는 서버 컴포넌트가 있다. `app/posts/[...slug]/_components/comment-section.tsx`
 
-```tsx
+```tsx title="app/posts/[...slug]/_components/comment-section.tsx" showLineNumbers
 export async function CommentSection({ postSlug }: CommentSectionProps) {
   const comments = await db
     .select()
@@ -77,7 +73,7 @@ export async function CommentSection({ postSlug }: CommentSectionProps) {
 
 `ComponentSection` 을 `page.tsx` 에 추가해준다.
 
-```tsx
+```tsx title="app/posts/[...slug]/page.tsx" showLineNumbers
 /* ... */
 
 export async function generateStaticParams() {
@@ -106,7 +102,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
 그리고 빌드해보면
 
-```bash
+```bash title="Terminal" showLineNumbers
 Route (app)                                         Size  First Load JS
 ┌ ƒ /                                            1.28 kB         131 kB
 ├ ○ /_not-found                                  1.01 kB         112 kB
@@ -171,7 +167,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
 그리고 빌드해보면
 
-```bash
+```bash title="Terminal" showLineNumbers
 Route (app)                                         Size  First Load JS
 ┌ ƒ /                                            1.28 kB         131 kB
 ├ ○ /_not-found                                  1.01 kB         112 kB
@@ -208,7 +204,7 @@ Route (app)                                         Size  First Load JS
 
 동적 컴포넌트이어야할 현재의 `ComponentSection` 은 위의 조건을 만족하지 않고 있어서 Next.js에서 정적 컴포넌트로 인식해버린 것이였다. 그래서 아래와 같이 `connection` 을 사용해서 동적 컴포넌트임을 명시해줬다.
 
-```tsx
+```tsx title="app/posts/[...slug]/_components/comment-section.tsx" showLineNumbers
 export async function CommentSection({ postSlug }: CommentSectionProps) {
   await connection();
   const comments = await db

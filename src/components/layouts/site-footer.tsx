@@ -37,6 +37,7 @@ export function SiteFooter() {
               target="_blank"
               rel="noreferrer"
               className={buttonVariants({ variant: "ghost", size: "icon" })}
+              aria-label="GitHub"
             >
               <Icons.github
                 className="size-4 text-muted-foreground"
