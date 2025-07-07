@@ -12,16 +12,16 @@ export function AnimatedPostList({ posts }: AnimatedPostListProps) {
     <AnimatePresence mode="popLayout">
       {posts.map((post, index) => (
         <motion.div
+          className="will-change-[transform,opacity]"
           key={post._meta.path}
           initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.97 }}
           transition={{
             type: "spring",
-            duration: 0.6,
-            delay: index * 0.12,
-            stiffness: 100,
-            damping: 15,
+            duration: 2,
+            delay: index * 0.1,
+            bounce: 0,
           }}
           style={{ originY: 0 }}
           layout
