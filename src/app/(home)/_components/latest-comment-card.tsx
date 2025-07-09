@@ -23,12 +23,12 @@ export function LatestCommentCard({
   return (
     <motion.div
       className="will-change-[transform,opacity]"
-      initial={{ opacity: 0, scale: 0.97 }}
+      initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.97 }}
+      exit={{ opacity: 0, scale: 0.95 }}
       transition={{
         type: "spring",
-        duration: 2,
+        duration: 1,
         delay: index * 0.1,
         bounce: 0,
       }}
