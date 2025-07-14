@@ -3,7 +3,6 @@
 import { Badge } from "@/components/ui/badge";
 import { useSearchParams, useRouter } from "next/navigation";
 import * as React from "react";
-import { usePostsLoading } from "./posts-loading-context";
 interface TagsProps {
   tags: string[];
 }
@@ -12,7 +11,6 @@ export function Tags({ tags }: TagsProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = React.useTransition();
-  const { setIsLoading } = usePostsLoading();
 
   const [selectedTags, setSelectedTags] = React.useState<string[]>(
     (() => {
@@ -29,10 +27,6 @@ export function Tags({ tags }: TagsProps) {
       }
       return [...tags, newTag];
     });
-
-  React.useEffect(() => {
-    setIsLoading(isPending);
-  }, [isPending, setIsLoading]);
 
   return (
     <ul className="flex flex-wrap gap-2">
