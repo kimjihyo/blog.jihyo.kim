@@ -1,6 +1,6 @@
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { ModeToggle } from "./mode-toggle";
 import { Shell } from "../shell";
 import { cn } from "@/lib/utils";
@@ -19,9 +19,9 @@ export function SiteHeader() {
           <span className="font-bold">{siteConfig.name}</span>
         </Link>
         <div className="flex flex-1 items-center justify-end space-x-2">
-          <Button size="sm" asChild>
+          {/* <Button size="sm" asChild>
             <Link href="/subscribe">구독하기</Link>
-          </Button>
+          </Button> */}
           <ModeToggle />
         </div>
       </Shell>
