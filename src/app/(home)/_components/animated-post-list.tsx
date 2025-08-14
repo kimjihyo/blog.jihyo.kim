@@ -1,10 +1,19 @@
 "use client";
-import { AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { PostCard } from "./post-card";
-import { motion } from "motion/react";
 
 interface AnimatedPostListProps {
-  posts: any[];
+  posts: {
+    frontmatter: Partial<{
+      tags: string[];
+      createdTime: string;
+      thumbnail: string;
+      summary: string;
+      updatedTime: string;
+      title: string;
+    }>;
+    slug: string;
+  }[];
 }
 
 export function AnimatedPostList({ posts }: AnimatedPostListProps) {
@@ -13,7 +22,7 @@ export function AnimatedPostList({ posts }: AnimatedPostListProps) {
       {posts.map((post, index) => (
         <motion.div
           className="will-change-[transform]"
-          key={post._meta.path}
+          key={post.slug}
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}

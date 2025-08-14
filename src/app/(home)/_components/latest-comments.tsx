@@ -1,12 +1,13 @@
 import { db } from "@/db";
 import { commentsTable } from "@/db/schema";
-import { allPosts } from "content-collections";
 import { desc } from "drizzle-orm";
 import { LatestCommentCard } from "./latest-comment-card";
+import { getBlogPosts } from "@/app/posts/utils";
 
 function getPostTitleFromSlug(slug: string) {
-  const post = allPosts.find((post) => post._meta.path === slug);
-  return post?.title ?? "";
+  const allPosts = getBlogPosts();
+  const post = allPosts.find((post) => post.slug === slug);
+  return post?.frontmatter.title ?? "";
 }
 
 export async function LatestComments() {

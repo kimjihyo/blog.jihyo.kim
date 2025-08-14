@@ -3,8 +3,10 @@
 import { Badge } from "@/components/ui/badge";
 import { useSearchParams, useRouter } from "next/navigation";
 import * as React from "react";
+import type { Tag } from "@/app/posts/utils";
+
 interface TagsProps {
-  tags: string[];
+  tags: Tag[];
 }
 
 export function Tags({ tags }: TagsProps) {
@@ -31,10 +33,10 @@ export function Tags({ tags }: TagsProps) {
   return (
     <ul className="flex flex-wrap gap-2">
       {tags.map((tag) => {
-        const isSelected = optimisticSelectedTags.includes(tag);
+        const isSelected = optimisticSelectedTags.includes(tag.name);
 
         return (
-          <li key={tag}>
+          <li key={tag.name}>
             <Badge
               variant={isSelected ? "primary" : "default"}
               className="cursor-pointer hover:opacity-80"
@@ -45,17 +47,17 @@ export function Tags({ tags }: TagsProps) {
                 disabled={isPending}
                 onClick={() => {
                   startTransition(() => {
-                    toggleOptimisticSelectedTag(tag);
+                    toggleOptimisticSelectedTag(tag.name);
                     startTransition(() => {
                       const params = new URLSearchParams(searchParams);
                       params.delete("tag");
 
                       const newTags = [...selectedTags];
 
-                      if (selectedTags.includes(tag)) {
-                        newTags.splice(newTags.indexOf(tag), 1);
+                      if (selectedTags.includes(tag.name)) {
+                        newTags.splice(newTags.indexOf(tag.name), 1);
                       } else {
-                        newTags.push(tag);
+                        newTags.push(tag.name);
                       }
 
                       newTags.forEach((t) => params.append("tag", t));
@@ -65,7 +67,7 @@ export function Tags({ tags }: TagsProps) {
                   });
                 }}
               >
-                {tag}
+                {tag.name}
               </button>
             </Badge>
           </li>

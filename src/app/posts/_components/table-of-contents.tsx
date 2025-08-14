@@ -1,7 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { TOCEntry, getAllIds, useActiveItem, TOCTree } from "./toc-core";
+import {
+  TOCEntry,
+  getAllIds,
+  useActiveItem,
+  TOCTree,
+  markOrder,
+} from "./toc-core";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 
@@ -16,6 +22,11 @@ export function TableOfContents({ tocEntries }: TableOfContentsProps) {
   );
   const activeHeading = useActiveItem(itemIds);
 
+  const tocEntriesWithOrder = React.useMemo(
+    () => markOrder(tocEntries),
+    [tocEntries]
+  );
+
   if (!tocEntries?.length) {
     return null;
   }
@@ -24,7 +35,7 @@ export function TableOfContents({ tocEntries }: TableOfContentsProps) {
     <div className="hidden sticky top-24 h-fit md:block border-l pl-6">
       <p className="font-medium">목차</p>
       <TOCTree
-        tree={tocEntries}
+        tree={tocEntriesWithOrder}
         activeItem={activeHeading}
         renderLink={(node, isActive) => (
           <React.Fragment key={node.id}>
@@ -35,7 +46,7 @@ export function TableOfContents({ tocEntries }: TableOfContentsProps) {
                 type: "spring",
                 stiffness: 100,
                 damping: 20,
-                delay: node.index * 0.05,
+                delay: node.order * 0.05,
               }}
               href={`#${node.id}`}
               className={cn(
@@ -45,7 +56,7 @@ export function TableOfContents({ tocEntries }: TableOfContentsProps) {
                   : "text-muted-foreground"
               )}
             >
-              {node.title}
+              {node.value}
             </motion.a>
             {isActive && (
               <motion.div
