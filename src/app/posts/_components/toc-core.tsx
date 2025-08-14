@@ -2,8 +2,9 @@ import * as React from "react";
 
 export type TOCEntry = {
   id: string;
-  title: string;
-  index: number;
+  value: string;
+  depth: number;
+  order: number;
   children?: TOCEntry[];
 };
 
@@ -40,6 +41,24 @@ export function useActiveItem(itemIds: string[]) {
   return activeId;
 }
 
+export function markOrder(entries: any[]): TOCEntry[] {
+  let currentOrder = 1;
+
+  function _markOrder(entries: any[]) {
+    return entries.map((entry) => {
+      const markedEntry: TOCEntry = {
+        ...entry,
+        order: currentOrder++,
+        children: entry.children ? _markOrder(entry.children) : undefined,
+      };
+
+      return markedEntry;
+    });
+  }
+
+  return _markOrder(entries);
+}
+
 export function TOCTree({
   tree,
   level = 1,
@@ -62,7 +81,7 @@ export function TOCTree({
               href={`#${node.id}`}
               className={node.id === activeItem ? "font-semibold" : ""}
             >
-              {node.title}
+              {node.value}
             </a>
           )}
           {node.children && node.children.length > 0 && (

@@ -6,7 +6,7 @@ import { LatestComments } from "./_components/latest-comments";
 import { LoadingLatestComments } from "./_components/loading-latest-comments";
 import { Banner } from "./_components/banner";
 import { PostsLabel } from "./_components/posts-label";
-import { getAllTags } from "@/actions/content-collections";
+import { getAllTags } from "@/app/posts/utils";
 
 export default async function Page({
   searchParams,
@@ -16,7 +16,7 @@ export default async function Page({
     page: string | undefined;
   }>;
 }) {
-  const tags = await getAllTags();
+  const tags = getAllTags();
   return (
     <Shell className="flex flex-col">
       <div className="mb-6">

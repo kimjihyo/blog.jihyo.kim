@@ -1,4 +1,3 @@
-import { getAllPostsSortedByDate } from "@/actions/content-collections";
 import { AnimatedPostList } from "./animated-post-list";
 import * as React from "react";
 import {
@@ -9,6 +8,7 @@ import {
   PaginationLink,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { getBlogPosts } from "@/app/posts/utils";
 
 interface PostsProps {
   searchParams: Promise<{
@@ -26,91 +26,81 @@ export async function Posts({
   const currentPage = parseInt(page ?? "1");
   const tagList = Array.isArray(tag) ? tag : tag ? [tag] : [];
 
-  const filteredPosts = (await getAllPostsSortedByDate()).filter((post) => {
-    if (tagList && tagList.length > 0) {
-      if (Array.isArray(tagList)) {
-        return tagList.every((t) => post.tags.includes(t));
-      }
-      return post.tags.includes(tagList);
-    }
-    return true;
-  });
+  const allPosts = getBlogPosts();
 
+  // Filter posts by tags if provided
+  const filteredPosts =
+    tagList.length > 0
+      ? allPosts.filter((post) =>
+          tagList.some((tag) => post.frontmatter.tags?.includes(tag))
+        )
+      : allPosts;
+
+  // Calculate pagination
   const totalPosts = filteredPosts.length;
   const totalPages = Math.ceil(totalPosts / numberOfPostsPerPage);
+  const startIndex = (currentPage - 1) * numberOfPostsPerPage;
+  const endIndex = startIndex + numberOfPostsPerPage;
+  const paginatedPosts = filteredPosts.slice(startIndex, endIndex);
 
-  if (totalPosts === 0) {
-    return (
-      <div className="text-center text-muted-foreground py-8">
-        <p>검색 결과가 없습니다.</p>
-      </div>
-    );
-  }
+  // Generate page numbers for pagination UI
+  const getPageNumbers = () => {
+    const delta = 2;
+    const pages = [];
+    const startPage = Math.max(1, currentPage - delta);
+    const endPage = Math.min(totalPages, currentPage + delta);
 
-  const posts = filteredPosts.slice(
-    (currentPage - 1) * numberOfPostsPerPage,
-    currentPage * numberOfPostsPerPage
-  );
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+
+    return pages;
+  };
+
+  const pageNumbers = getPageNumbers();
+
+  const buildPageUrl = (pageNum: number) => {
+    const params = new URLSearchParams();
+    params.set("page", pageNum.toString());
+    tagList.forEach((tag) => params.append("tag", tag));
+    return `?${params.toString()}`;
+  };
 
   return (
     <>
-      <AnimatedPostList key={page} posts={posts} />
-      {/* {filteredPosts
-        .slice(
-          (currentPage - 1) * numberOfPostsPerPage,
-          currentPage * numberOfPostsPerPage
-        )
+      <AnimatedPostList key={page} posts={paginatedPosts} />
+      {totalPages > 1 && (
+        <Pagination className="mt-6">
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious
+                href={currentPage === 1 ? "" : buildPageUrl(currentPage - 1)}
+                aria-disabled={currentPage === 1}
+              />
+            </PaginationItem>
 
-        .map((post) => (
-          <PostCard key={post._meta.path} post={post} />
-        ))} */}
+            {pageNumbers.map((pageNum) => (
+              <PaginationItem key={pageNum}>
+                <PaginationLink
+                  href={buildPageUrl(pageNum)}
+                  isActive={pageNum === currentPage}
+                >
+                  {pageNum}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
 
-      <Pagination className="mt-6">
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious
-              href={
-                currentPage === 1
-                  ? ""
-                  : `?page=${currentPage - 1}${
-                      tagList.length > 0 ? `&tag=${tagList.join(",")}` : ""
-                    }`
-              }
-              aria-disabled={currentPage === 1}
-            />
-          </PaginationItem>
-
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-            (pageNum) => {
-              return (
-                <PaginationItem key={pageNum}>
-                  <PaginationLink
-                    href={`?page=${pageNum}${tagList
-                      .map((tag) => `&tag=${tag}`)
-                      .join("")}`}
-                    isActive={pageNum === currentPage}
-                  >
-                    {pageNum}
-                  </PaginationLink>
-                </PaginationItem>
-              );
-            }
-          )}
-
-          <PaginationItem>
-            <PaginationNext
-              href={
-                currentPage < totalPages
-                  ? `?page=${currentPage + 1}${tagList
-                      .map((tag) => `&tag=${tag}`)
-                      .join("")}`
-                  : ""
-              }
-              aria-disabled={currentPage === totalPages}
-            />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
+            <PaginationItem>
+              <PaginationNext
+                href={
+                  currentPage >= totalPages ? "" : buildPageUrl(currentPage + 1)
+                }
+                aria-disabled={currentPage >= totalPages}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      )}
     </>
   );
 }

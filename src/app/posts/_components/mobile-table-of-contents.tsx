@@ -2,7 +2,13 @@
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion } from "motion/react";
-import { TOCEntry, getAllIds, useActiveItem, TOCTree } from "./toc-core";
+import {
+  TOCEntry,
+  getAllIds,
+  useActiveItem,
+  TOCTree,
+  markOrder,
+} from "./toc-core";
 import { cn } from "@/lib/utils";
 
 interface MobileTableOfContentsProps {
@@ -15,6 +21,10 @@ export function MobileTableOfContents({
   const [isOpen, setIsOpen] = React.useState(false);
   const itemIds = React.useMemo(() => getAllIds(tocEntries), [tocEntries]);
   const activeHeading = useActiveItem(itemIds);
+  const tocEntriesWithOrder = React.useMemo(
+    () => markOrder(tocEntries),
+    [tocEntries]
+  );
 
   return (
     <>
@@ -30,7 +40,7 @@ export function MobileTableOfContents({
           >
             <div onClick={(e) => e.stopPropagation()}>
               <TOCTree
-                tree={tocEntries}
+                tree={tocEntriesWithOrder}
                 activeItem={activeHeading}
                 renderLink={(node, isActive) => (
                   <TocLink
@@ -69,7 +79,7 @@ function TocLink({ node, isActive, onClick }: TocLinkProps) {
         type: "spring",
         stiffness: 100,
         damping: 20,
-        delay: node.index * 0.05,
+        delay: node.order * 0.05,
       }}
       style={{ originY: 0 }}
       href={`#${node.id}`}
@@ -79,7 +89,7 @@ function TocLink({ node, isActive, onClick }: TocLinkProps) {
       )}
       onClick={onClick}
     >
-      {node.title}
+      {node.value}
     </motion.a>
   );
 }

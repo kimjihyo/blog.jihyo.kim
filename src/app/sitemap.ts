@@ -1,5 +1,5 @@
-import { allPosts } from "content-collections";
 import { MetadataRoute } from "next";
+import { getBlogPosts } from "./posts/utils";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://blog.jihyo.kim";
@@ -13,11 +13,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ] as MetadataRoute.Sitemap;
 
+  const allPosts = getBlogPosts();
   const postRoutes = allPosts.map((post) => ({
-    url: `${baseUrl}/${post._meta.path}`.replace(/\/$/, ""),
+    url: `${baseUrl}/posts/${post.slug}`.replace(/\/$/, ""),
     changeFrequency: "daily",
     priority: 0.7,
-    lastModified: post.updatedTime || new Date(),
+    lastModified: post.frontmatter.updatedTime || new Date(),
   })) as MetadataRoute.Sitemap;
 
   return [...staticRoutes, ...postRoutes];
