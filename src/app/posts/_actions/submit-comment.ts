@@ -52,7 +52,7 @@ export async function submitComment(
       success: true,
       message: "댓글이 성공적으로 등록되었습니다.",
     };
-  } catch (error) {
+  } catch (_error) {
     return {
       success: false,
       message: "댓글 등록에 실패했습니다.",

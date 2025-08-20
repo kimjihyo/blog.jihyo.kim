@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  LaptopIcon,
-  MoonIcon,
-  SunIcon,
-  CaretDownIcon,
-} from "@radix-ui/react-icons";
+import { LaptopIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 
 import { Button, buttonVariants } from "@/components/ui/button";

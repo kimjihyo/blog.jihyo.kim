@@ -8,7 +8,6 @@ import { formatDate } from "@/lib/utils";
 import { LoadingCommentSection } from "../_components/loading-comment-section";
 import { CommentSection } from "../_components/comment-section";
 import { TableOfContents } from "../_components/table-of-contents";
-import { markOrder } from "../_components/toc-core";
 import { MobileTableOfContents } from "../_components/mobile-table-of-contents";
 
 export const experimental_ppr = true;
