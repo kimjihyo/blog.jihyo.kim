@@ -39,7 +39,7 @@ Motion(구 framer-motion)을 사용해서 `translate`와 `scale`, `opacity` 값�
 
 두번째로, 자식 요소 중에 Pain를 유발시키는 것이 있는지 확인해보았다. 많은 디버깅 끝에 결국 문제가 되는 요소를 찾아냈다. 아래 코드는 문제의 원인이 된 부분이다.
 
-```tsx title="post-card.tsx" {4,7}
+```tsx {4,7} 
 <div className="w-[90px] h-[65px] sm:w-[130px] sm:h-[90px] overflow-hidden rounded bg-card group">
   <div className="relative w-full h-full group-hover:scale-120 transition-transform duration-300">
     <Image
@@ -61,7 +61,7 @@ Motion(구 framer-motion)을 사용해서 `translate`와 `scale`, `opacity` 값�
 
 따라서 아래와 같이 코드를 수정했다. `fill` prop을 지워 정적으로 포지션되게 만들었다.
 
-```tsx title="post-card.tsx"
+```tsx 
 <div className="w-[130px] h-[90px] overflow-hidden rounded">
   <Image
     width={130}

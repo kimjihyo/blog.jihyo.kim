@@ -15,6 +15,7 @@ const eslintConfig = [
   ...tseslint.configs.recommended,
   {
     rules: {
+      "jsx-a11y/alt-text": "off",
       "no-unused-vars": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-unused-vars": [
@@ -25,6 +26,12 @@ const eslintConfig = [
           caughtErrorsIgnorePattern: "^_",
         },
       ],
+    },
+  },
+  {
+    files: ["**/*.js"],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
     },
   },
 ];

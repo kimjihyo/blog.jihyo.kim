@@ -153,11 +153,19 @@
   }
 
   [data-highlighted-line] {
-    @apply !bg-blue-500/30 border-l-2 border-blue-600;
+    @apply !bg-blue-500/10 border-l-2 border-blue-500;
+  }
+
+  [data-highlighted-line] span {
+    @apply !bg-transparent;
   }
 
   .light [data-highlighted-line] {
     @apply !bg-blue-500/10 border-l-2 border-blue-600;
+  }
+
+  .light [data-highlighted-line] span {
+    @apply !bg-transparent;
   }
 
   figure[data-rehype-pretty-code-figure]:has(> [data-rehype-pretty-code-title])

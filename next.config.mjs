@@ -9,7 +9,6 @@ const nextConfig = {
   /* config options here */
   experimental: {
     ppr: "incremental",
-    optimizePackageImports: ["@radix-ui/react-icons", "lucide-react", "motion"]
   },
   serverExternalPackages: ["drizzle-orm"],
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
@@ -37,6 +36,8 @@ const withMDX = createMDX({
         "rehype-pretty-code",
         {
           theme: {
+            // dark: "github-dark",
+            // light: "github-light",
             dark: "one-dark-pro",
             light: "one-light",
           },

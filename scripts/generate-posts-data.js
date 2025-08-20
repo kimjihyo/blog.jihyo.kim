@@ -1,19 +1,19 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 function parseFrontmatter(fileContent) {
   let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
   let match = frontmatterRegex.exec(fileContent);
   if (!match) return { frontmatter: {} };
-  
+
   let frontMatterBlock = match[1];
-  let frontMatterLines = frontMatterBlock.trim().split('\n');
+  let frontMatterLines = frontMatterBlock.trim().split("\n");
   let frontmatter = {};
 
   frontMatterLines.forEach((line) => {
-    let [key, ...valueArr] = line.split(': ');
-    let value = valueArr.join(': ').trim();
-    value = value.replace(/^['"](.*)['"]$/, '$1'); // Remove quotes
+    let [key, ...valueArr] = line.split(": ");
+    let value = valueArr.join(": ").trim();
+    value = value.replace(/^['"](.*)['"]$/, "$1"); // Remove quotes
     try {
       frontmatter[key.trim()] = JSON.parse(value);
     } catch {
@@ -25,11 +25,11 @@ function parseFrontmatter(fileContent) {
 }
 
 function getMDXFiles(dir) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx');
+  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
 }
 
 function readMDXFile(filePath) {
-  let rawContent = fs.readFileSync(filePath, 'utf-8');
+  let rawContent = fs.readFileSync(filePath, "utf-8");
   return parseFrontmatter(rawContent);
 }
 
@@ -47,12 +47,12 @@ function getMDXData(dir) {
 }
 
 function generatePostsData() {
-  console.log('🚀 Generating posts data...');
-  
-  const contentDir = path.join(process.cwd(), 'content');
-  const outputDir = path.join(process.cwd(), '.data');
-  const postsOutputFile = path.join(outputDir, 'posts.json');
-  const tagsOutputFile = path.join(outputDir, 'tags.json');
+  console.log("Generating posts data...");
+
+  const contentDir = path.join(process.cwd(), "content");
+  const outputDir = path.join(process.cwd(), ".data");
+  const postsOutputFile = path.join(outputDir, "posts.json");
+  const tagsOutputFile = path.join(outputDir, "tags.json");
 
   // Create .data directory if it doesn't exist
   if (!fs.existsSync(outputDir)) {
@@ -68,12 +68,12 @@ function generatePostsData() {
 
   // Generate posts.json
   fs.writeFileSync(postsOutputFile, JSON.stringify(posts, null, 2));
-  
+
   // Extract and count tags
   const tagCounts = {};
-  posts.forEach(post => {
+  posts.forEach((post) => {
     if (post.frontmatter.tags && Array.isArray(post.frontmatter.tags)) {
-      post.frontmatter.tags.forEach(tag => {
+      post.frontmatter.tags.forEach((tag) => {
         tagCounts[tag] = (tagCounts[tag] || 0) + 1;
       });
     }
@@ -91,9 +91,9 @@ function generatePostsData() {
 
   // Generate tags.json
   fs.writeFileSync(tagsOutputFile, JSON.stringify(tagsArray, null, 2));
-  
-  console.log(`✅ Generated ${posts.length} posts data to ${postsOutputFile}`);
-  console.log(`✅ Generated ${tagsArray.length} tags data to ${tagsOutputFile}`);
+
+  console.log(`Generated ${posts.length} posts data to ${postsOutputFile}`);
+  console.log(`Generated ${tagsArray.length} tags data to ${tagsOutputFile}`);
 }
 
 // Run if called directly

@@ -44,7 +44,7 @@ HTML 문자열
 
 TypeScript 코드로는 아래와 같습니다.
 
-```tsx title="test" {1-3} showLineNumbers
+```tsx {1-3}
 const html = await unified()
   .use(remarkParse) // 마크다운 → MDAST
   .use(remarkRehype) // MDAST → HAST

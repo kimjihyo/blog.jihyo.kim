@@ -49,12 +49,15 @@ const components = {
       {children}
     </a>
   ),
-  p: ({ children }) => <p className="not-first:mt-4 leading-7">{children}</p>,
+  p: ({ children }) => <p className="not-first:my-5">{children}</p>,
   ul: ({ children }) => <ul className="my-4 ml-4 list-disc">{children}</ul>,
   ol: ({ children }) => <ol className="my-4 ml-4 list-decimal">{children}</ol>,
   li: ({ children }) => <li className="mt-2">{children}</li>,
   blockquote: ({ children }) => (
     <blockquote className="mt-4 border-l-2 pl-6 italic">{children}</blockquote>
+  ),
+  figcaption: ({ children, ...props }) => (
+    <figcaption {...props}>{children}</figcaption>
   ),
   pre: ({ children, ...props }) => (
     <pre
@@ -92,7 +95,7 @@ const components = {
       width={800}
       height={600}
       sizes="100vw"
-      style={{ width: "100%", height: "auto" }}
+      className="w-full h-auto my-3 rounded-md"
       {...(props as ImageProps)}
     />
   ),
