@@ -1,9 +1,9 @@
-import { siteConfig } from "@/config/site";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { ModeToggle } from "./mode-toggle";
 import { Shell } from "../shell";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export function SiteHeader() {
   return (
@@ -12,11 +12,12 @@ export function SiteHeader() {
         <Link
           href="/"
           className={cn(
-            buttonVariants({ variant: "ghost", size: "sm" }),
+            buttonVariants({ variant: "ghost", size: "icon" }),
             "flex items-center space-x-2"
           )}
         >
-          <span className="font-bold">{siteConfig.name}</span>
+          <Image src="/profile.png" alt="" width={32} height={32} />
+          {/* <span className="font-bold">{siteConfig.name}</span> */}
         </Link>
         <div className="flex flex-1 items-center justify-end space-x-2">
           {/* <Button size="sm" asChild>

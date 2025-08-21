@@ -4,6 +4,7 @@ import { buttonVariants } from "../ui/button";
 import { Icons } from "../icons";
 import { ModeToggle } from "./mode-toggle";
 import { Shell } from "../shell";
+import Image from "next/image";
 
 export function SiteFooter() {
   return (
@@ -12,7 +13,7 @@ export function SiteFooter() {
         <section className="flex flex-col gap-10 lg:flex-row lg:gap-20">
           <section>
             <Link href="/" className="flex w-fit items-center space-x-2">
-              <span className="font-extrabold">{siteConfig.name}</span>
+              <Image src="/profile.png" alt="" width={32} height={32} />
             </Link>
           </section>
         </section>
