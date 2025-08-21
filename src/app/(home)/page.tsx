@@ -25,7 +25,7 @@ export default async function Page({
       <div className="flex">
         <div className="flex-1 flex flex-col mb-10 lg:pr-6 lg:pt-2">
           <PostsLabel />
-          <React.Suspense fallback={<div>Loading!!!!</div>}>
+          <React.Suspense>
             <Posts searchParams={searchParams} numberOfPostsPerPage={5} />
           </React.Suspense>
         </div>
@@ -34,7 +34,9 @@ export default async function Page({
             <div className="font-semibold mb-4 text-muted-foreground text-sm">
               태그
             </div>
-            <Tags tags={tags} />
+            <React.Suspense>
+              <Tags tags={tags} />
+            </React.Suspense>
           </div>
           <div>
             <div className="font-semibold mb-4 text-muted-foreground text-sm">
