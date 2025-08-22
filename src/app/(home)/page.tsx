@@ -23,15 +23,15 @@ export default async function Page({
         <Banner />
       </div> */}
       <div className="flex">
-        <div className="flex-1 flex flex-col mb-10 lg:pr-6 lg:pt-2">
+        <div className="mb-10 flex flex-1 flex-col lg:pt-2 lg:pr-6">
           <PostsLabel />
           <React.Suspense>
             <Posts searchParams={searchParams} numberOfPostsPerPage={5} />
           </React.Suspense>
         </div>
-        <div className="w-80 px-6 py-2 border-l hidden lg:flex lg:flex-col lg:gap-8">
+        <div className="hidden w-80 border-l px-6 py-2 lg:flex lg:flex-col lg:gap-8">
           <div>
-            <div className="font-semibold mb-4 text-muted-foreground text-sm">
+            <div className="mb-4 text-sm font-semibold text-muted-foreground">
               태그
             </div>
             <React.Suspense>
@@ -39,7 +39,7 @@ export default async function Page({
             </React.Suspense>
           </div>
           <div>
-            <div className="font-semibold mb-4 text-muted-foreground text-sm">
+            <div className="mb-4 text-sm font-semibold text-muted-foreground">
               최근 댓글
             </div>
             <React.Suspense fallback={<LoadingLatestComments />}>

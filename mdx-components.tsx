@@ -49,7 +49,9 @@ const components = {
       {children}
     </a>
   ),
-  p: ({ children }) => <p className="not-first:my-5">{children}</p>,
+  p: ({ children }) => (
+    <p className="leading-normal not-first:my-5">{children}</p>
+  ),
   ul: ({ children }) => <ul className="my-4 ml-4 list-disc">{children}</ul>,
   ol: ({ children }) => <ol className="my-4 ml-4 list-decimal">{children}</ol>,
   li: ({ children }) => <li className="mt-2">{children}</li>,

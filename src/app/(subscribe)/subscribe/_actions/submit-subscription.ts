@@ -28,7 +28,7 @@ const subscriptionFormSchema = z.object({
 
 export async function submitSubscription(
   _: SubscriptionFormState | null,
-  formData: FormData
+  formData: FormData,
 ): Promise<SubscriptionFormState> {
   const rawFormData = {
     name: formData.get("name"),

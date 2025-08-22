@@ -27,22 +27,22 @@ export function ModeToggle({
           className="size-8"
           aria-label="Toggle theme"
         >
-          <SunIcon className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <MoonIcon className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <SunIcon className="scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+          <MoonIcon className="absolute scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme("light")}>
-          <SunIcon className="text-foreground mr-2 size-4" />
+          <SunIcon className="mr-2 size-4 text-foreground" />
           <span>Light</span>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")}>
-          <MoonIcon className="text-foreground mr-2 size-4" />
+          <MoonIcon className="mr-2 size-4 text-foreground" />
           <span>Dark</span>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("system")}>
-          <LaptopIcon className="text-foreground mr-2 size-4" />
+          <LaptopIcon className="mr-2 size-4 text-foreground" />
           <span>System</span>
         </DropdownMenuItem>
       </DropdownMenuContent>

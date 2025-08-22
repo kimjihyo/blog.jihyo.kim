@@ -20,7 +20,7 @@ export function Tags({ tags }: TagsProps) {
       const tag = searchParams.getAll("tag");
       if (!tag) return [];
       return Array.isArray(tag) ? tag : [tag];
-    })()
+    })(),
   );
 
   return (
@@ -33,7 +33,7 @@ export function Tags({ tags }: TagsProps) {
               variant={isSelected ? "primary" : "default"}
               className={cn(
                 "cursor-pointer transition-colors",
-                isPending && isSelected ? "bg-primary/80" : ""
+                isPending && isSelected ? "bg-primary/80" : "",
               )}
               asChild
             >

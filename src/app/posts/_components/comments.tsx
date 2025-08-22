@@ -17,17 +17,17 @@ export function Comments({ comments }: CommentsProps) {
 
 function Comment({ comment }: { comment: typeof commentsTable.$inferSelect }) {
   return (
-    <li className="rounded-lg bg-card text-card-foreground p-4">
+    <li className="rounded-lg bg-card p-4 text-card-foreground">
       <div className="flex items-start gap-3">
         <Avatar>
           <AvatarImage src={comment.avatar} className="bg-sky-100" />
           <AvatarFallback>{comment.nickname[0]}</AvatarFallback>
         </Avatar>
         <div className="flex flex-col gap-1.5">
-          <p className="text-xs sm:text-sm font-medium leading-none">
+          <p className="text-xs leading-none font-medium sm:text-sm">
             {comment.nickname}
           </p>
-          <p className="text-sm sm:text-base text-foreground/90">
+          <p className="text-sm text-foreground/90 sm:text-base">
             {comment.content}
           </p>
           <p className="text-xs text-muted-foreground">

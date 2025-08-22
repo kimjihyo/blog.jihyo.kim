@@ -32,7 +32,7 @@ export function getAllTags(): Tag[] {
 }
 
 export function getTagByName(tagName: string): Tag | undefined {
-  return getAllTags().find(tag => tag.name === tagName);
+  return getAllTags().find((tag) => tag.name === tagName);
 }
 
 export function getPopularTags(limit: number = 10): Tag[] {

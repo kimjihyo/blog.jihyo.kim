@@ -18,7 +18,7 @@ export function SiteFooter() {
           </section>
         </section>
         <section>
-          <span className="text-muted-foreground text-sm">
+          <span className="text-sm text-muted-foreground">
             With design inspiration from toss.tech
           </span>
         </section>

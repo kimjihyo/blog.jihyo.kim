@@ -24,7 +24,7 @@ const commentFormSchema = z.object({
 
 export async function submitComment(
   _: CommentFormState | null,
-  formData: FormData
+  formData: FormData,
 ): Promise<CommentFormState> {
   const rawFormData = {
     nickname: formData.get("nickname"),

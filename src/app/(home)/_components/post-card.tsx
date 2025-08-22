@@ -21,22 +21,22 @@ export function PostCard({ post }: PostCardProps) {
     <article>
       <Link
         href={`/posts/${post.slug}`}
-        className="block group py-6 active:scale-97 duration-300 ease-in-out"
+        className="group block py-6 duration-300 ease-in-out active:scale-97"
       >
-        <div className="flex items-center gap-1 mb-1.5">
+        <div className="mb-1.5 flex items-center gap-1">
           {post.frontmatter.tags?.map((tag) => (
             <Badge key={tag}>{tag}</Badge>
           ))}
         </div>
         <div className="flex gap-5">
           <div className="flex-1">
-            <h2 className="text-base xs:text-xl font-semibold mb-1.5 text-foreground group-hover:text-primary transition-colors">
+            <h2 className="mb-1.5 text-base font-semibold text-foreground transition-colors group-hover:text-primary xs:text-xl">
               {post.frontmatter.title}
             </h2>
-            <p className="text-muted-foreground text-sm sm:text-base mb-4">
+            <p className="mb-4 text-sm text-muted-foreground sm:text-base">
               {post.frontmatter.summary}
             </p>
-            <p className="text-muted-foreground text-xs sm:text-sm">
+            <p className="text-xs text-muted-foreground sm:text-sm">
               {post.frontmatter.createdTime &&
                 new Date(post.frontmatter.createdTime).toLocaleDateString(
                   "ko-KR",
@@ -45,18 +45,18 @@ export function PostCard({ post }: PostCardProps) {
                     month: "long",
                     day: "numeric",
                     timeZone: "Asia/Seoul",
-                  }
+                  },
                 )}
             </p>
           </div>
-          <div className="w-[90px] h-[65px] sm:w-[130px] sm:h-[90px] overflow-hidden rounded bg-card group">
-            <div className="relative w-full h-full group-hover:scale-120 transition-transform duration-300">
+          <div className="group h-[65px] w-[90px] overflow-hidden rounded bg-card sm:h-[90px] sm:w-[130px]">
+            <div className="relative h-full w-full transition-transform duration-300 group-hover:scale-120">
               {post.frontmatter.thumbnail && (
                 <Image
                   fill
                   sizes="(max-width: 640px) 90px, 130px"
                   alt=""
-                  className="w-full h-full object-center object-cover"
+                  className="h-full w-full object-cover object-center"
                   src={post.frontmatter.thumbnail}
                 />
               )}

@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export function formatDate(
   date: Date | string | number,
-  options: Intl.DateTimeFormatOptions = {}
+  options: Intl.DateTimeFormatOptions = {},
 ) {
   return new Intl.DateTimeFormat("ko-KR", {
     month: "long",

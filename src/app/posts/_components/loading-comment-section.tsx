@@ -1,42 +1,42 @@
 export function LoadingCommentSection() {
   return (
     <div>
-      <div className="flex items-center justify-between gap-2 mb-4">
-        <div className="h-5 w-16 bg-muted rounded animate-pulse" />
-        <div className="h-4 w-48 bg-muted rounded animate-pulse" />
+      <div className="mb-4 flex items-center justify-between gap-2">
+        <div className="h-5 w-16 animate-pulse rounded bg-muted" />
+        <div className="h-4 w-48 animate-pulse rounded bg-muted" />
       </div>
 
       {/* Comment Form Skeleton */}
-      <div className="flex flex-col mb-6">
+      <div className="mb-6 flex flex-col">
         <div className="mb-3">
           <div className="flex w-full space-x-2">
             <div className="mt-1">
-              <div className="w-10 h-10 rounded-full bg-muted animate-pulse" />
+              <div className="h-10 w-10 animate-pulse rounded-full bg-muted" />
             </div>
-            <div className="flex flex-col gap-1.5 flex-1">
-              <div className="flex gap-2 items-center w-60 h-12 bg-muted rounded-md animate-pulse" />
+            <div className="flex flex-1 flex-col gap-1.5">
+              <div className="flex h-12 w-60 animate-pulse items-center gap-2 rounded-md bg-muted" />
             </div>
           </div>
         </div>
         <div>
-          <div className="w-full h-16 bg-muted rounded-md animate-pulse" />
+          <div className="h-16 w-full animate-pulse rounded-md bg-muted" />
         </div>
-        <div className="ml-auto mt-2 mb-5">
-          <div className="h-9 w-24 bg-muted rounded animate-pulse" />
+        <div className="mt-2 mb-5 ml-auto">
+          <div className="h-9 w-24 animate-pulse rounded bg-muted" />
         </div>
       </div>
 
       {/* Comments Skeleton */}
       <ul className="flex flex-col gap-4">
         {Array.from({ length: 3 }).map((_, i) => (
-          <li key={i} className="rounded-lg bg-card text-card-foreground p-4">
+          <li key={i} className="rounded-lg bg-card p-4 text-card-foreground">
             <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-full bg-muted animate-pulse" />
-              <div className="flex flex-col gap-1.5 flex-1">
-                <div className="h-4 w-20 bg-muted rounded animate-pulse" />
-                <div className="h-4 w-full bg-muted rounded animate-pulse" />
-                <div className="h-4 w-3/4 bg-muted rounded animate-pulse" />
-                <div className="h-3 w-32 bg-muted rounded animate-pulse" />
+              <div className="h-10 w-10 animate-pulse rounded-full bg-muted" />
+              <div className="flex flex-1 flex-col gap-1.5">
+                <div className="h-4 w-20 animate-pulse rounded bg-muted" />
+                <div className="h-4 w-full animate-pulse rounded bg-muted" />
+                <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
+                <div className="h-3 w-32 animate-pulse rounded bg-muted" />
               </div>
             </div>
           </li>

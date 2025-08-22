@@ -25,7 +25,7 @@ export function useActiveItem(itemIds: string[]) {
           if (entry.isIntersecting) setActiveId(entry.target.id);
         });
       },
-      { rootMargin: `0% 0% -80% 0%` }
+      { rootMargin: `0% 0% -80% 0%` },
     );
     itemIds?.forEach((id) => {
       const element = document.getElementById(id);

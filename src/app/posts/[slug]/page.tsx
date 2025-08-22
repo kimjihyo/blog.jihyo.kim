@@ -25,11 +25,11 @@ export default async function Page({
   } = await import(`@/../content/${slug}.mdx`);
 
   return (
-    <Shell className="relative md:grid md:grid-cols-[1fr_230px] gap-10">
+    <Shell className="relative gap-10 md:grid md:grid-cols-[1fr_230px]">
       <div className="min-w-0">
         <div className="rounded-lg bg-card">
           <Image
-            className="w-full h-auto rounded-lg mb-8"
+            className="mb-8 h-auto w-full rounded-lg"
             priority
             width={1200}
             height={630}
@@ -37,23 +37,23 @@ export default async function Page({
             src={frontmatter.thumbnail}
           />
         </div>
-        <div className="flex items-center gap-1 mb-4">
+        <div className="mb-4 flex items-center gap-1">
           {frontmatter.tags.map((tag: string) => (
             <Badge key={tag}>{tag}</Badge>
           ))}
         </div>
         <div className="space-y-2">
-          <div className="flex flex-wrap items-center text-muted-foreground text-sm gap-1.5">
+          <div className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
             <time dateTime={frontmatter.createdTime} className="block">
               {formatDate(frontmatter.createdTime)}
             </time>
           </div>
-          <h1 className="font-bold leading-tight tracking-tighter lg:leading-[1.1] text-2xl md:text-3xl">
+          <h1 className="text-2xl leading-tight font-bold tracking-tighter md:text-3xl lg:leading-[1.1]">
             {frontmatter.title}
           </h1>
         </div>
         <Post />
-        <div id="comments" className="pt-8 pb-20 border-t">
+        <div id="comments" className="border-t pt-8 pb-20">
           <React.Suspense fallback={<LoadingCommentSection />}>
             <CommentSection postSlug={slug} />
           </React.Suspense>

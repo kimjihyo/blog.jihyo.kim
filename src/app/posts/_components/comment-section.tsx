@@ -19,7 +19,7 @@ export async function CommentSection({ postSlug }: CommentSectionProps) {
 
   return (
     <div className="animate-fadeIn">
-      <div className="flex items-center justify-between gap-2 mb-4">
+      <div className="mb-4 flex items-center justify-between gap-2">
         <div className="font-medium">댓글 {comments.length}</div>
         <div className="text-sm text-muted-foreground">
           댓글 관련 문의: kimjihyo0325@gmail.com

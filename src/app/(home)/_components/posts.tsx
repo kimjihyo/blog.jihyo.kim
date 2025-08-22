@@ -33,7 +33,7 @@ export async function Posts({
   const filteredPosts =
     tagList.length > 0
       ? allPosts.filter((post) =>
-          tagList.some((tag) => post.frontmatter.tags?.includes(tag))
+          tagList.some((tag) => post.frontmatter.tags?.includes(tag)),
         )
       : allPosts;
 

@@ -18,13 +18,13 @@ interface TableOfContentsProps {
 export function TableOfContents({ tocEntries }: TableOfContentsProps) {
   const itemIds = React.useMemo<string[]>(
     () => getAllIds(tocEntries),
-    [tocEntries]
+    [tocEntries],
   );
   const activeHeading = useActiveItem(itemIds);
 
   const tocEntriesWithOrder = React.useMemo(
     () => markOrder(tocEntries),
-    [tocEntries]
+    [tocEntries],
   );
 
   if (!tocEntries?.length) {
@@ -32,7 +32,7 @@ export function TableOfContents({ tocEntries }: TableOfContentsProps) {
   }
 
   return (
-    <div className="hidden sticky top-24 h-fit md:block border-l pl-6">
+    <div className="sticky top-24 hidden h-fit border-l pl-6 md:block">
       <p className="font-medium">목차</p>
       <TOCTree
         tree={tocEntriesWithOrder}
@@ -50,10 +50,10 @@ export function TableOfContents({ tocEntries }: TableOfContentsProps) {
               }}
               href={`#${node.id}`}
               className={cn(
-                "inline-block no-underline transition-colors hover:text-foreground text-muted-foreground text-sm",
+                "inline-block text-sm text-muted-foreground no-underline transition-colors hover:text-foreground",
                 isActive
                   ? "font-semibold text-foreground"
-                  : "text-muted-foreground"
+                  : "text-muted-foreground",
               )}
             >
               {node.value}
@@ -62,7 +62,7 @@ export function TableOfContents({ tocEntries }: TableOfContentsProps) {
               <motion.div
                 layout
                 layoutId="toc-line"
-                className="bg-primary h-5 w-0.5 absolute -left-px -translate-y-full"
+                className="absolute -left-px h-5 w-0.5 -translate-y-full bg-primary"
                 transition={{
                   type: "spring",
                   stiffness: 100,

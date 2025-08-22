@@ -7,13 +7,13 @@ import Image from "next/image";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 w-full h-16 border-b bg-background/80 backdrop-blur-sm">
-      <Shell className="py-0 h-full flex items-center gap-6">
+    <header className="sticky top-0 z-50 h-16 w-full border-b bg-background/80 backdrop-blur-sm">
+      <Shell className="flex h-full items-center gap-6 py-0">
         <Link
           href="/"
           className={cn(
             buttonVariants({ variant: "ghost", size: "icon" }),
-            "flex items-center space-x-2"
+            "flex items-center space-x-2",
           )}
         >
           <Image src="/profile.png" alt="" width={32} height={32} />

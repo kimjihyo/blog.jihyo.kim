@@ -35,16 +35,16 @@ export function LatestCommentCard({
     >
       <Link
         href={`/posts/${postSlug}#comments`}
-        className="flex flex-col gap-2 py-2 bg-card text-card-foreground rounded-lg p-4 hover:bg-accent transition-colors"
+        className="flex flex-col gap-2 rounded-lg bg-card p-4 py-2 text-card-foreground transition-colors hover:bg-accent"
       >
         <div className="flex items-center gap-2">
-          <Avatar className="w-6 h-6">
+          <Avatar className="h-6 w-6">
             <AvatarImage src={avatarImgSrc} className="bg-sky-100" />
             <AvatarFallback>{nickname[0]}</AvatarFallback>
           </Avatar>
           <span className="text-sm font-semibold">{nickname}</span>
         </div>
-        <p className="text-sm text-foreground line-clamp-2">{content}</p>
+        <p className="line-clamp-2 text-sm text-foreground">{content}</p>
         <p className="text-xs text-muted-foreground">{postTitle}</p>
       </Link>
     </motion.div>

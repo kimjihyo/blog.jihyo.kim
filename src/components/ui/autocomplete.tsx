@@ -19,10 +19,10 @@ export function Autocomplete({
 }: AutocompleteProps) {
   const [open, setOpen] = React.useState(false);
   const [highlightedIndex, setHighlightedIndex] = React.useState<number | null>(
-    null
+    null,
   );
   const [inputValue, setInputValue] = React.useState(
-    props.defaultValue ? String(props.defaultValue) : ""
+    props.defaultValue ? String(props.defaultValue) : "",
   );
   const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -35,7 +35,7 @@ export function Autocomplete({
       ? suggestions.filter(
           (s) =>
             s.toLowerCase().includes(value.toLowerCase()) &&
-            s.toLowerCase() !== value.toLowerCase()
+            s.toLowerCase() !== value.toLowerCase(),
         )
       : [];
 
@@ -67,12 +67,12 @@ export function Autocomplete({
     if (e.key === "ArrowDown") {
       e.preventDefault();
       setHighlightedIndex((prev) =>
-        prev === null || prev === filtered.length - 1 ? 0 : prev + 1
+        prev === null || prev === filtered.length - 1 ? 0 : prev + 1,
       );
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       setHighlightedIndex((prev) =>
-        prev === null || prev === 0 ? filtered.length - 1 : prev - 1
+        prev === null || prev === 0 ? filtered.length - 1 : prev - 1,
       );
     } else if (e.key === "Enter" && highlightedIndex !== null) {
       e.preventDefault();
@@ -115,16 +115,16 @@ export function Autocomplete({
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute z-10 mt-1 w-full bg-background border rounded-md shadow-lg max-h-48 overflow-auto"
+            className="absolute z-10 mt-1 max-h-48 w-full overflow-auto rounded-md border bg-background shadow-lg"
           >
             {filtered.map((s, i) => (
               <li
                 key={s}
                 className={cn(
-                  "px-3 py-2 cursor-pointer",
+                  "cursor-pointer px-3 py-2",
                   i === highlightedIndex
                     ? "bg-accent text-accent-foreground"
-                    : "hover:bg-muted"
+                    : "hover:bg-muted",
                 )}
                 onMouseDown={() => handleSelect(s)}
                 onMouseEnter={() => setHighlightedIndex(i)}

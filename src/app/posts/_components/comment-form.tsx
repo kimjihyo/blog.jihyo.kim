@@ -17,7 +17,7 @@ interface CommentFormProps {
 export function CommentForm({ postSlug }: CommentFormProps) {
   const [formState, formAction, isPending] = React.useActionState(
     submitComment,
-    null
+    null,
   );
   const nicknameInputRef = React.useRef<HTMLInputElement>(null);
   const defaultNickname = React.useRef(generateRandomNickname());
@@ -30,13 +30,13 @@ export function CommentForm({ postSlug }: CommentFormProps) {
             <div className="mt-1">
               <AvatarButton />
             </div>
-            <div className="flex flex-col gap-1.5 flex-1">
+            <div className="flex flex-1 flex-col gap-1.5">
               <div
                 className={cn(
-                  "flex gap-2 items-center w-60 h-12",
-                  "dark:bg-input/30 border-input flex rounded-md border bg-transparent px-3 py-1 shadow-xs transition-colors outline-none hover:border-primary",
-                  "has-[:focus-visible]:border-ring has-[:focus-visible]:ring-ring/50 has-[:focus-visible]:ring-[3px]",
-                  formState?.errors?.nickname && "border-destructive"
+                  "flex h-12 w-60 items-center gap-2",
+                  "flex rounded-md border border-input bg-transparent px-3 py-1 shadow-xs transition-colors outline-none hover:border-primary dark:bg-input/30",
+                  "has-[:focus-visible]:border-ring has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/50",
+                  formState?.errors?.nickname && "border-destructive",
                 )}
               >
                 <input
@@ -44,7 +44,7 @@ export function CommentForm({ postSlug }: CommentFormProps) {
                   type="text"
                   name="nickname"
                   placeholder="닉네임"
-                  className="h-full min-w-0 focus:outline-none bg-transparent text-base"
+                  className="h-full min-w-0 bg-transparent text-base focus:outline-none"
                   defaultValue={defaultNickname.current}
                 />
                 <Button
@@ -61,7 +61,7 @@ export function CommentForm({ postSlug }: CommentFormProps) {
                 </Button>
               </div>
               {formState?.errors?.nickname && (
-                <p className="text-sm text-destructive px-3">
+                <p className="px-3 text-sm text-destructive">
                   {formState.errors.nickname[0]}
                 </p>
               )}
@@ -74,12 +74,12 @@ export function CommentForm({ postSlug }: CommentFormProps) {
             placeholder="입력한 댓글은 수정하거나 삭제할 수 없어요."
             disabled={isPending}
             className={cn(
-              "resize-none min-h-16",
-              formState?.errors?.content && "border-destructive"
+              "min-h-16 resize-none",
+              formState?.errors?.content && "border-destructive",
             )}
           />
           {formState?.errors?.content && (
-            <p className="text-sm text-destructive mt-1.5">
+            <p className="mt-1.5 text-sm text-destructive">
               {formState.errors.content[0]}
             </p>
           )}
@@ -88,11 +88,11 @@ export function CommentForm({ postSlug }: CommentFormProps) {
       <input type="hidden" name="postSlug" value={postSlug} />
       <Button
         type="submit"
-        className="ml-auto mt-2 mb-5 relative"
+        className="relative mt-2 mb-5 ml-auto"
         disabled={isPending}
       >
         <span>댓글 남기기</span>
-        {isPending && <Loader2 className="w-4 h-4 animate-spin ml-2" />}
+        {isPending && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
       </Button>
     </form>
   );
@@ -104,12 +104,12 @@ function AvatarButton() {
   return (
     <div
       role="button"
-      className="cursor-pointer hover:opacity-80 transition-opacity group"
+      className="group cursor-pointer transition-opacity hover:opacity-80"
       onClick={() => {
         setAvatar(generateRandomAvatar());
       }}
     >
-      <Avatar className="size-10 group-active:scale-95 transition-transform">
+      <Avatar className="size-10 transition-transform group-active:scale-95">
         <AvatarImage src={avatar} className="bg-sky-100" />
         <AvatarFallback></AvatarFallback>
       </Avatar>

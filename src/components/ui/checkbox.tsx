@@ -40,7 +40,7 @@ export function Checkbox({ id, name, defaultChecked }: CheckboxProps) {
         name={name}
         defaultChecked={defaultChecked}
       />
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white">
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white">
         <motion.svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

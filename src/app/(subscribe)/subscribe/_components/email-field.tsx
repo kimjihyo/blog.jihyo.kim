@@ -11,11 +11,11 @@ const EMAIL_DOMAINS = [
 ];
 
 export default function EmailField(
-  props: Omit<React.ComponentProps<typeof Autocomplete>, "suggestions">
+  props: Omit<React.ComponentProps<typeof Autocomplete>, "suggestions">,
 ) {
   const { defaultValue, ...rest } = props;
   const [inputValue, setInputValue] = React.useState(
-    defaultValue ? String(defaultValue) : ""
+    defaultValue ? String(defaultValue) : "",
   );
 
   // Only show suggestions for the domain part after '@'
@@ -27,7 +27,7 @@ export default function EmailField(
   const suggestions = React.useMemo(() => {
     if (!showSuggestions) return [];
     return EMAIL_DOMAINS.filter((d) => d.startsWith(domain)).map(
-      (d) => `${local}@${d}`
+      (d) => `${local}@${d}`,
     );
   }, [showSuggestions, domain, local]);
 
