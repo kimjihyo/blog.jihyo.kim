@@ -9,6 +9,7 @@ import { LoadingCommentSection } from "../_components/loading-comment-section";
 import { CommentSection } from "../_components/comment-section";
 import { TableOfContents } from "../_components/table-of-contents";
 import { MobileTableOfContents } from "../_components/mobile-table-of-contents";
+import Mdx from "../_components/mdx";
 
 export const experimental_ppr = true;
 
@@ -52,7 +53,9 @@ export default async function Page({
             {frontmatter.title}
           </h1>
         </div>
-        <Post />
+        <Mdx>
+          <Post />
+        </Mdx>
         <div id="comments" className="border-t pt-8 pb-20">
           <React.Suspense fallback={<LoadingCommentSection />}>
             <CommentSection postSlug={slug} />

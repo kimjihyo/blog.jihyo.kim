@@ -51,6 +51,7 @@
     "@next/env": "^15.4.6",
     "@stefanprobst/rehype-extract-toc": "^3.0.0",
     "@tailwindcss/postcss": "^4.1.10",
+    "@tailwindcss/typography": "^0.5.16",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
