@@ -16,6 +16,8 @@ interface TableOfContentsProps {
 }
 
 export function TableOfContents({ tocEntries }: TableOfContentsProps) {
+  const tocCursorElementRef = React.useRef<HTMLDivElement | null>(null);
+
   const itemIds = React.useMemo<string[]>(
     () => getAllIds(tocEntries),
     [tocEntries],
@@ -27,13 +29,27 @@ export function TableOfContents({ tocEntries }: TableOfContentsProps) {
     [tocEntries],
   );
 
+  React.useLayoutEffect(() => {
+    if (!tocCursorElementRef.current) {
+      return;
+    }
+    const element = document.getElementById(`toc-${activeHeading}`);
+    const top = element?.offsetTop;
+    tocCursorElementRef.current.style.display = "block";
+    tocCursorElementRef.current.style.transform = `translateY(${top}px)`;
+  }, [activeHeading]);
+
   if (!tocEntries?.length) {
     return null;
   }
 
   return (
     <div className="sticky top-24 hidden h-fit border-l pl-6 md:block">
-      <p className="font-medium">목차</p>
+      <p className="leading-8 font-medium">목차</p>
+      <div
+        ref={tocCursorElementRef}
+        className="absolute top-0 -left-px hidden h-6 w-[2px] bg-blue-500 transition-transform ease-in-out"
+      />
       <TOCTree
         tree={tocEntriesWithOrder}
         activeItem={activeHeading}
@@ -58,18 +74,6 @@ export function TableOfContents({ tocEntries }: TableOfContentsProps) {
             >
               {node.value}
             </motion.a>
-            {isActive && (
-              <motion.div
-                layout
-                layoutId="toc-line"
-                className="absolute -left-px h-5 w-0.5 -translate-y-full bg-primary"
-                transition={{
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 20,
-                }}
-              />
-            )}
           </React.Fragment>
         )}
       />

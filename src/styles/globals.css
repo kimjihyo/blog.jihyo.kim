@@ -136,11 +136,13 @@
   --badge-default-foreground: oklch(1 0 0 / 81%);
 }
 
-@layer base {
-  html {
-    @apply scroll-smooth;
-  }
+.prose {
+  --tw-prose-body: var(--foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-links: var(--foreground);
+}
 
+@layer base {
   * {
     @apply border-border outline-ring/50;
   }

@@ -73,7 +73,7 @@ export function TOCTree({
   return (
     <ul className={level !== 1 ? "pl-4" : ""}>
       {tree.map((node) => (
-        <li key={node.id}>
+        <li id={`toc-${node.id}`} key={node.id}>
           {renderLink ? (
             renderLink(node, node.id === activeItem)
           ) : (
