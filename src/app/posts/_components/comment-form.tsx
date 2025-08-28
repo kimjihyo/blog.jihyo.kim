@@ -34,7 +34,7 @@ export function CommentForm({ postSlug }: CommentFormProps) {
               <div
                 className={cn(
                   "flex h-12 w-60 items-center gap-2",
-                  "flex rounded-md border border-input bg-transparent px-3 py-1 shadow-xs transition-colors outline-none hover:border-primary dark:bg-input/30",
+                  "flex rounded-md border border-input px-3 py-1 shadow-xs transition-colors outline-none hover:border-primary dark:bg-input/30",
                   "has-[:focus-visible]:border-ring has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/50",
                   formState?.errors?.nickname && "border-destructive",
                 )}
@@ -44,7 +44,7 @@ export function CommentForm({ postSlug }: CommentFormProps) {
                   type="text"
                   name="nickname"
                   placeholder="닉네임"
-                  className="h-full min-w-0 bg-transparent text-base focus:outline-none"
+                  className="h-full min-w-0 text-base focus:outline-none"
                   defaultValue={defaultNickname.current}
                 />
                 <Button

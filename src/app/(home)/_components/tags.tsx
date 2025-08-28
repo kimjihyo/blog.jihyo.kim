@@ -33,6 +33,7 @@ export function Tags({ tags }: TagsProps) {
               variant={isSelected ? "primary" : "default"}
               className={cn(
                 "cursor-pointer transition-colors",
+                !isSelected ? "hover:bg-badge-default-accent" : "",
                 isPending && isSelected ? "bg-primary/80" : "",
               )}
               asChild

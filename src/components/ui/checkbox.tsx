@@ -34,7 +34,7 @@ export function Checkbox({ id, name, defaultChecked }: CheckboxProps) {
       <input
         type="checkbox"
         value={isChecked ? "true" : "false"}
-        className="border-blue-gray-200 relative h-5 w-5 cursor-pointer appearance-none rounded-md border-2 transition-all duration-500 checked:border-blue-500 checked:bg-blue-500"
+        className="border-blue-gray-200 relative h-5 w-5 cursor-pointer appearance-none rounded-md border-2 transition-all duration-500 checked:border-primary checked:bg-primary"
         onChange={() => setIsChecked(!isChecked)}
         id={id}
         name={name}
