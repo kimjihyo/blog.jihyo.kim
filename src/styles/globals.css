@@ -211,7 +211,7 @@
   }
 
   span[data-line] {
-    @apply h-5 px-4 text-[13px] leading-5;
+    @apply px-4;
   }
 
   code[data-line-numbers] {

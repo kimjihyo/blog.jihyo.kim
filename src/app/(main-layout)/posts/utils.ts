@@ -1,6 +1,6 @@
 // Import static data generated at build time
-import postsData from "../../../.data/posts.json";
-import tagsData from "../../../.data/tags.json";
+import postsData from "../../../../.data/posts.json";
+import tagsData from "../../../../.data/tags.json";
 
 export type Frontmatter = {
   tags: string[];

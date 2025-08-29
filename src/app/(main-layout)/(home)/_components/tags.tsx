@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { useSearchParams, useRouter } from "next/navigation";
 import * as React from "react";
-import type { Tag } from "@/app/posts/utils";
+import type { Tag } from "@/app/(main-layout)/posts/utils";
 import { cn } from "@/lib/utils";
 
 interface TagsProps {

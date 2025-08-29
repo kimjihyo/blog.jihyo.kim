@@ -2,7 +2,7 @@ import { db } from "@/db";
 import { commentsTable } from "@/db/schema";
 import { desc } from "drizzle-orm";
 import { LatestCommentCard } from "./latest-comment-card";
-import { getBlogPosts } from "@/app/posts/utils";
+import { getBlogPosts } from "@/app/(main-layout)/posts/utils";
 
 function getPostTitleFromSlug(slug: string) {
   const allPosts = getBlogPosts();

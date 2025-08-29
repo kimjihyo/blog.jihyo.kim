@@ -6,7 +6,7 @@ import { LatestComments } from "./_components/latest-comments";
 import { LoadingLatestComments } from "./_components/loading-latest-comments";
 // import { Banner } from "./_components/banner";
 import { PostsLabel } from "./_components/posts-label";
-import { getAllTags } from "@/app/posts/utils";
+import { getAllTags } from "@/app/(main-layout)/posts/utils";
 
 export default async function Page({
   searchParams,

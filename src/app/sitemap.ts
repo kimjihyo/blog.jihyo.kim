@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { getBlogPosts } from "./posts/utils";
+import { getBlogPosts } from "./(main-layout)/posts/utils";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://blog.jihyo.kim";

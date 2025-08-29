@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { siteConfig } from "@/config/site";
-import { SiteHeader } from "@/components/layouts/site-header";
-import { SiteFooter } from "@/components/layouts/site-footer";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 
 import { Analytics } from "@vercel/analytics/next";
@@ -67,9 +65,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SiteHeader />
-          <main>{children}</main>
-          <SiteFooter />
+          {children}
         </ThemeProvider>
         <Analytics />
         <script

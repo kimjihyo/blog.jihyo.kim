@@ -1,0 +1,201 @@
+import Slide from '@/app/slides/_components/slide';
+
+<Slide>
+# lowDB와 동시성 문제 
+- J073 - 김지효
+</Slide>
+
+<Slide>
+# lowDB란?
+- JSON 파일을 데이터베이스처럼 다룰 수 있는 **가벼운 로컬 DB**
+- npm으로 쉽게 설치: `npm install lowdb`
+  - `db.read()` → 파일 읽어서 메모리에 올림
+  - `db.data` → 메모리에 올라간 데이터 객체
+  - `db.write()` → 메모리 내용을 파일에 저장
+</Slide>
+
+
+<Slide>
+# 문제 상황
+- 좋아요 100번 눌렀는데, DB에는 8번만 올라갔다?
+</Slide>
+
+<Slide>
+# ab - Apache HTTP server benchmarking tool
+
+- Apache HTTP Server 프로젝트에서 만든 간단한 부하 테스트 도구 [링크](https://httpd.apache.org/docs/2.4/programs/ab.html)
+
+```bash
+ab -n 100 -c 100 -p /dev/null -T application/json http://... 
+```
+</Slide>
+
+<Slide>
+# 무엇이 문제인가: RMW 패턴
+- 파일 DB(lowDB 등)의 업데이트는 보통  
+  **read → modify → write** 흐름으로 이뤄진다.
+- 같은 레코드(예: `post.likes`)를 여러 요청이 **동시에** 갱신하면  
+  마지막 쓰기(write)가 이전 변경을 **덮어써서 유실**된다. 
+</Slide>
+
+<Slide>
+# 문제 코드 예시
+```js
+// (문제 코드) 동시 요청에서 likes가 유실될 수 있음
+app.post("/like", async (req, res) => {
+  await db.read();              // 파일에서 현재 상태 읽기
+  const post = db.data.posts.find(p => p.id === +req.body.id);
+  post.likes += 1;              // 메모리에서 수정
+  await db.write();             // 파일로 다시 쓰기
+  res.sendStatus(200);
+});
+```
+</Slide>
+
+<Slide>
+# 요청 흐름도
+
+```lua
+요청 A           요청 B
+------           ------
+read(likes=0)
+                read(likes=0)
+modify=>1
+write(1)
+                modify=>1
+                write(1)   // A의 업데이트를 덮어씀 → 최종 likes=1
+```
+</Slide>
+
+<Slide>
+# 이 문제를 막는 방법
+- Mutex
+- lowDB 메모리에 의존하기 
+- lowDB 쓰지말기
+</Slide>
+
+<Slide>
+# 해결책 1 - Mutex
+
+- **Mutex (Mutual Exclusion)**:  
+  동시에 실행되면 안 되는 구간(Critical Section)을  
+  한 번에 하나의 요청만 들어가도록 만드는 장치
+</Slide>
+
+<Slide>
+# 코드 예시 (async-mutex)
+
+```js
+import { Mutex } from "async-mutex";
+const mutex = new Mutex();
+
+app.post("/like", async (req, res) => {
+  await mutex.runExclusive(async () => {
+    await db.read();
+    post.likes += 1;
+    await db.write();
+  });
+  res.sendStatus(200);
+});
+```
+</Slide>
+
+<Slide>
+# Trade-off 와 한계
+
+- 성능이 하락했습니다. 0.1초 -> 0.2초
+  - Why? 먼저 온 요청의 읽기-쓰기를 기다려야돼서
+- 단일 프로세스 서버에서만 동작 가능
+  - Why? Mutex가 서버 메모리에 존재하기 때문
+
+</Slide>
+
+<Slide>
+# 해결책 2 - lowDB 메모리에 의존하기
+- `db.read()`는 파일을 읽고 내용을 메모리에 올림
+- `db.read()`를 DB 초기화시 한번만 호출하고 이후에는 메모리에 올라간 데이터만 사용 
+- 싱글 스레드 환경이라 메모리 수정은 안전
+- 내부적으로 [Steno](https://github.com/typicode/steno)를 사용해서 파일 쓰기를 직렬화함
+  - "Writes are ordered even if they're async (no race conditions)"
+- 하지만, 여전히 단일 프로세스 서버에서만 동작 가능
+</Slide>
+
+<Slide>
+# 코드 예시
+```js
+const post = data.posts.find(p => p.id === id);
+post.likes += 1;
+await db.write(); // Steno로 write 직렬화
+```
+</Slide>
+
+
+<Slide>
+
+# 해결책 3: lowDB 쓰지말기
+
+- 동시성 제어 장치가 있는 DB 사용하기
+- MariaDB, PostgreSQL
+
+</Slide>
+
+
+<Slide>
+# 상용 DB의 동시성 제어
+
+- MVCC (Multi-Version Concurrency Control)
+- Row-level lock
+</Slide>
+
+<Slide>
+# MVCC 
+- 여러 버전의 데이터를 동시에 관리
+- 새로운 변경이 발생하면 기존 데이터를 덮어쓰지 않고  
+  새로운 버전을 만들어 저장(커밋)
+- 읽기는 항상 커밋된(반영된) 최신 버전만 본다
+- 읽기와 쓰기가 **서로 막지 않고** 동작 가능
+- PostgreSQL은 VACUUM이라는 작업으로 과거 버전 정리
+  - 중요성: [Trnasaction ID Wraparound](https://blog.sentry.io/transaction-id-wraparound-in-postgres/)
+  - VACCUM 제대로 안돌면 Postgres가 강제로 쓰기 중단
+</Slide>
+
+<Slide>
+
+# Row-level lock
+
+- row 단위로 lock을 거는 방식 (Mutex)
+- 누군가 데이터를 수정하는 동안  
+  같은 데이터를 다른 사용자가 동시에 수정할 수 없음
+- 먼저 잠근 요청이 끝날 때까지 뒤에 온 요청은 대기하거나 실패
+</Slide>
+
+<Slide>
+# 왜 두 가지가 모두 필요할까?
+- MVCC만으로는 쓰기 충돌을 막을 수 없음
+  - 예: 동시에 같은 게시물의 좋아요 수를 올리면 데이터 유실 가능
+- Row-level Lock만 쓰면 읽기 성능이 크게 떨어짐
+</Slide>
+
+<Slide>
+# 결론 
+- 파일 DB는 **read → modify → write** 구조라서  
+  동시 요청에서 데이터 유실 발생
+- Mutex로 막을 수는 있지만,  
+  성능 저하 + 단일 프로세스 한계 존재
+- lowDB는 Steno 덕분에 단일 프로세스 환경에서는 어느 정도 안전
+- 상용 DB는 MVCC + Row-level Lock을 조합해  
+  읽기는 빠르게, 쓰기는 안전하게 보장
+</Slide>
+
+<Slide>
+
+# 추가 학습 거리
+
+- Transaction
+- Transaction Isolation Level
+
+</Slide>
+
+
+
+

@@ -8,7 +8,7 @@ import {
   PaginationLink,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { getBlogPosts } from "@/app/posts/utils";
+import { getBlogPosts } from "@/app/(main-layout)/posts/utils";
 
 interface PostsProps {
   searchParams: Promise<{
