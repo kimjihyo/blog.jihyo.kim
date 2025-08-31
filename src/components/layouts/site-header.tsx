@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { ModeToggle } from "./mode-toggle";
+
 import { Shell } from "../shell";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { ModeSwitch } from "./mode-switch";
 
 export function SiteHeader() {
   return (
@@ -23,7 +24,8 @@ export function SiteHeader() {
           {/* <Button size="sm" asChild>
             <Link href="/subscribe">구독하기</Link>
           </Button> */}
-          <ModeToggle />
+          <ModeSwitch />
+          {/* <ModeToggle /> */}
         </div>
       </Shell>
     </header>

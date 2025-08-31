@@ -2,9 +2,9 @@ import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { buttonVariants } from "../ui/button";
 import { Icons } from "../icons";
-import { ModeToggle } from "./mode-toggle";
 import { Shell } from "../shell";
 import Image from "next/image";
+import { ModeSwitch } from "./mode-switch";
 
 export function SiteFooter() {
   return (
@@ -45,7 +45,7 @@ export function SiteFooter() {
                 aria-hidden="true"
               />
             </Link>
-            <ModeToggle />
+            <ModeSwitch />
           </div>
         </section>
       </Shell>

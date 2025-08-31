@@ -1,0 +1,22 @@
+"use client";
+
+import { MoonIcon, SunIcon } from "lucide-react";
+
+import { useTheme } from "next-themes";
+import { Switch } from "@/components/ui/switch";
+
+export function ModeSwitch() {
+  const { theme, setTheme } = useTheme();
+  return (
+    <Switch
+      checked={theme === "light"}
+      onCheckedChange={(checked) => {
+        setTheme(checked ? "light" : "dark");
+      }}
+      iconChecked={<SunIcon className="size-3 text-foreground" />}
+      iconUnchecked={<MoonIcon className="size-3 text-foreground" />}
+      className="data-[state=checked]:bg-input"
+      thumbClassName="data-[state=unchecked]:bg-card!"
+    />
+  );
+}
