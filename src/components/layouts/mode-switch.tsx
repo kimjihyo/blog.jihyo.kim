@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { MoonIcon, SunIcon } from "lucide-react";
 
 import { useTheme } from "next-themes";
@@ -7,6 +8,16 @@ import { Switch } from "@/components/ui/switch";
 
 export function ModeSwitch() {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <Switch
       checked={theme === "light"}

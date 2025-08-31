@@ -1,3 +1,5 @@
+"use client";
+
 import { VariantProps } from "class-variance-authority";
 import {
   DropdownMenu,
@@ -16,9 +18,8 @@ export function LanguageSelect({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant={variant} size={size}>
+        <Button variant={variant} size={size} className="gap-1">
           <Icons.translate />
-          <span>한국어</span>
           <CaretDownIcon />
         </Button>
       </DropdownMenuTrigger>
