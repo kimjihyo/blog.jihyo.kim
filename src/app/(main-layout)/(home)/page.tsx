@@ -26,7 +26,7 @@ export default async function Page({
         <div className="mb-10 flex flex-1 flex-col lg:pt-2 lg:pr-6">
           <PostsLabel />
           <React.Suspense>
-            <Posts searchParams={searchParams} numberOfPostsPerPage={5} />
+            <Posts searchParams={searchParams} numberOfPostsPerPage={8} />
           </React.Suspense>
         </div>
         <div className="hidden w-80 border-l px-6 py-2 lg:flex lg:flex-col lg:gap-8">

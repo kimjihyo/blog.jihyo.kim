@@ -15,7 +15,7 @@ export async function LatestComments() {
     .select()
     .from(commentsTable)
     .orderBy(desc(commentsTable.createdAt))
-    .limit(5);
+    .limit(8);
 
   return (
     <div className="flex flex-col gap-4">

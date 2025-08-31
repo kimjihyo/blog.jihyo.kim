@@ -1,7 +1,7 @@
 export function LoadingLatestComments() {
   return (
     <div className="flex flex-col gap-4">
-      {Array.from({ length: 4 }).map((_, i) => (
+      {Array.from({ length: 8 }).map((_, i) => (
         <div
           key={i}
           className="flex flex-col gap-2 rounded-lg bg-card p-4 py-2 text-card-foreground"
