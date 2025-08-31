@@ -9,7 +9,7 @@ import { ModeSwitch } from "./mode-switch";
 export function SiteFooter() {
   return (
     <footer className="w-full border-t">
-      <Shell className="flex flex-col gap-2">
+      <Shell className="flex max-w-6xl flex-col gap-2">
         <section className="flex flex-col gap-10 lg:flex-row lg:gap-20">
           <section>
             <Link href="/" className="flex w-fit items-center space-x-2">

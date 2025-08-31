@@ -10,7 +10,7 @@ import { ModeSwitch } from "./mode-switch";
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 h-16 w-full border-b bg-background/80 backdrop-blur-sm">
-      <Shell className="flex h-full items-center gap-6 py-0">
+      <Shell className="flex h-full max-w-6xl items-center gap-6 py-0">
         <Link
           href="/"
           className={cn(

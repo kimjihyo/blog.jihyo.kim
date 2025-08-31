@@ -22,8 +22,8 @@ export default async function Page({
       {/* <div className="mb-6">
         <Banner />
       </div> */}
-      <div className="flex">
-        <div className="mb-10 flex flex-1 flex-col lg:pt-2 lg:pr-6">
+      <div className="flex justify-evenly">
+        <div className="mb-10 flex max-w-2xl flex-1 flex-col lg:pt-2 lg:pr-6">
           <PostsLabel />
           <React.Suspense>
             <Posts searchParams={searchParams} numberOfPostsPerPage={8} />

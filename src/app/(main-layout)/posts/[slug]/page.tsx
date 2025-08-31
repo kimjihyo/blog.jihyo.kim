@@ -26,8 +26,8 @@ export default async function Page({
   } = await import(`@/../content/${slug}.mdx`);
 
   return (
-    <Shell className="relative gap-10 md:grid md:grid-cols-[1fr_230px]">
-      <div className="min-w-0">
+    <Shell className="relative gap-10 md:flex md:justify-evenly">
+      <div className="max-w-3xl min-w-0">
         <div className="rounded-lg bg-card">
           <Image
             className="mb-8 h-auto w-full rounded-lg"
