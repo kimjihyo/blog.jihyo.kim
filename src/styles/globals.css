@@ -113,7 +113,8 @@
   --popover-foreground: oklch(0.985 0 0);
   --primary: var(--color-indigo-400);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.274 0.006 286.033);
+  /* --secondary: oklch(0.274 0.006 286.033); */
+  --secondary: #32363f;
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.274 0.006 286.033);
   --muted-foreground: #ebebf599;
