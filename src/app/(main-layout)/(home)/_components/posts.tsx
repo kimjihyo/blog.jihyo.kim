@@ -22,7 +22,6 @@ export async function Posts({
   searchParams,
   numberOfPostsPerPage,
 }: PostsProps) {
-  // await new Promise((resolve) => setTimeout(() => resolve(null), 1000));
   const { tag, page } = await searchParams;
   const currentPage = parseInt(page ?? "1");
   const tagList = Array.isArray(tag) ? tag : tag ? [tag] : [];

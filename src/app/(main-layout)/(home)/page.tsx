@@ -4,7 +4,6 @@ import { Posts } from "./_components/posts";
 import * as React from "react";
 import { LatestComments } from "./_components/latest-comments";
 import { LoadingLatestComments } from "./_components/loading-latest-comments";
-// import { Banner } from "./_components/banner";
 import { PostsLabel } from "./_components/posts-label";
 import { getAllTags } from "@/app/(main-layout)/posts/utils";
 
@@ -19,9 +18,6 @@ export default async function Page({
   const tags = getAllTags();
   return (
     <Shell className="flex flex-col">
-      {/* <div className="mb-6">
-        <Banner />
-      </div> */}
       <div className="flex justify-evenly">
         <div className="mb-10 flex max-w-2xl flex-1 flex-col lg:pt-2 lg:pr-6">
           <PostsLabel />

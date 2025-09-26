@@ -10,6 +10,7 @@ import { CommentSection } from "../_components/comment-section";
 import { TableOfContents } from "../_components/table-of-contents";
 import { MobileTableOfContents } from "../_components/mobile-table-of-contents";
 import Mdx from "../_components/mdx";
+import { notFound } from "next/navigation";
 
 export const experimental_ppr = true;
 
@@ -19,6 +20,13 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+
+  const post = getBlogPosts().find((post) => post.slug === slug);
+
+  if (!post) {
+    notFound();
+  }
+
   const {
     default: Post,
     frontmatter,
@@ -83,9 +91,16 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string[] }>;
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+
+  const post = getBlogPosts().find((post) => post.slug === slug);
+
+  if (!post) {
+    notFound();
+  }
+
   const { frontmatter } = await import(`@/../content/${slug}.mdx`);
 
   return {
@@ -97,5 +112,3 @@ export async function generateMetadata({
     },
   };
 }
-
-export const dynamicParams = false;
