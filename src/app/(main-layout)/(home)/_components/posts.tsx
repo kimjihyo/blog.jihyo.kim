@@ -11,19 +11,12 @@ import {
 import { getBlogPosts } from "@/app/(main-layout)/posts/utils";
 
 interface PostsProps {
-  searchParams: Promise<{
-    tag: string[] | string | undefined;
-    page: string | undefined;
-  }>;
-  numberOfPostsPerPage: number;
+  tag?: string[] | string;
+  page?: number;
+  pageSize?: number;
 }
 
-export async function Posts({
-  searchParams,
-  numberOfPostsPerPage,
-}: PostsProps) {
-  const { tag, page } = await searchParams;
-  const currentPage = parseInt(page ?? "1");
+export function Posts({ tag, page = 1, pageSize = 8 }: PostsProps) {
   const tagList = Array.isArray(tag) ? tag : tag ? [tag] : [];
 
   const allPosts = getBlogPosts();
@@ -38,17 +31,17 @@ export async function Posts({
 
   // Calculate pagination
   const totalPosts = filteredPosts.length;
-  const totalPages = Math.ceil(totalPosts / numberOfPostsPerPage);
-  const startIndex = (currentPage - 1) * numberOfPostsPerPage;
-  const endIndex = startIndex + numberOfPostsPerPage;
+  const totalPages = Math.ceil(totalPosts / pageSize);
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
   const paginatedPosts = filteredPosts.slice(startIndex, endIndex);
 
   // Generate page numbers for pagination UI
   const getPageNumbers = () => {
     const delta = 2;
     const pages = [];
-    const startPage = Math.max(1, currentPage - delta);
-    const endPage = Math.min(totalPages, currentPage + delta);
+    const startPage = Math.max(1, page - delta);
+    const endPage = Math.min(totalPages, page + delta);
 
     for (let i = startPage; i <= endPage; i++) {
       pages.push(i);
@@ -74,8 +67,8 @@ export async function Posts({
           <PaginationContent>
             <PaginationItem>
               <PaginationPrevious
-                href={currentPage === 1 ? "" : buildPageUrl(currentPage - 1)}
-                aria-disabled={currentPage === 1}
+                href={page === 1 ? "" : buildPageUrl(page - 1)}
+                aria-disabled={page === 1}
               />
             </PaginationItem>
 
@@ -83,7 +76,7 @@ export async function Posts({
               <PaginationItem key={pageNum}>
                 <PaginationLink
                   href={buildPageUrl(pageNum)}
-                  isActive={pageNum === currentPage}
+                  isActive={pageNum === page}
                 >
                   {pageNum}
                 </PaginationLink>
@@ -92,10 +85,8 @@ export async function Posts({
 
             <PaginationItem>
               <PaginationNext
-                href={
-                  currentPage >= totalPages ? "" : buildPageUrl(currentPage + 1)
-                }
-                aria-disabled={currentPage >= totalPages}
+                href={page >= totalPages ? "" : buildPageUrl(page + 1)}
+                aria-disabled={page >= totalPages}
               />
             </PaginationItem>
           </PaginationContent>

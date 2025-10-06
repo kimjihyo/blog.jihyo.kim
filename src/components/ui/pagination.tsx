@@ -49,7 +49,7 @@ function PaginationLink({
   size = "icon",
   ...props
 }: PaginationLinkProps) {
-  return (
+  return props.href ? (
     <Link
       aria-current={isActive ? "page" : undefined}
       data-slot="pagination-link"
@@ -63,6 +63,18 @@ function PaginationLink({
       )}
       {...props}
     />
+  ) : (
+    <span
+      className={cn(
+        buttonVariants({
+          variant: isActive ? "outline" : "ghost",
+          size,
+        }),
+        className,
+      )}
+    >
+      {props.children}
+    </span>
   );
 }
 
