@@ -12,7 +12,11 @@ export function SiteFooter() {
       <Shell className="flex max-w-6xl flex-col gap-2">
         <section className="flex flex-col gap-10 lg:flex-row lg:gap-20">
           <section>
-            <Link href="/" className="flex w-fit items-center space-x-2">
+            <Link
+              href="/"
+              aria-label="Home"
+              className="flex w-fit items-center space-x-2"
+            >
               <Image src="/profile.png" alt="" width={32} height={32} />
             </Link>
           </section>
@@ -26,6 +30,7 @@ export function SiteFooter() {
           <div className="flex-1 text-left text-sm leading-loose text-muted-foreground">
             Built by{" "}
             <Link
+              aria-label="Home"
               href="/"
               className="font-semibold transition-colors hover:text-foreground"
             >

@@ -39,7 +39,11 @@ export function LatestCommentCard({
       >
         <div className="flex items-center gap-2">
           <Avatar className="h-6 w-6">
-            <AvatarImage src={avatarImgSrc} className="bg-sky-100" />
+            <AvatarImage
+              alt="avatar-image"
+              src={avatarImgSrc}
+              className="bg-sky-100"
+            />
             <AvatarFallback>{nickname[0]}</AvatarFallback>
           </Avatar>
           <span className="text-sm font-semibold">{nickname}</span>

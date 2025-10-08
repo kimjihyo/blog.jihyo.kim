@@ -20,6 +20,7 @@ export function ModeSwitch() {
 
   return (
     <Switch
+      aria-label="Toggle theme"
       checked={theme === "light"}
       onCheckedChange={(checked) => {
         setTheme(checked ? "light" : "dark");

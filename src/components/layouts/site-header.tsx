@@ -13,6 +13,7 @@ export function SiteHeader() {
       <Shell className="flex h-full max-w-6xl items-center gap-6 py-0">
         <Link
           href="/"
+          aria-label="Home"
           className={cn(
             buttonVariants({ variant: "ghost", size: "icon" }),
             "flex items-center space-x-2",

@@ -3,7 +3,6 @@ import { Image } from "@/components/ui/image";
 import { Badge } from "@/components/ui/badge";
 
 interface PostCardProps {
-  index: number;
   post: {
     frontmatter: Partial<{
       tags: string[];
@@ -17,7 +16,7 @@ interface PostCardProps {
   };
 }
 
-export function PostCard({ index, post }: PostCardProps) {
+export function PostCard({ post }: PostCardProps) {
   return (
     <article>
       <Link
@@ -55,8 +54,7 @@ export function PostCard({ index, post }: PostCardProps) {
               {post.frontmatter.thumbnail && (
                 <Image
                   fill
-                  fetchPriority={index === 0 ? "high" : "auto"}
-                  loading={index === 0 ? "eager" : "lazy"}
+                  loading="eager"
                   sizes="(max-width: 640px) 90px, 130px"
                   alt=""
                   className="h-full w-full object-cover object-center"
