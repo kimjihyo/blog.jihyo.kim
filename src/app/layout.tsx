@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { siteConfig } from "@/config/site";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { QueryClientProvider } from "@/components/providers/query-client-provider";
+import localFont from "next/font/local";
 
 import { Analytics } from "@vercel/analytics/next";
 
@@ -52,13 +53,17 @@ const jsonLd = {
   url: siteConfig.url,
 };
 
+const pretendard = localFont({
+  src: "../assets/fonts/PretendardVariable.woff2",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" suppressHydrationWarning className="font-pretendard">
+    <html lang="ko" suppressHydrationWarning className={pretendard.className}>
       <body className="antialiased">
         <ThemeProvider
           attribute="class"
