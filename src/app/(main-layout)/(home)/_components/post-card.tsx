@@ -54,7 +54,6 @@ export function PostCard({ post }: PostCardProps) {
               {post.frontmatter.thumbnail && (
                 <Image
                   fill
-                  loading="eager"
                   sizes="(max-width: 640px) 90px, 130px"
                   alt=""
                   className="h-full w-full object-cover object-center"
