@@ -35,7 +35,7 @@ export function AnimatedPostList({ posts }: AnimatedPostListProps) {
           style={{ originY: 0 }}
           layout
         >
-          <PostCard post={post} />
+          <PostCard index={index} post={post} />
         </motion.div>
       ))}
     </AnimatePresence>
