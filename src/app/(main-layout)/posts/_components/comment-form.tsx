@@ -1,4 +1,5 @@
 "use client";
+
 import * as React from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -9,6 +10,7 @@ import { submitComment } from "../_actions/submit-comment";
 import { generateRandomNickname } from "../_utils/generate-random";
 import { generateRandomAvatar } from "../_utils/generate-random";
 import { Loader2 } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface CommentFormProps {
   postSlug: string;
@@ -21,6 +23,15 @@ export function CommentForm({ postSlug }: CommentFormProps) {
   );
   const nicknameInputRef = React.useRef<HTMLInputElement>(null);
   const defaultNickname = React.useRef(generateRandomNickname());
+  const queryClient = useQueryClient();
+
+  React.useEffect(() => {
+    if (formState?.success) {
+      queryClient.invalidateQueries({ queryKey: ["comments", postSlug] });
+    }
+  }, [formState, queryClient, postSlug]);
+
+  console.log(queryClient.getQueryState(["comments", postSlug])?.fetchStatus);
 
   return (
     <form action={formAction} className="flex flex-col">

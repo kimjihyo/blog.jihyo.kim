@@ -33,7 +33,7 @@ export function SiteFooter() {
             </Link>
           </div>
           <div className="flex items-center space-x-1">
-            <Link
+            <a
               href={siteConfig.links.github}
               target="_blank"
               rel="noreferrer"
@@ -44,7 +44,7 @@ export function SiteFooter() {
                 className="size-4 text-muted-foreground"
                 aria-hidden="true"
               />
-            </Link>
+            </a>
             <ModeSwitch />
           </div>
         </section>

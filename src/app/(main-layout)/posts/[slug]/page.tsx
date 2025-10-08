@@ -5,14 +5,11 @@ import { Metadata } from "next";
 import { Image } from "@/components/ui/image";
 import { Badge } from "@/components/ui/badge";
 import { formatDate } from "@/lib/utils";
-import { LoadingCommentSection } from "../_components/loading-comment-section";
 import { CommentSection } from "../_components/comment-section";
 import { TableOfContents } from "../_components/table-of-contents";
 import { MobileTableOfContents } from "../_components/mobile-table-of-contents";
 import Mdx from "../_components/mdx";
 import { notFound } from "next/navigation";
-
-export const experimental_ppr = true;
 
 export default async function Page({
   params,
@@ -65,9 +62,7 @@ export default async function Page({
           <Post />
         </Mdx>
         <div id="comments" className="border-t pt-8 pb-20">
-          <React.Suspense fallback={<LoadingCommentSection />}>
-            <CommentSection postSlug={slug} />
-          </React.Suspense>
+          <CommentSection postSlug={slug} />
         </div>
         {tableOfContents && (
           <React.Suspense>

@@ -18,6 +18,7 @@ export default async function Page({
   const { tag, page: pageStr } = await searchParams;
   const page = pageStr ? parseInt(pageStr, 10) : 1;
   const tags = getAllTags();
+
   return (
     <Shell className="flex flex-col">
       <div className="flex justify-evenly">

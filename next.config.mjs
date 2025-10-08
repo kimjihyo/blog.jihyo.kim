@@ -7,9 +7,6 @@ const withBundleAnalyzer = createNextBundleAnalyzer({
 
 const nextConfig = {
   /* config options here */
-  experimental: {
-    ppr: "incremental",
-  },
   serverExternalPackages: ["drizzle-orm"],
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {

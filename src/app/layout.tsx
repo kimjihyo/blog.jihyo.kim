@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { siteConfig } from "@/config/site";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { QueryClientProvider } from "@/components/providers/query-client-provider";
 
 import { Analytics } from "@vercel/analytics/next";
 
@@ -65,7 +66,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <QueryClientProvider>{children}</QueryClientProvider>
         </ThemeProvider>
         <Analytics />
         <script

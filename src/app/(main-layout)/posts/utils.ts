@@ -1,4 +1,3 @@
-// Import static data generated at build time
 import postsData from "../../../../.data/posts.json";
 import tagsData from "../../../../.data/tags.json";
 
