@@ -14,6 +14,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
   alternates: {
-    canonical: siteConfig.url,
+    canonical: "/",
   },
   verification: {
     google: "wVEPS5qlRFBKhKAzxd8vSVKupU92v7STVgJzvm15tNo",
