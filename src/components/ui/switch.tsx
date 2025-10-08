@@ -47,7 +47,7 @@ function Switch({
       onCheckedChange={onCheckedChange}
       {...props}
     >
-      <motion.div layout>
+      <motion.div layout layoutDependency={checked}>
         <SwitchPrimitive.Thumb
           data-slot="switch-thumb"
           className={cn(
