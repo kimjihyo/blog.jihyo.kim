@@ -137,7 +137,7 @@
   --sidebar-ring: oklch(0.488 0.243 264.376);
   --badge-default: #282a2f;
   --badge-default-accent: #34363d;
-  --badge-default-foreground: #86878e;
+  --badge-default-foreground: #dfdfd7;
   --code-block-bg: #161618;
 }
 
