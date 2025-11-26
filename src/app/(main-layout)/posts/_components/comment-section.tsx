@@ -3,12 +3,14 @@ import { Comments } from "./comments";
 import { db } from "@/db";
 import { commentsTable } from "@/db/schema";
 import { eq, desc } from "drizzle-orm";
+import { connection } from "next/server";
 
 interface CommentSectionProps {
   postSlug: string;
 }
 
 export async function CommentSection({ postSlug }: CommentSectionProps) {
+  await connection();
   const comments = await db
     .select()
     .from(commentsTable)
