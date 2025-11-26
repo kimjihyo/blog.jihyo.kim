@@ -60,9 +60,9 @@ const pretendard = localFont({
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="ko" suppressHydrationWarning className={pretendard.className}>
       <body className="antialiased">
