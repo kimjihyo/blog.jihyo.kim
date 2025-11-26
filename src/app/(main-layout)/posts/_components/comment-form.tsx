@@ -10,7 +10,6 @@ import { submitComment } from "../_actions/submit-comment";
 import { generateRandomNickname } from "../_utils/generate-random";
 import { generateRandomAvatar } from "../_utils/generate-random";
 import { Loader2 } from "lucide-react";
-import { useQueryClient } from "@tanstack/react-query";
 
 interface CommentFormProps {
   postSlug: string;
@@ -23,15 +22,6 @@ export function CommentForm({ postSlug }: CommentFormProps) {
   );
   const nicknameInputRef = React.useRef<HTMLInputElement>(null);
   const defaultNickname = React.useRef(generateRandomNickname());
-  const queryClient = useQueryClient();
-
-  React.useEffect(() => {
-    if (formState?.success) {
-      queryClient.invalidateQueries({ queryKey: ["comments", postSlug] });
-    }
-  }, [formState, queryClient, postSlug]);
-
-  console.log(queryClient.getQueryState(["comments", postSlug])?.fetchStatus);
 
   return (
     <form action={formAction} className="flex flex-col">
@@ -46,7 +36,7 @@ export function CommentForm({ postSlug }: CommentFormProps) {
                 className={cn(
                   "flex h-12 w-60 items-center gap-2",
                   "flex rounded-md border border-input px-3 py-1 shadow-xs transition-colors outline-none hover:border-primary dark:bg-input/30",
-                  "has-[:focus-visible]:border-ring has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/50",
+                  "has-focus-visible:border-ring has-focus-visible:ring-[3px] has-focus-visible:ring-ring/50",
                   formState?.errors?.nickname && "border-destructive",
                 )}
               >

@@ -1,28 +1,19 @@
-"use client";
-
-import * as React from "react";
 import { CommentForm } from "./comment-form";
 import { Comments } from "./comments";
-import { LoadingCommentSection } from "./loading-comment-section";
-import { useQuery } from "@tanstack/react-query";
+import { db } from "@/db";
+import { commentsTable } from "@/db/schema";
+import { eq, desc } from "drizzle-orm";
 
 interface CommentSectionProps {
   postSlug: string;
 }
 
-export function CommentSection({ postSlug }: CommentSectionProps) {
-  const { data, isLoading } = useQuery({
-    queryKey: ["comments", postSlug],
-    queryFn: async () => {
-      const response = await fetch(`/posts/${postSlug}/comments`);
-      const data = await response.json();
-      return data;
-    },
-  });
-
-  if (isLoading) {
-    return <LoadingCommentSection />;
-  }
+export async function CommentSection({ postSlug }: CommentSectionProps) {
+  const comments = await db
+    .select()
+    .from(commentsTable)
+    .where(eq(commentsTable.postSlug, postSlug))
+    .orderBy(desc(commentsTable.createdAt));
 
   return (
     <div className="animate-fadeIn">
@@ -33,7 +24,7 @@ export function CommentSection({ postSlug }: CommentSectionProps) {
         </div>
       </div>
       <CommentForm postSlug={postSlug} />
-      <Comments comments={data} />
+      <Comments comments={comments} />
     </div>
   );
 }

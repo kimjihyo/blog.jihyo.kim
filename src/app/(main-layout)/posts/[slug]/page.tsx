@@ -10,6 +10,7 @@ import { TableOfContents } from "../_components/table-of-contents";
 import { MobileTableOfContents } from "../_components/mobile-table-of-contents";
 import Mdx from "../_components/mdx";
 import { notFound } from "next/navigation";
+import { LoadingCommentSection } from "../_components/loading-comment-section";
 
 export default async function Page({
   params,
@@ -62,12 +63,12 @@ export default async function Page({
           <Post />
         </Mdx>
         <div id="comments" className="border-t pt-8 pb-20">
-          <CommentSection postSlug={slug} />
+          <React.Suspense fallback={<LoadingCommentSection />}>
+            <CommentSection postSlug={slug} />
+          </React.Suspense>
         </div>
         {tableOfContents && (
-          <React.Suspense>
-            <MobileTableOfContents tocEntries={tableOfContents} />
-          </React.Suspense>
+          <MobileTableOfContents tocEntries={tableOfContents} />
         )}
       </div>
       {tableOfContents && <TableOfContents tocEntries={tableOfContents} />}
