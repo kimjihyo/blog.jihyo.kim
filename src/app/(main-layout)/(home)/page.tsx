@@ -5,7 +5,7 @@ import * as React from "react";
 import { LatestComments } from "./_components/latest-comments";
 import { LoadingLatestComments } from "./_components/loading-latest-comments";
 import { PostsLabel } from "./_components/posts-label";
-import { getAllTags } from "@/app/(main-layout)/posts/utils";
+import { getAllTags } from "../posts/utils";
 
 export default async function Page({
   searchParams,
@@ -15,16 +15,15 @@ export default async function Page({
     page: string | undefined;
   }>;
 }) {
-  const { tag, page: pageStr } = await searchParams;
-  const page = pageStr ? parseInt(pageStr, 10) : 1;
   const tags = getAllTags();
-
   return (
     <Shell className="flex flex-col">
       <div className="flex justify-evenly">
         <div className="mb-10 flex max-w-2xl flex-1 flex-col lg:pt-2 lg:pr-6">
           <PostsLabel />
-          <Posts page={page} tag={tag} pageSize={8} />
+          <React.Suspense>
+            <Posts searchParams={searchParams} />
+          </React.Suspense>
         </div>
         <div className="hidden w-80 border-l px-6 py-2 lg:flex lg:flex-col lg:gap-8">
           <div>

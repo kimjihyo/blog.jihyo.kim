@@ -11,14 +11,17 @@ import {
 import { getBlogPosts } from "@/app/(main-layout)/posts/utils";
 
 interface PostsProps {
-  tag?: string[] | string;
-  page?: number;
-  pageSize?: number;
+  searchParams: Promise<{
+    tag: string[] | string | undefined;
+    page: string | undefined;
+  }>;
 }
 
-export function Posts({ tag, page = 1, pageSize = 8 }: PostsProps) {
+export async function Posts({ searchParams }: PostsProps) {
+  const { tag, page: pageStr } = await searchParams;
+  const pageSize = 8;
+  const page = pageStr ? parseInt(pageStr, 10) : 1;
   const tagList = Array.isArray(tag) ? tag : tag ? [tag] : [];
-
   const allPosts = getBlogPosts();
 
   // Filter posts by tags if provided
