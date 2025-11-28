@@ -5,7 +5,7 @@ import localFont from "next/font/local";
 
 import { Analytics } from "@vercel/analytics/next";
 
-import "@/styles/globals.css";
+import "@/styles/app.css";
 
 export const viewport: Viewport = {
   width: "device-width",

@@ -18,7 +18,7 @@ export async function CommentSection({ postSlug }: CommentSectionProps) {
     .orderBy(desc(commentsTable.createdAt));
 
   return (
-    <div className="animate-fadeIn">
+    <div>
       <div className="mb-4 flex items-center justify-between gap-2">
         <div className="font-medium">댓글 {0}</div>
         <div className="text-sm text-muted-foreground">
