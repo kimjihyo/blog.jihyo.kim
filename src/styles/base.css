@@ -3,5 +3,9 @@
 }
 body {
   @apply bg-background text-foreground;
-  text-rendering: optimizeLegibility;
+}
+
+body,
+html {
+  font-synthesis: none;
 }
