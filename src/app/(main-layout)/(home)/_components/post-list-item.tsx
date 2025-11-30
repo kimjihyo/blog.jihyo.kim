@@ -31,7 +31,7 @@ export function PostListItem({ index, post }: PostCardProps) {
         </div>
         <div className="flex gap-5">
           <div className="flex-1">
-            <h2 className="text-foreground group-hover:text-primary xs:text-xl mb-1.5 text-base font-semibold transition-colors">
+            <h2 className="text-foreground group-hover:text-primary xs:text-xl mb-1.5 text-base font-bold transition-colors">
               {post.frontmatter.title}
             </h2>
             <p className="text-muted-foreground mb-4 text-sm sm:text-base">

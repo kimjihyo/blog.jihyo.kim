@@ -35,7 +35,7 @@ export function MobileTableOfContents({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, type: "tween" }}
-            className="fixed inset-0 z-50 flex size-full flex-col items-center justify-center overflow-y-auto bg-background/80 backdrop-blur-sm"
+            className="bg-background/80 fixed inset-0 z-50 flex size-full flex-col items-center justify-center overflow-y-auto backdrop-blur-sm"
             onClick={() => setIsOpen(false)}
           >
             <div onClick={(e) => e.stopPropagation()}>
@@ -55,7 +55,7 @@ export function MobileTableOfContents({
         )}
       </AnimatePresence>
       <Button
-        className="fixed right-4 bottom-4 z-40 sm:hidden"
+        className="fixed bottom-4 right-4 z-40 sm:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
         목차
@@ -84,8 +84,8 @@ function TocLink({ node, isActive, onClick }: TocLinkProps) {
       style={{ originY: 0 }}
       href={`#${node.id}`}
       className={cn(
-        "inline-block text-sm no-underline transition-colors hover:text-foreground",
-        isActive ? "font-semibold text-foreground" : "text-muted-foreground",
+        "hover:text-foreground inline-block text-sm no-underline transition-colors",
+        isActive ? "text-foreground font-bold" : "text-muted-foreground",
       )}
       onClick={onClick}
     >
