@@ -22,8 +22,8 @@ export const contentType = "image/png";
 // Image generation
 export default async function Image() {
   // Font loading, process.cwd() is Next.js project directory
-  const pretendardBold = await readFile(
-    join(process.cwd(), "src/assets/fonts/Pretendard-Bold.ttf"),
+  const pretendardsemibold = await readFile(
+    join(process.cwd(), "src/assets/fonts/Pretendard-semibold.ttf"),
   );
 
   const pretendardBlack = await readFile(
@@ -78,7 +78,7 @@ export default async function Image() {
       fonts: [
         {
           name: "Pretendard",
-          data: pretendardBold,
+          data: pretendardsemibold,
           style: "normal",
           weight: 700,
         },

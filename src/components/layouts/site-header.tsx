@@ -9,7 +9,7 @@ import { ModeSwitch } from "./mode-switch";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 h-16 w-full border-b bg-background">
+    <header className="bg-background sticky top-0 z-50 h-16 w-full border-b">
       <Shell className="flex h-full max-w-6xl items-center gap-6 py-0">
         <Link
           href="/"
@@ -20,7 +20,7 @@ export function SiteHeader() {
           )}
         >
           <Image src="/profile.png" alt="" width={32} height={32} />
-          {/* <span className="font-bold">{siteConfig.name}</span> */}
+          {/* <span className="font-semibold">{siteConfig.name}</span> */}
         </Link>
         <div className="flex flex-1 items-center justify-end space-x-2">
           {/* <Button size="sm" asChild>

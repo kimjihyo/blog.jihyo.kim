@@ -32,7 +32,7 @@ export function SiteFooter() {
             <Link
               aria-label="Home"
               href="/"
-              className="hover:text-foreground font-bold transition-colors"
+              className="hover:text-foreground font-semibold transition-colors"
             >
               Jihyo Kim{" "}
             </Link>

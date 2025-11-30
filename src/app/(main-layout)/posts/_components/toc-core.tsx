@@ -79,7 +79,7 @@ export function TOCTree({
           ) : (
             <a
               href={`#${node.id}`}
-              className={node.id === activeItem ? "font-bold" : ""}
+              className={node.id === activeItem ? "font-semibold" : ""}
             >
               {node.value}
             </a>

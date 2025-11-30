@@ -110,10 +110,10 @@ export default async function PostPage({ params }: PostPageProps) {
   // ...
 
   return (
-    <Shell className="relative md:grid md:grid-cols-[1fr_230px] gap-10">
+    <Shell className="relative gap-10 md:grid md:grid-cols-[1fr_230px]">
       <div className="min-w-0">
         {/* ... */}
-        <h1 className="font-bold leading-tight tracking-tighter lg:leading-[1.1] text-2xl md:text-3xl">
+        <h1 className="text-2xl font-semibold leading-tight tracking-tighter md:text-3xl lg:leading-[1.1]">
           {post.title}
         </h1>
         <div className="markdown mb-14">

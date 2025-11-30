@@ -22,7 +22,7 @@ export default async function Page({
       <div className="flex justify-evenly">
         <div className="mb-10 flex max-w-2xl flex-1 flex-col lg:pr-6 lg:pt-2">
           <div className="hidden items-center gap-1 lg:flex">
-            <span className="text-muted-foreground text-sm font-bold">
+            <span className="text-muted-foreground text-sm font-semibold">
               최신 글
             </span>
           </div>
@@ -32,7 +32,7 @@ export default async function Page({
         </div>
         <div className="hidden w-80 border-l px-6 py-2 lg:flex lg:flex-col lg:gap-8">
           <div>
-            <div className="text-muted-foreground mb-4 text-sm font-bold">
+            <div className="text-muted-foreground mb-4 text-sm font-semibold">
               태그
             </div>
             <React.Suspense>
@@ -40,7 +40,7 @@ export default async function Page({
             </React.Suspense>
           </div>
           <div>
-            <div className="text-muted-foreground mb-4 text-sm font-bold">
+            <div className="text-muted-foreground mb-4 text-sm font-semibold">
               최근 댓글
             </div>
             <React.Suspense fallback={<RecentCommentListLoading />}>
