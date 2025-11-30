@@ -5,12 +5,11 @@ import { Metadata } from "next";
 import { Image } from "@/components/ui/image";
 import { Badge } from "@/components/ui/badge";
 import { formatDate } from "@/lib/utils";
-import { CommentSection } from "../_components/comment-section";
 import { TableOfContents } from "../_components/table-of-contents";
 import { MobileTableOfContents } from "../_components/mobile-table-of-contents";
-import Mdx from "../_components/mdx";
 import { notFound } from "next/navigation";
-import { LoadingCommentSection } from "../_components/loading-comment-section";
+import { CommentForm } from "../_components/comment-form";
+import { CommentList, CommentListLoading } from "../_components/comment-list";
 
 export default async function Page({
   params,
@@ -33,11 +32,10 @@ export default async function Page({
 
   return (
     <Shell className="relative gap-10 md:flex md:justify-evenly">
-      <div className="max-w-3xl min-w-0">
-        <div className="rounded-lg bg-card">
+      <div className="min-w-0 max-w-3xl">
+        <div className="bg-card rounded-lg">
           <Image
             className="mb-8 h-auto w-full rounded-lg"
-            priority
             width={1200}
             height={630}
             alt=""
@@ -50,22 +48,33 @@ export default async function Page({
           ))}
         </div>
         <div className="space-y-2">
-          <div className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
+          <div className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm">
             <time dateTime={frontmatter.createdTime} className="block">
               {formatDate(frontmatter.createdTime)}
             </time>
           </div>
-          <h1 className="text-2xl leading-tight font-bold tracking-tighter md:text-3xl lg:leading-[1.1]">
+          <h1 className="text-2xl font-bold leading-tight tracking-tighter md:text-3xl lg:leading-[1.1]">
             {frontmatter.title}
           </h1>
         </div>
-        <Mdx>
+        <article className="prose dark:prose-invert prose-headings:scroll-m-20 prose-a:font-normal prose-a:text-primary prose-a:underline-offset-4 prose-code:text-sm prose-code:font-medium my-10 max-w-full">
           <Post />
-        </Mdx>
-        <div id="comments" className="border-t pt-8 pb-20">
-          <React.Suspense fallback={<LoadingCommentSection />}>
-            <CommentSection postSlug={slug} />
-          </React.Suspense>
+        </article>
+        <div id="comments" className="border-t pb-20 pt-8">
+          <div>
+            <div className="mb-4 flex items-center justify-between gap-2">
+              <div className="font-medium">댓글 {0}</div>
+              <div className="text-muted-foreground text-sm">
+                댓글 관련 문의: kimjihyo0325@gmail.com
+              </div>
+            </div>
+            <React.Suspense>
+              <CommentForm slug={slug} />
+            </React.Suspense>
+            <React.Suspense fallback={<CommentListLoading />}>
+              <CommentList slug={slug} />
+            </React.Suspense>
+          </div>
         </div>
         {tableOfContents && (
           <MobileTableOfContents tocEntries={tableOfContents} />

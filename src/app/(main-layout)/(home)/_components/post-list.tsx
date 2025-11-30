@@ -1,9 +1,11 @@
 "use client";
-import { AnimatePresence, motion } from "motion/react";
-import { PostCard } from "./post-card";
 
-interface AnimatedPostListProps {
-  posts: {
+import { AnimatePresence, motion } from "motion/react";
+import { PostListItem } from "./post-list-item";
+
+interface PostListProps {
+  list: {
+    slug: string;
     frontmatter: Partial<{
       tags: string[];
       createdTime: string;
@@ -12,16 +14,15 @@ interface AnimatedPostListProps {
       updatedTime: string;
       title: string;
     }>;
-    slug: string;
   }[];
 }
 
-export function AnimatedPostList({ posts }: AnimatedPostListProps) {
+export function PostList({ list }: PostListProps) {
   return (
     <AnimatePresence mode="popLayout">
-      {posts.map((post, index) => (
+      {list.map((post, index) => (
         <motion.div
-          className="will-change-[transform]"
+          className="will-change-transform"
           key={post.slug}
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -35,7 +36,7 @@ export function AnimatedPostList({ posts }: AnimatedPostListProps) {
           style={{ originY: 0 }}
           layout
         >
-          <PostCard index={index} post={post} />
+          <PostListItem index={index} post={post} />
         </motion.div>
       ))}
     </AnimatePresence>

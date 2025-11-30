@@ -1,36 +1,26 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { commentsTable } from "@/db/schema";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-interface CommentsProps {
-  comments: (typeof commentsTable.$inferSelect)[];
-}
-
-export function Comments({ comments }: CommentsProps) {
+export function CommentListItem({
+  comment,
+}: {
+  comment: typeof commentsTable.$inferSelect;
+}) {
   return (
-    <ul className="flex flex-col gap-4">
-      {comments.map((comment) => (
-        <Comment key={comment.id} comment={comment} />
-      ))}
-    </ul>
-  );
-}
-
-function Comment({ comment }: { comment: typeof commentsTable.$inferSelect }) {
-  return (
-    <li className="rounded-lg bg-card p-4 text-card-foreground">
+    <li className="bg-card text-card-foreground rounded-lg p-4">
       <div className="flex items-start gap-3">
         <Avatar>
           <AvatarImage src={comment.avatar} className="bg-sky-100" />
           <AvatarFallback>{comment.nickname[0]}</AvatarFallback>
         </Avatar>
         <div className="flex flex-col gap-1.5">
-          <p className="text-xs leading-none font-medium sm:text-sm">
+          <p className="text-xs font-medium leading-none sm:text-sm">
             {comment.nickname}
           </p>
-          <p className="text-sm text-foreground/90 sm:text-base">
+          <p className="text-foreground/90 text-sm sm:text-base">
             {comment.content}
           </p>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-muted-foreground text-xs">
             {comment.createdAt.toLocaleString("ko-KR", {
               year: "numeric",
               month: "long",

@@ -1,5 +1,3 @@
-import { AnimatedPostList } from "./animated-post-list";
-import * as React from "react";
 import {
   Pagination,
   PaginationNext,
@@ -9,6 +7,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { getBlogPosts } from "@/app/(main-layout)/posts/utils";
+import { PostList } from "./post-list";
 
 interface PostsProps {
   searchParams: Promise<{
@@ -17,7 +16,7 @@ interface PostsProps {
   }>;
 }
 
-export async function Posts({ searchParams }: PostsProps) {
+export async function PostPaginatedList({ searchParams }: PostsProps) {
   const { tag, page: pageStr } = await searchParams;
   const pageSize = 8;
   const page = pageStr ? parseInt(pageStr, 10) : 1;
@@ -64,7 +63,7 @@ export async function Posts({ searchParams }: PostsProps) {
 
   return (
     <>
-      <AnimatedPostList key={page} posts={paginatedPosts} />
+      <PostList list={paginatedPosts} />
       {totalPages > 1 && (
         <Pagination className="mt-6">
           <PaginationContent>

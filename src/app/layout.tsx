@@ -1,10 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { siteConfig } from "@/config/site";
-import { ThemeProvider } from "@/components/providers/theme-provider";
 import localFont from "next/font/local";
-
+import { ThemeProvider } from "next-themes";
 import { Analytics } from "@vercel/analytics/next";
-
+import { siteConfig } from "@/config/site";
 import "@/styles/app.css";
 
 export const viewport: Viewport = {

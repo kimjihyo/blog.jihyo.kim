@@ -9,7 +9,7 @@ const components = {
     <figcaption {...props}>{children}</figcaption>
   ),
   pre: ({ children, ...props }) => (
-    <pre className="relative overflow-x-auto rounded-lg !px-0" {...props}>
+    <pre className="px-0! relative overflow-x-auto rounded-lg" {...props}>
       {children}
     </pre>
   ),
@@ -19,7 +19,7 @@ const components = {
     if (isInline) {
       return (
         <code
-          className="rounded bg-muted px-1.5 py-0.5 text-primary"
+          className="bg-muted text-primary rounded px-1.5 py-0.5"
           {...props}
         >
           {children}

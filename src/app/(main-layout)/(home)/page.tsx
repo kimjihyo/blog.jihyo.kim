@@ -1,11 +1,12 @@
+import React from "react";
 import { Shell } from "@/components/shell";
-import { Tags } from "./_components/tags";
-import { Posts } from "./_components/posts";
-import * as React from "react";
-import { LatestComments } from "./_components/latest-comments";
-import { LoadingLatestComments } from "./_components/loading-latest-comments";
-import { PostsLabel } from "./_components/posts-label";
 import { getAllTags } from "../posts/utils";
+import { TagList } from "./_components/tag-list";
+import {
+  RecentCommentList,
+  RecentCommentListLoading,
+} from "./_components/recent-comment-list";
+import { PostPaginatedList } from "./_components/post-paginiated-list";
 
 export default async function Page({
   searchParams,
@@ -19,27 +20,31 @@ export default async function Page({
   return (
     <Shell className="flex flex-col">
       <div className="flex justify-evenly">
-        <div className="mb-10 flex max-w-2xl flex-1 flex-col lg:pt-2 lg:pr-6">
-          <PostsLabel />
+        <div className="mb-10 flex max-w-2xl flex-1 flex-col lg:pr-6 lg:pt-2">
+          <div className="hidden items-center gap-1 lg:flex">
+            <span className="text-muted-foreground text-sm font-semibold">
+              최신 글
+            </span>
+          </div>
           <React.Suspense>
-            <Posts searchParams={searchParams} />
+            <PostPaginatedList searchParams={searchParams} />
           </React.Suspense>
         </div>
         <div className="hidden w-80 border-l px-6 py-2 lg:flex lg:flex-col lg:gap-8">
           <div>
-            <div className="mb-4 text-sm font-semibold text-muted-foreground">
+            <div className="text-muted-foreground mb-4 text-sm font-semibold">
               태그
             </div>
             <React.Suspense>
-              <Tags tags={tags} />
+              <TagList tags={tags} />
             </React.Suspense>
           </div>
           <div>
-            <div className="mb-4 text-sm font-semibold text-muted-foreground">
+            <div className="text-muted-foreground mb-4 text-sm font-semibold">
               최근 댓글
             </div>
-            <React.Suspense fallback={<LoadingLatestComments />}>
-              <LatestComments />
+            <React.Suspense fallback={<RecentCommentListLoading />}>
+              <RecentCommentList />
             </React.Suspense>
           </div>
         </div>
