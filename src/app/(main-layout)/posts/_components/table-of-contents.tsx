@@ -9,7 +9,6 @@ import {
   markOrder,
 } from "./toc-core";
 import { cn } from "@/lib/utils";
-import { motion } from "motion/react";
 
 interface TableOfContentsProps {
   tocEntries: TOCEntry[];
@@ -48,31 +47,22 @@ export function TableOfContents({ tocEntries }: TableOfContentsProps) {
       <p className="font-medium leading-8">목차</p>
       <div
         ref={tocCursorElementRef}
-        className="bg-primary absolute -left-px top-0 hidden h-6 w-0.5 transition-transform ease-in-out"
+        className="bg-primary ease-in-out-material absolute -left-px top-0 hidden h-6 w-0.5 transition-transform duration-300"
       />
       <TOCTree
         tree={tocEntriesWithOrder}
         activeItem={activeHeading}
         renderLink={(node, isActive) => (
-          <React.Fragment key={node.id}>
-            <motion.a
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                type: "spring",
-                stiffness: 100,
-                damping: 20,
-                delay: node.order * 0.05,
-              }}
-              href={`#${node.id}`}
-              className={cn(
-                "text-muted-foreground hover:text-foreground inline-block text-sm no-underline transition-colors",
-                isActive ? "text-foreground" : "text-muted-foreground",
-              )}
-            >
-              {node.value}
-            </motion.a>
-          </React.Fragment>
+          <a
+            key={node.id}
+            href={`#${node.id}`}
+            className={cn(
+              "text-muted-foreground hover:text-foreground inline-block text-sm no-underline transition-colors",
+              isActive ? "text-foreground" : "text-muted-foreground",
+            )}
+          >
+            {node.value}
+          </a>
         )}
       />
     </div>
