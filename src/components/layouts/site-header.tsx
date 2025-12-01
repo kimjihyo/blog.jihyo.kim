@@ -19,7 +19,13 @@ export function SiteHeader() {
             "flex items-center space-x-2",
           )}
         >
-          <Image src="/profile.png" alt="" width={32} height={32} />
+          <Image
+            src="/profile.png"
+            alt=""
+            width={32}
+            height={32}
+            className="rounded-full"
+          />
           {/* <span className="font-semibold">{siteConfig.name}</span> */}
         </Link>
         <div className="flex flex-1 items-center justify-end space-x-2">
