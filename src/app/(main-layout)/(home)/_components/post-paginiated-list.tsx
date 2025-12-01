@@ -7,7 +7,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { getBlogPosts } from "@/app/(main-layout)/posts/utils";
-import { PostListItem, PostListItemLoading } from "./post-list-item";
+import { PostListItem, PostListItemSkeleton } from "./post-list-item";
 
 interface PostsProps {
   searchParams: Promise<{
@@ -101,11 +101,11 @@ export async function PostPaginatedList({ searchParams }: PostsProps) {
   );
 }
 
-export function PostPaginatedListLoading() {
+export function PostPaginatedListSkeleton() {
   return (
     <>
       {Array.from({ length: 8 }).map((_, index) => (
-        <PostListItemLoading key={index} />
+        <PostListItemSkeleton key={index} />
       ))}
     </>
   );

@@ -71,7 +71,7 @@ export function PostListItem({ index, post }: PostCardProps) {
   );
 }
 
-export function PostListItemLoading() {
+export function PostListItemSkeleton() {
   return (
     <article className="py-6">
       <div className="mb-1.5 flex items-center gap-1">

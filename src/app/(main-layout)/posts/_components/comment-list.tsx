@@ -25,7 +25,7 @@ export async function CommentList({ slug }: CommentsProps) {
   );
 }
 
-export function CommentListLoading() {
+export function CommentListSkeleton() {
   return (
     <ul className="flex flex-col gap-4">
       {Array.from({ length: 3 }).map((_, i) => (

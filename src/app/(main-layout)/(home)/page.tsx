@@ -4,11 +4,11 @@ import { getAllTags } from "../posts/utils";
 import { TagList } from "./_components/tag-list";
 import {
   RecentCommentList,
-  RecentCommentListLoading,
+  RecentCommentListSkeleton,
 } from "./_components/recent-comment-list";
 import {
   PostPaginatedList,
-  PostPaginatedListLoading,
+  PostPaginatedListSkeleton,
 } from "./_components/post-paginiated-list";
 
 export default async function Page({
@@ -29,7 +29,7 @@ export default async function Page({
               최신 글
             </span>
           </div>
-          <React.Suspense fallback={<PostPaginatedListLoading />}>
+          <React.Suspense fallback={<PostPaginatedListSkeleton />}>
             <PostPaginatedList searchParams={searchParams} />
           </React.Suspense>
         </div>
@@ -46,7 +46,7 @@ export default async function Page({
             <div className="text-muted-foreground mb-4 text-sm font-semibold">
               최근 댓글
             </div>
-            <React.Suspense fallback={<RecentCommentListLoading />}>
+            <React.Suspense fallback={<RecentCommentListSkeleton />}>
               <RecentCommentList />
             </React.Suspense>
           </div>

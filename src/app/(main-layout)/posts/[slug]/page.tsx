@@ -9,7 +9,7 @@ import { TableOfContents } from "../_components/table-of-contents";
 import { MobileTableOfContents } from "../_components/mobile-table-of-contents";
 import { notFound } from "next/navigation";
 import { CommentForm } from "../_components/comment-form";
-import { CommentList, CommentListLoading } from "../_components/comment-list";
+import { CommentList, CommentListSkeleton } from "../_components/comment-list";
 
 export default async function Page({
   params,
@@ -71,7 +71,7 @@ export default async function Page({
             <React.Suspense>
               <CommentForm slug={slug} />
             </React.Suspense>
-            <React.Suspense fallback={<CommentListLoading />}>
+            <React.Suspense fallback={<CommentListSkeleton />}>
               <CommentList slug={slug} />
             </React.Suspense>
           </div>

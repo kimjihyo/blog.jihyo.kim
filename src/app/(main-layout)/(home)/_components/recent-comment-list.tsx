@@ -33,7 +33,7 @@ export async function RecentCommentList() {
   );
 }
 
-export function RecentCommentListLoading() {
+export function RecentCommentListSkeleton() {
   return (
     <div className="flex flex-col gap-4">
       {Array.from({ length: 8 }).map((_, i) => (
