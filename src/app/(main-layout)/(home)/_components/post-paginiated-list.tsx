@@ -62,7 +62,7 @@ export async function PostPaginatedList({ searchParams }: PostsProps) {
   };
 
   return (
-    <>
+    <div className="animate-fade-in">
       {paginatedPosts.map((post, index) => (
         <PostListItem key={post.slug} index={index} post={post} />
       ))}
@@ -97,7 +97,7 @@ export async function PostPaginatedList({ searchParams }: PostsProps) {
           </PaginationContent>
         </Pagination>
       )}
-    </>
+    </div>
   );
 }
 

@@ -18,7 +18,10 @@ export async function RecentCommentList() {
     .limit(8);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div
+      className="animate-fade-in flex flex-col gap-4"
+      style={{ animationFillMode: "both" }}
+    >
       {comments.map((comment) => (
         <RecentCommentListItem
           key={comment.id}

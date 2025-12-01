@@ -10,8 +10,8 @@ export function Image({ className, ...props }: NextImageProps) {
   return (
     <NextImage
       className={cn(
-        "opacity-0 transition-opacity duration-500",
-        isLoading ? "" : "opacity-100",
+        "transition-opacity duration-500",
+        isLoading ? "opacity-0" : "opacity-100",
         className,
       )}
       onLoad={() => {
