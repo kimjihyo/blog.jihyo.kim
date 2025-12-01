@@ -19,7 +19,7 @@ export async function RecentCommentList() {
 
   return (
     <div className="flex flex-col gap-4">
-      {comments.map((comment, index) => (
+      {comments.map((comment) => (
         <RecentCommentListItem
           key={comment.id}
           avatarImgSrc={comment.avatar}
@@ -27,7 +27,6 @@ export async function RecentCommentList() {
           content={comment.content}
           postSlug={comment.postSlug}
           postTitle={getPostTitleFromSlug(comment.postSlug)}
-          index={index}
         />
       ))}
     </div>
@@ -43,11 +42,11 @@ export function RecentCommentListLoading() {
           className="bg-card text-card-foreground flex flex-col gap-2 rounded-lg p-4 py-2"
         >
           <div className="flex items-center gap-2">
-            <div className="bg-foreground/5 h-6 w-6 rounded-full" />
-            <div className="bg-foreground/5 h-4 w-20 rounded" />
+            <div className="bg-foreground/5 h-6 w-6 animate-pulse rounded-full" />
+            <div className="bg-foreground/5 h-4 w-20 animate-pulse rounded" />
           </div>
-          <div className="bg-foreground/5 h-8 rounded" />
-          <div className="bg-foreground/5 h-3 w-32 rounded" />
+          <div className="bg-foreground/5 h-8 animate-pulse rounded" />
+          <div className="bg-foreground/5 h-3 w-32 animate-pulse rounded" />
         </div>
       ))}
     </div>

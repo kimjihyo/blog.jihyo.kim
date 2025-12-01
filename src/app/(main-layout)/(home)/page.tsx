@@ -6,7 +6,10 @@ import {
   RecentCommentList,
   RecentCommentListLoading,
 } from "./_components/recent-comment-list";
-import { PostPaginatedList } from "./_components/post-paginiated-list";
+import {
+  PostPaginatedList,
+  PostPaginatedListLoading,
+} from "./_components/post-paginiated-list";
 
 export default async function Page({
   searchParams,
@@ -26,7 +29,7 @@ export default async function Page({
               최신 글
             </span>
           </div>
-          <React.Suspense>
+          <React.Suspense fallback={<PostPaginatedListLoading />}>
             <PostPaginatedList searchParams={searchParams} />
           </React.Suspense>
         </div>

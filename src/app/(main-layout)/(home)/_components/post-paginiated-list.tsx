@@ -7,7 +7,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { getBlogPosts } from "@/app/(main-layout)/posts/utils";
-import { PostList } from "./post-list";
+import { PostListItem, PostListItemLoading } from "./post-list-item";
 
 interface PostsProps {
   searchParams: Promise<{
@@ -63,7 +63,10 @@ export async function PostPaginatedList({ searchParams }: PostsProps) {
 
   return (
     <>
-      <PostList list={paginatedPosts} />
+      {paginatedPosts.map((post, index) => (
+        <PostListItem key={post.slug} index={index} post={post} />
+      ))}
+
       {totalPages > 1 && (
         <Pagination className="mt-6">
           <PaginationContent>
@@ -94,6 +97,16 @@ export async function PostPaginatedList({ searchParams }: PostsProps) {
           </PaginationContent>
         </Pagination>
       )}
+    </>
+  );
+}
+
+export function PostPaginatedListLoading() {
+  return (
+    <>
+      {Array.from({ length: 8 }).map((_, index) => (
+        <PostListItemLoading key={index} />
+      ))}
     </>
   );
 }

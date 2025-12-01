@@ -70,3 +70,25 @@ export function PostListItem({ index, post }: PostCardProps) {
     </article>
   );
 }
+
+export function PostListItemLoading() {
+  return (
+    <article className="py-6">
+      <div className="mb-1.5 flex items-center gap-1">
+        <div className="bg-muted h-5 w-12 animate-pulse rounded-full" />
+        <div className="bg-muted h-5 w-16 animate-pulse rounded-full" />
+      </div>
+      <div className="flex gap-5">
+        <div className="flex-1">
+          <div className="xs:h-7 bg-muted mb-1.5 h-6 w-3/4 animate-pulse rounded" />
+          <div className="mb-4 space-y-2">
+            <div className="bg-muted h-4 w-full animate-pulse rounded sm:h-5" />
+            <div className="bg-muted h-4 w-5/6 animate-pulse rounded sm:h-5" />
+          </div>
+          <div className="bg-muted h-3 w-32 animate-pulse rounded sm:h-4" />
+        </div>
+        <div className="bg-muted h-[65px] w-[90px] animate-pulse rounded sm:h-[90px] sm:w-[130px]" />
+      </div>
+    </article>
+  );
+}
