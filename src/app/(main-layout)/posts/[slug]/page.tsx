@@ -5,8 +5,8 @@ import { Metadata } from "next";
 import { Image } from "@/components/ui/image";
 import { Badge } from "@/components/ui/badge";
 import { formatDate } from "@/lib/utils";
-import { TableOfContents } from "../_components/table-of-contents";
-import { MobileTableOfContents } from "../_components/mobile-table-of-contents";
+import { TableOfContentsPc } from "../_components/table-of-contents-pc";
+import { TableOfContentsMobile } from "../_components/table-of-contents-mobile";
 import { notFound } from "next/navigation";
 import { CommentForm } from "../_components/comment-form";
 import { CommentList, CommentListSkeleton } from "../_components/comment-list";
@@ -77,10 +77,10 @@ export default async function Page({
           </div>
         </div>
         {tableOfContents && (
-          <MobileTableOfContents tocEntries={tableOfContents} />
+          <TableOfContentsMobile tocEntries={tableOfContents} />
         )}
       </div>
-      {tableOfContents && <TableOfContents tocEntries={tableOfContents} />}
+      {tableOfContents && <TableOfContentsPc tocEntries={tableOfContents} />}
     </Shell>
   );
 }

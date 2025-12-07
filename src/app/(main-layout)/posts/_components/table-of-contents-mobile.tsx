@@ -7,14 +7,14 @@ import {
   useActiveItem,
   TOCTree,
   markOrder,
-} from "./toc-core";
+} from "./table-of-contents-core";
 import { cn } from "@/lib/utils";
 
 interface MobileTableOfContentsProps {
   tocEntries: TOCEntry[];
 }
 
-export function MobileTableOfContents({
+export function TableOfContentsMobile({
   tocEntries,
 }: MobileTableOfContentsProps) {
   const [isOpen, setIsOpen] = React.useState(false);

@@ -7,14 +7,14 @@ import {
   useActiveItem,
   TOCTree,
   markOrder,
-} from "./toc-core";
+} from "./table-of-contents-core";
 import { cn } from "@/lib/utils";
 
 interface TableOfContentsProps {
   tocEntries: TOCEntry[];
 }
 
-export function TableOfContents({ tocEntries }: TableOfContentsProps) {
+export function TableOfContentsPc({ tocEntries }: TableOfContentsProps) {
   const tocCursorElementRef = React.useRef<HTMLDivElement | null>(null);
 
   const itemIds = React.useMemo<string[]>(
