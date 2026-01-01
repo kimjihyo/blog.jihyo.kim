@@ -42,22 +42,24 @@ export default async function Page({
             src={frontmatter.thumbnail}
           />
         </div>
-        <div className="mb-4 flex items-center gap-1">
-          {frontmatter.tags.map((tag: string) => (
-            <Badge key={tag}>{tag}</Badge>
-          ))}
-        </div>
-        <div className="space-y-2">
-          <div className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm">
-            <time dateTime={frontmatter.createdTime} className="block">
-              {formatDate(frontmatter.createdTime)}
-            </time>
-          </div>
-          <h1 className="text-2xl font-bold leading-tight tracking-tighter md:text-3xl lg:leading-[1.1]">
+        <div className="space-y-5">
+          <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1]">
             {frontmatter.title}
           </h1>
+          <div className="space-y-3">
+            <div className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm">
+              <time dateTime={frontmatter.createdTime} className="block">
+                {formatDate(frontmatter.createdTime)}
+              </time>
+            </div>
+            <div className="mb-4 flex items-center gap-1">
+              {frontmatter.tags.map((tag: string) => (
+                <Badge key={tag}>{tag}</Badge>
+              ))}
+            </div>
+          </div>
         </div>
-        <article className="prose dark:prose-invert prose-headings:scroll-m-20 prose-a:font-normal prose-a:text-primary prose-a:underline-offset-4 prose-code:text-sm prose-code:font-medium my-10 max-w-full">
+        <article className="prose dark:prose-invert prose-headings:scroll-m-20 prose-a:font-normal prose-a:text-primary prose-a:underline-offset-4 prose-code:text-sm prose-code:font-medium mb-10 mt-14 max-w-full">
           <Post />
         </article>
         <div id="comments" className="border-t pb-20 pt-8">

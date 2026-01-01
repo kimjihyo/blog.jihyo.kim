@@ -5,6 +5,7 @@ import { Icons } from "../icons";
 import { Shell } from "../shell";
 import Image from "next/image";
 import { ModeSwitch } from "./mode-switch";
+import { cn } from "@/lib/utils";
 
 export function SiteFooter() {
   return (
@@ -15,9 +16,18 @@ export function SiteFooter() {
             <Link
               href="/"
               aria-label="Home"
-              className="flex w-fit items-center space-x-2"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "flex items-center space-x-2",
+              )}
             >
-              <Image src="/profile.png" alt="" width={32} height={32} />
+              <Image
+                src="/profile.png"
+                alt=""
+                width={32}
+                height={32}
+                className="rounded-full"
+              />
             </Link>
           </section>
         </section>

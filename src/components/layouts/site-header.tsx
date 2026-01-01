@@ -5,7 +5,6 @@ import { Shell } from "../shell";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { ModeSwitch } from "./mode-switch";
-// import { LanguageSelect } from "./language-select";
 
 export function SiteHeader() {
   return (
@@ -26,13 +25,8 @@ export function SiteHeader() {
             height={32}
             className="rounded-full"
           />
-          {/* <span className="font-semibold">{siteConfig.name}</span> */}
         </Link>
         <div className="flex flex-1 items-center justify-end space-x-2">
-          {/* <Button size="sm" asChild>
-            <Link href="/subscribe">구독하기</Link>
-          </Button> */}
-          {/* <LanguageSelect /> */}
           <ModeSwitch />
         </div>
       </Shell>
