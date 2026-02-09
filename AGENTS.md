@@ -4,11 +4,11 @@
 
 ## 프로젝트 개요
 
-개인 블로그 ([blog.jihyo.kim](https://blog.jihyo.kim)). MDX 기반의 정적 콘텐츠와 댓글 시스템을 위한 서버사이드 기능을 함께 갖춘 Next.js 애플리케이션입니다.
+개인 블로그 ([blog.jihyo.kim](https://blog.jihyo.kim)). MDX 기반의 정적 콘텐츠와 댓글 시스템을 위한 서버사이드 기능을 함께 갖춘 Next.js 애플리케이션입니다. 홈 페이지는 완전 SSG(정적 생성)로 동작하여 LCP를 최적화합니다.
 
 ## 기술 스택
 
-- **프레임워크**: Next.js 16 (App Router, Turbopack)
+- **프레임워크**: Next.js 16 (App Router, Turbopack, `cacheComponents: true`)
 - **언어**: TypeScript (strict mode)
 - **스타일링**: Tailwind CSS 4 + shadcn/ui (Radix UI 기반)
 - **콘텐츠**: MDX (remark/rehype 플러그인 체인)
@@ -25,19 +25,24 @@
 ├── content/              # MDX 블로그 포스트 파일
 ├── .data/                # 빌드 시 생성되는 JSON (posts.json, tags.json)
 ├── scripts/              # 콘텐츠 빌드 스크립트
-│   ├── generate-posts-data.js   # MDX → JSON 변환
+│   ├── generate-posts-data.js   # MDX → JSON 변환 + 검색 인덱스 생성
 │   └── watch-posts.js           # 개발 시 콘텐츠 변경 감지
 ├── drizzle/              # DB 마이그레이션 파일
-├── public/               # 정적 에셋
+├── public/               # 정적 에셋 (search-index.json 포함)
 ├── src/
-│   ├── app/              # Next.js App Router
+│   ├── app/
 │   │   ├── layout.tsx    # 루트 레이아웃 (폰트, 테마, 메타데이터)
 │   │   ├── sitemap.ts    # XML 사이트맵 생성
 │   │   ├── manifest.ts   # PWA 매니페스트
 │   │   ├── opengraph-image.tsx  # OG 이미지 동적 생성
+│   │   ├── api/
+│   │   │   └── recent-comments/route.ts  # 최근 댓글 API (GET)
 │   │   └── (main-layout)/      # 헤더/푸터 공유 레이아웃 그룹
-│   │       ├── (home)/          # 홈 페이지 (포스트 목록)
-│   │       └── posts/[slug]/    # 개별 포스트 페이지
+│   │       ├── (home)/          # 홈 페이지 (SSG, 최신 8개 포스트)
+│   │       ├── posts/[slug]/    # 개별 포스트 페이지
+│   │       ├── tags/            # 태그 목록 페이지 (SSG)
+│   │       │   └── [tag]/[page]/ # 태그별 페이지네이션 (SSG)
+│   │       └── search/          # 검색 페이지 (클라이언트 검색)
 │   ├── components/
 │   │   ├── ui/           # shadcn/ui 기반 공용 컴포넌트
 │   │   ├── layouts/      # 헤더, 푸터, 테마 토글
@@ -49,6 +54,22 @@
 │   └── assets/fonts/     # Pretendard 가변 폰트
 └── next.config.mjs       # Next.js + MDX + 번들 분석기 설정
 ```
+
+## 라우팅 구조
+
+| 라우트 | 렌더링 | 설명 |
+|--------|--------|------|
+| `/` | SSG (Static) | 최신 8개 포스트 + 사이드바(태그 링크, 최근 댓글) |
+| `/posts/[slug]` | PPR | 개별 포스트 + 댓글 (댓글은 동적) |
+| `/tags` | SSG (Static) | 태그 목록 (카드 형태, 미리보기 포함) |
+| `/tags/[tag]/[page]` | SSG (PPR) | 태그별 포스트 목록 + 페이지네이션 |
+| `/tags/all/[page]` | SSG (PPR) | 전체 포스트 목록 + 페이지네이션 |
+| `/search` | SSG (Static) | 클라이언트 사이드 검색 (빌드 시 인덱스 생성) |
+| `/api/recent-comments` | Dynamic | 최근 댓글 JSON API (60초 캐시) |
+
+- **`/tags/all/1`**: 모든 포스트를 보여주는 전체 목록
+- **`/tags/{태그명}/1`**: 특정 태그로 필터링된 포스트 목록
+- 모든 태그/페이지 조합은 `generateStaticParams`로 빌드 타임에 정적 생성
 
 ## 주요 명령어
 
@@ -85,9 +106,10 @@ summary: "포스트 요약"
 ### 콘텐츠 빌드 파이프라인
 
 1. `scripts/generate-posts-data.js`가 MDX 파일의 프론트매터를 파싱
-2. `.data/posts.json`과 `.data/tags.json`에 정적 데이터 생성
-3. 앱에서는 JSON을 import하여 사용 (파일시스템 접근 불필요)
-4. 개발 시 `scripts/watch-posts.js`가 콘텐츠 변경을 감지하여 자동 재생성
+2. `.data/posts.json`, `.data/tags.json`에 정적 데이터 생성
+3. `public/search-index.json`에 검색용 경량 인덱스 생성 (slug, title, summary, tags)
+4. 앱에서는 JSON을 import하여 사용 (파일시스템 접근 불필요)
+5. 개발 시 `scripts/watch-posts.js`가 콘텐츠 변경을 감지하여 자동 재생성
 
 ## 코딩 컨벤션
 
@@ -109,10 +131,25 @@ summary: "포스트 요약"
 ### 스타일링
 
 - Tailwind CSS 4 유틸리티 클래스 사용
+- **px 단위, arbitrary value (`[...]`) 사용 금지** — Tailwind의 기본 spacing/sizing 토큰만 사용할 것. 필요한 커스텀 값은 `src/styles/tokens.css`에 디자인 토큰으로 정의하여 사용
 - `cn()` 함수로 조건부 클래스 병합 (`clsx` + `tailwind-merge`)
 - 커스텀 디자인 토큰은 `src/styles/tokens.css`에 정의
 - 라이트/다크 모드는 `src/styles/theme.css`의 CSS 변수로 관리 (OKLch 색공간)
 - `next-themes`의 `ThemeProvider`로 테마 전환
+
+### 페이지 레이아웃 패턴
+
+모든 목록형 페이지는 홈 페이지와 동일한 레이아웃 구조를 따름:
+
+```tsx
+<Shell className="flex flex-col">
+  <div className="flex justify-evenly">
+    <div className="flex max-w-2xl flex-1 flex-col lg:pr-6 lg:pt-2">
+      {/* 콘텐츠 */}
+    </div>
+  </div>
+</Shell>
+```
 
 ### TypeScript
 
@@ -127,6 +164,13 @@ summary: "포스트 요약"
 - 스키마: `src/db/schema.ts` (comments, subscriptions 테이블)
 - Neon 서버리스 PostgreSQL 사용
 - 서버 액션에서 DB 조작 수행
+
+### 성능 원칙
+
+- **홈 페이지(`/`)는 완전 SSG** — `searchParams`, DB 쿼리 등 동적 의존성 금지
+- 최근 댓글은 클라이언트 컴포넌트에서 `/api/recent-comments` API를 fetch하여 로드 (정적 HTML에 스켈레톤 포함)
+- CLS 방지: 마운트 전 `null`을 반환하는 대신 동일 크기의 placeholder 렌더링
+- `generateStaticParams`로 가능한 모든 경로를 빌드 타임에 정적 생성
 
 ## 환경 변수
 
@@ -154,6 +198,7 @@ summary: "포스트 요약"
 ## 주의사항
 
 - `.data/` 디렉토리는 빌드 시 자동 생성되므로 직접 수정하지 않음
+- `public/search-index.json`도 빌드 시 자동 생성됨
 - 콘텐츠 변경 후에는 `node scripts/generate-posts-data.js`를 실행하거나, `pnpm dev`로 자동 감지
 - `server-only` 패키지로 서버 전용 코드가 클라이언트 번들에 포함되지 않도록 보호
 - 프로덕션 빌드 시 `console.*` 자동 제거
