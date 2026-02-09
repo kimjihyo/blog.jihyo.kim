@@ -92,8 +92,22 @@ function generatePostsData() {
   // Generate tags.json
   fs.writeFileSync(tagsOutputFile, JSON.stringify(tagsArray, null, 2));
 
+  // Generate search-index.json (lightweight index for client-side search)
+  const searchIndex = posts.map((post) => ({
+    slug: post.slug,
+    title: post.frontmatter.title || "",
+    summary: post.frontmatter.summary || "",
+    tags: post.frontmatter.tags || [],
+  }));
+  const publicDir = path.join(process.cwd(), "public");
+  const searchIndexOutputFile = path.join(publicDir, "search-index.json");
+  fs.writeFileSync(searchIndexOutputFile, JSON.stringify(searchIndex));
+
   console.log(`Generated ${posts.length} posts data to ${postsOutputFile}`);
   console.log(`Generated ${tagsArray.length} tags data to ${tagsOutputFile}`);
+  console.log(
+    `Generated search index with ${searchIndex.length} entries to ${searchIndexOutputFile}`,
+  );
 }
 
 // Run if called directly

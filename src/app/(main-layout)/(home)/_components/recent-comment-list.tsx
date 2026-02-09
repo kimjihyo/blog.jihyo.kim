@@ -1,21 +1,30 @@
-import { db } from "@/db";
-import { commentsTable } from "@/db/schema";
-import { desc } from "drizzle-orm";
-import { getBlogPosts } from "@/app/(main-layout)/posts/utils";
+"use client";
+
+import * as React from "react";
 import { RecentCommentListItem } from "./recent-comment-list-item";
 
-function getPostTitleFromSlug(slug: string) {
-  const allPosts = getBlogPosts();
-  const post = allPosts.find((post) => post.slug === slug);
-  return post?.frontmatter.title ?? "";
-}
+type Comment = {
+  id: string;
+  nickname: string;
+  content: string;
+  avatar: string;
+  postSlug: string;
+  postTitle: string;
+};
 
-export async function RecentCommentList() {
-  const comments = await db
-    .select()
-    .from(commentsTable)
-    .orderBy(desc(commentsTable.createdAt))
-    .limit(8);
+export function RecentCommentList() {
+  const [comments, setComments] = React.useState<Comment[] | null>(null);
+
+  React.useEffect(() => {
+    fetch("/api/recent-comments")
+      .then((res) => res.json())
+      .then((data) => setComments(data))
+      .catch(() => setComments([]));
+  }, []);
+
+  if (comments === null) {
+    return <RecentCommentListSkeleton />;
+  }
 
   return (
     <div
@@ -29,7 +38,7 @@ export async function RecentCommentList() {
           nickname={comment.nickname}
           content={comment.content}
           postSlug={comment.postSlug}
-          postTitle={getPostTitleFromSlug(comment.postSlug)}
+          postTitle={comment.postTitle}
         />
       ))}
     </div>

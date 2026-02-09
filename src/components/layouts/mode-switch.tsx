@@ -15,7 +15,7 @@ export function ModeSwitch() {
   }, []);
 
   if (!mounted) {
-    return null;
+    return <div className="h-6 w-10" aria-hidden />;
   }
 
   return (

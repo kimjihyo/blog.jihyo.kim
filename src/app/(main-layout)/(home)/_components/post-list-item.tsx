@@ -50,7 +50,7 @@ export function PostListItem({ index, post }: PostCardProps) {
                 )}
             </p>
           </div>
-          <div className="bg-card group h-[65px] w-[90px] overflow-hidden rounded sm:h-[90px] sm:w-[130px]">
+          <div className="bg-card h-16.25 w-22.5 sm:h-22.5 sm:w-32.5 group overflow-hidden rounded">
             <div className="group-hover:scale-120 relative h-full w-full transition-transform duration-300">
               {post.frontmatter.thumbnail && (
                 <Image
@@ -87,7 +87,7 @@ export function PostListItemSkeleton() {
           </div>
           <div className="bg-muted h-3 w-32 animate-pulse rounded sm:h-4" />
         </div>
-        <div className="bg-muted h-[65px] w-[90px] animate-pulse rounded sm:h-[90px] sm:w-[130px]" />
+        <div className="bg-muted h-16.25 w-22.5 sm:h-22.5 sm:w-32.5 animate-pulse rounded" />
       </div>
     </article>
   );
