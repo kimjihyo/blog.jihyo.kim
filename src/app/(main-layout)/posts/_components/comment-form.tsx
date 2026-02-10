@@ -23,8 +23,24 @@ export function CommentForm({ slug }: CommentFormProps) {
   const nicknameInputRef = React.useRef<HTMLInputElement>(null);
   const defaultNickname = React.useRef(generateRandomNickname());
 
+  React.useEffect(() => {
+    const saved = localStorage.getItem("comment-nickname");
+    if (saved && nicknameInputRef.current) {
+      nicknameInputRef.current.value = saved;
+    }
+  }, []);
+
   return (
-    <form action={formAction} className="flex flex-col">
+    <form
+      action={(formData) => {
+        const nickname = formData.get("nickname") as string;
+        const avatar = formData.get("avatar") as string;
+        if (nickname) localStorage.setItem("comment-nickname", nickname);
+        if (avatar) localStorage.setItem("comment-avatar", avatar);
+        formAction(formData);
+      }}
+      className="flex flex-col"
+    >
       <div>
         <div className="mb-3">
           <div className="flex w-full space-x-2">
@@ -101,6 +117,11 @@ export function CommentForm({ slug }: CommentFormProps) {
 
 function AvatarButton() {
   const [avatar, setAvatar] = React.useState(generateRandomAvatar());
+
+  React.useEffect(() => {
+    const saved = localStorage.getItem("comment-avatar");
+    if (saved) setAvatar(saved);
+  }, []);
 
   return (
     <div
