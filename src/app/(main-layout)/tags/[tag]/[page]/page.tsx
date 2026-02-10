@@ -80,6 +80,7 @@ export default async function TagPaginatedPage({
               <li>
                 <Badge
                   asChild
+                  size="lg"
                   variant={tag === ALL_TAG ? "primary" : "default"}
                 >
                   <Link href={`/tags/all/1`}>전체</Link>
@@ -90,6 +91,7 @@ export default async function TagPaginatedPage({
                   <Badge
                     asChild
                     variant={t.name === tag ? "primary" : "default"}
+                    size="lg"
                   >
                     <Link href={`/tags/${t.name}/1`}>{t.name}</Link>
                   </Badge>

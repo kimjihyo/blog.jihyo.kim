@@ -63,7 +63,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" suppressHydrationWarning className={pretendard.className}>
-      <body className="antialiased">
+      <body className="border-border bg-background text-foreground antialiased outline-ring/50">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

@@ -62,7 +62,7 @@ export default async function Page({
         <article className="prose mt-14 mb-10 max-w-full dark:prose-invert prose-headings:scroll-m-20 prose-a:font-normal prose-a:text-primary prose-a:underline-offset-4 prose-code:text-sm prose-code:font-medium">
           <Post />
         </article>
-        <div id="comments" className="border-t pt-8 pb-20">
+        <div id="comments" className="border-t border-border pt-8 pb-20">
           <div>
             <div className="mb-4 flex items-center justify-between gap-2">
               <div className="font-medium">댓글 {0}</div>

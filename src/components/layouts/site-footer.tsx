@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 export function SiteFooter() {
   return (
-    <footer className="w-full border-t">
+    <footer className="w-full border-t border-border">
       <Shell className="flex max-w-6xl flex-col gap-2">
         <section className="flex flex-col gap-10 lg:flex-row lg:gap-20">
           <section>

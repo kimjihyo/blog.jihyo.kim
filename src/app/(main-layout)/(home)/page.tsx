@@ -4,6 +4,7 @@ import { getBlogPosts, getAllTags } from "../posts/utils";
 import { PostListItem } from "./_components/post-list-item";
 import { RecentCommentList } from "./_components/recent-comment-list";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 export default function Page() {
   const posts = getBlogPosts().slice(0, 8);
@@ -24,15 +25,12 @@ export default function Page() {
             ))}
           </div>
           <div className="mt-6 flex justify-center">
-            <Link
-              href="/tags/all/1"
-              className="text-sm font-semibold text-primary transition-colors hover:text-primary/80"
-            >
-              전체 글 보기 →
-            </Link>
+            <Button asChild variant="secondary">
+              <Link href="/tags/all/1">전체 글 보기 →</Link>
+            </Button>
           </div>
         </div>
-        <div className="hidden w-80 border-l px-6 py-2 lg:flex lg:flex-col lg:gap-8">
+        <div className="hidden w-80 border-l border-border px-6 py-2 lg:flex lg:flex-col lg:gap-8">
           <div>
             <div className="mb-4 text-sm font-semibold text-muted-foreground">
               태그
