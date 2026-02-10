@@ -35,7 +35,7 @@ export function CommentForm({ slug }: CommentFormProps) {
               <div
                 className={cn(
                   "flex h-12 w-60 items-center gap-2",
-                  "border-input shadow-xs hover:border-primary dark:bg-input/30 flex rounded-md border px-3 py-1 outline-none transition-colors",
+                  "flex rounded-md border border-input px-3 py-1 shadow-xs transition-colors outline-none hover:border-primary dark:bg-input/30",
                   "has-focus-visible:border-ring has-focus-visible:ring-[3px] has-focus-visible:ring-ring/50",
                   formState?.errors?.nickname && "border-destructive",
                 )}
@@ -62,7 +62,7 @@ export function CommentForm({ slug }: CommentFormProps) {
                 </Button>
               </div>
               {formState?.errors?.nickname && (
-                <p className="text-destructive px-3 text-sm">
+                <p className="px-3 text-sm text-destructive">
                   {formState.errors.nickname[0]}
                 </p>
               )}
@@ -80,7 +80,7 @@ export function CommentForm({ slug }: CommentFormProps) {
             )}
           />
           {formState?.errors?.content && (
-            <p className="text-destructive mt-1.5 text-sm">
+            <p className="mt-1.5 text-sm text-destructive">
               {formState.errors.content[0]}
             </p>
           )}
@@ -89,7 +89,7 @@ export function CommentForm({ slug }: CommentFormProps) {
       <input type="hidden" name="postSlug" value={slug} />
       <Button
         type="submit"
-        className="relative mb-5 ml-auto mt-2"
+        className="relative mt-2 mb-5 ml-auto"
         disabled={isPending}
       >
         <span>댓글 남기기</span>

@@ -8,7 +8,7 @@ import { ModeSwitch } from "./mode-switch";
 
 export function SiteHeader() {
   return (
-    <header className="bg-background sticky top-0 z-50 h-16 w-full border-b">
+    <header className="sticky top-0 z-50 h-16 w-full border-b bg-background">
       <Shell className="flex h-full max-w-6xl items-center gap-6 py-0">
         <Link
           href="/"

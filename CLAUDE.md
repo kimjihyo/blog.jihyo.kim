@@ -4,7 +4,7 @@
 
 ## 프로젝트 개요
 
-개인 블로그 ([blog.jihyo.kim](https://blog.jihyo.kim)). MDX 기반의 정적 콘텐츠와 댓글 시스템을 위한 서버사이드 기능을 함께 갖춘 Next.js 애플리케이션입니다. 홈 페이지는 완전 SSG(정적 생성)로 동작하여 LCP를 최적화합니다.
+개인 블로그 ([blog.jihyo.kim](https://blog.jihyo.kim)). MDX 기반의 정적 콘텐츠와 댓글 시스템을 위한 서버사이드 기능을 함께 갖춘 Next.js 애플리케이션입니다. 홈 페이지는 PPR(Partial Prerendering)로 동작하여 정적 쉘은 즉시 서빙하고, 최근 댓글은 `"use cache"`로 캐시합니다.
 
 ## 기술 스택
 
@@ -35,10 +35,8 @@
 │   │   ├── sitemap.ts    # XML 사이트맵 생성
 │   │   ├── manifest.ts   # PWA 매니페스트
 │   │   ├── opengraph-image.tsx  # OG 이미지 동적 생성
-│   │   ├── api/
-│   │   │   └── recent-comments/route.ts  # 최근 댓글 API (GET)
 │   │   └── (main-layout)/      # 헤더/푸터 공유 레이아웃 그룹
-│   │       ├── (home)/          # 홈 페이지 (SSG, 최신 8개 포스트)
+│   │       ├── (home)/          # 홈 페이지 (PPR, 최신 8개 포스트 + 최근 댓글 cache)
 │   │       ├── posts/[slug]/    # 개별 포스트 페이지
 │   │       ├── tags/            # 태그 목록 페이지 (SSG)
 │   │       │   └── [tag]/[page]/ # 태그별 페이지네이션 (SSG)
@@ -59,13 +57,12 @@
 
 | 라우트 | 렌더링 | 설명 |
 |--------|--------|------|
-| `/` | SSG (Static) | 최신 8개 포스트 + 사이드바(태그 링크, 최근 댓글) |
+| `/` | PPR | 최신 8개 포스트 + 사이드바(태그 링크, 최근 댓글 cache component) |
 | `/posts/[slug]` | PPR | 개별 포스트 + 댓글 (댓글은 동적) |
 | `/tags` | SSG (Static) | 태그 목록 (카드 형태, 미리보기 포함) |
 | `/tags/[tag]/[page]` | SSG (PPR) | 태그별 포스트 목록 + 페이지네이션 |
 | `/tags/all/[page]` | SSG (PPR) | 전체 포스트 목록 + 페이지네이션 |
 | `/search` | SSG (Static) | 클라이언트 사이드 검색 (빌드 시 인덱스 생성) |
-| `/api/recent-comments` | Dynamic | 최근 댓글 JSON API (60초 캐시) |
 
 - **`/tags/all/1`**: 모든 포스트를 보여주는 전체 목록
 - **`/tags/{태그명}/1`**: 특정 태그로 필터링된 포스트 목록
@@ -167,8 +164,8 @@ summary: "포스트 요약"
 
 ### 성능 원칙
 
-- **홈 페이지(`/`)는 완전 SSG** — `searchParams`, DB 쿼리 등 동적 의존성 금지
-- 최근 댓글은 클라이언트 컴포넌트에서 `/api/recent-comments` API를 fetch하여 로드 (정적 HTML에 스켈레톤 포함)
+- **홈 페이지(`/`)는 PPR** — 정적 쉘(포스트 목록, 태그)은 빌드 타임에 생성되고, 최근 댓글은 `"use cache"` + `cacheLife("minutes")`로 서버에서 캐시
+- 최근 댓글은 서버 컴포넌트(`RecentCommentList`)에서 DB 직접 쿼리 + Suspense fallback으로 스켈레톤 표시
 - CLS 방지: 마운트 전 `null`을 반환하는 대신 동일 크기의 placeholder 렌더링
 - `generateStaticParams`로 가능한 모든 경로를 빌드 타임에 정적 생성
 

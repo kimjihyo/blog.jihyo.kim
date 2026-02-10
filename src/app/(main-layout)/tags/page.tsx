@@ -16,10 +16,10 @@ export default function TagsPage() {
   return (
     <Shell className="flex flex-col">
       <div className="flex justify-evenly">
-        <div className="flex max-w-2xl flex-1 flex-col lg:pr-6 lg:pt-2">
+        <div className="flex max-w-2xl flex-1 flex-col lg:pt-2 lg:pr-6">
           <div className="mb-8">
             <h1 className="mb-2 text-2xl font-bold">태그</h1>
-            <p className="text-muted-foreground text-sm">
+            <p className="text-sm text-muted-foreground">
               {tags.length}개의 태그, {allPosts.length}개의 글
             </p>
           </div>
@@ -33,13 +33,13 @@ export default function TagsPage() {
                 <li key={tag.name}>
                   <Link
                     href={`/tags/${tag.name}/1`}
-                    className="bg-card hover:bg-card-accent group block rounded-lg p-4 transition-colors"
+                    className="group block rounded-lg bg-card p-4 transition-colors hover:bg-card-accent"
                   >
                     <div className="mb-3 flex items-center justify-between">
                       <Badge variant="primary" className="px-2.5 py-0.5">
                         {tag.name}
                       </Badge>
-                      <span className="text-muted-foreground text-xs">
+                      <span className="text-xs text-muted-foreground">
                         {tag.count}개의 글
                       </span>
                     </div>
@@ -47,9 +47,9 @@ export default function TagsPage() {
                       {postsForTag.map((post) => (
                         <li
                           key={post.slug}
-                          className="text-muted-foreground group-hover:text-foreground flex items-center gap-2 text-sm transition-colors"
+                          className="flex items-center gap-2 text-sm text-muted-foreground transition-colors group-hover:text-foreground"
                         >
-                          <span className="text-muted-foreground/50 shrink-0">
+                          <span className="shrink-0 text-muted-foreground/50">
                             ·
                           </span>
                           <span className="truncate">
@@ -58,7 +58,7 @@ export default function TagsPage() {
                         </li>
                       ))}
                       {tag.count > 3 && (
-                        <li className="text-muted-foreground/60 pl-4 text-xs">
+                        <li className="pl-4 text-xs text-muted-foreground/60">
                           외 {tag.count - 3}개
                         </li>
                       )}

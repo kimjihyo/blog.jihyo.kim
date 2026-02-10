@@ -1,47 +1,49 @@
-"use client";
-
-import * as React from "react";
+import { Suspense } from "react";
+import { cacheLife } from "next/cache";
+import { db } from "@/db";
+import { commentsTable } from "@/db/schema";
+import { desc } from "drizzle-orm";
+import { getBlogPosts } from "../../posts/utils";
 import { RecentCommentListItem } from "./recent-comment-list-item";
 
-type Comment = {
-  id: string;
-  nickname: string;
-  content: string;
-  avatar: string;
-  postSlug: string;
-  postTitle: string;
-};
+async function RecentCommentListInner() {
+  "use cache";
+  cacheLife("minutes");
 
-export function RecentCommentList() {
-  const [comments, setComments] = React.useState<Comment[] | null>(null);
+  const comments = await db
+    .select()
+    .from(commentsTable)
+    .orderBy(desc(commentsTable.createdAt))
+    .limit(8);
 
-  React.useEffect(() => {
-    fetch("/api/recent-comments")
-      .then((res) => res.json())
-      .then((data) => setComments(data))
-      .catch(() => setComments([]));
-  }, []);
-
-  if (comments === null) {
-    return <RecentCommentListSkeleton />;
-  }
+  const allPosts = getBlogPosts();
 
   return (
-    <div
-      className="animate-fade-in flex flex-col gap-4"
-      style={{ animationFillMode: "both" }}
-    >
-      {comments.map((comment) => (
-        <RecentCommentListItem
-          key={comment.id}
-          avatarImgSrc={comment.avatar}
-          nickname={comment.nickname}
-          content={comment.content}
-          postSlug={comment.postSlug}
-          postTitle={comment.postTitle}
-        />
-      ))}
+    <div className="flex flex-col gap-4">
+      {comments.map((comment) => {
+        const postTitle =
+          allPosts.find((p) => p.slug === comment.postSlug)?.frontmatter
+            .title ?? "";
+        return (
+          <RecentCommentListItem
+            key={comment.id}
+            avatarImgSrc={comment.avatar}
+            nickname={comment.nickname}
+            content={comment.content}
+            postSlug={comment.postSlug}
+            postTitle={postTitle}
+          />
+        );
+      })}
     </div>
+  );
+}
+
+export function RecentCommentList() {
+  return (
+    <Suspense fallback={<RecentCommentListSkeleton />}>
+      <RecentCommentListInner />
+    </Suspense>
   );
 }
 
@@ -51,14 +53,14 @@ export function RecentCommentListSkeleton() {
       {Array.from({ length: 8 }).map((_, i) => (
         <div
           key={i}
-          className="bg-card text-card-foreground flex flex-col gap-2 rounded-lg p-4 py-2"
+          className="flex flex-col gap-2 rounded-lg bg-card p-4 py-2 text-card-foreground"
         >
           <div className="flex items-center gap-2">
-            <div className="bg-foreground/5 h-6 w-6 animate-pulse rounded-full" />
-            <div className="bg-foreground/5 h-4 w-20 animate-pulse rounded" />
+            <div className="h-6 w-6 animate-pulse rounded-full bg-foreground/5" />
+            <div className="h-4 w-20 animate-pulse rounded bg-foreground/5" />
           </div>
-          <div className="bg-foreground/5 h-8 animate-pulse rounded" />
-          <div className="bg-foreground/5 h-3 w-32 animate-pulse rounded" />
+          <div className="h-8 animate-pulse rounded bg-foreground/5" />
+          <div className="h-3 w-32 animate-pulse rounded bg-foreground/5" />
         </div>
       ))}
     </div>

@@ -1,12 +1,12 @@
 @layer base {
   [data-rehype-pretty-code-title] {
-    @apply bg-card text-muted-foreground/80 rounded-t-lg border border-b-0 px-4 py-2 text-[13px] font-medium;
+    @apply rounded-t-lg border border-b-0 bg-card px-4 py-2 text-[13px] font-medium text-muted-foreground/80;
     letter-spacing: 0.02em;
     margin-bottom: 0;
   }
 
   [data-highlighted-line] {
-    @apply border-primary bg-primary/10! border-l-2;
+    @apply border-l-2 border-primary bg-primary/10!;
   }
 
   [data-highlighted-line] span {
@@ -14,7 +14,7 @@
   }
 
   .light [data-highlighted-line] {
-    @apply bg-primary/10! border-l-2 border-blue-600;
+    @apply border-l-2 border-blue-600 bg-primary/10!;
   }
 
   .light [data-highlighted-line] span {
@@ -23,7 +23,7 @@
 
   figure[data-rehype-pretty-code-figure]:has(> [data-rehype-pretty-code-title])
     pre {
-    @apply rounded-t-none! mt-0;
+    @apply mt-0 rounded-t-none!;
   }
 
   figure[data-rehype-pretty-code-figure] {
@@ -52,7 +52,7 @@
   code[data-line-numbers] > [data-line]::before {
     counter-increment: line;
     content: counter(line);
-    @apply text-muted-foreground/50 mr-4 inline-block w-4 text-right;
+    @apply mr-4 inline-block w-4 text-right text-muted-foreground/50;
   }
 
   code[data-line-numbers-max-digits="2"] > [data-line]::before {

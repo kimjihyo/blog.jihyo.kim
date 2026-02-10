@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -20,7 +19,7 @@ export function RecentCommentListItem({
   return (
     <Link
       href={`/posts/${postSlug}#comments`}
-      className="bg-card text-card-foreground hover:bg-card-accent flex flex-col gap-2 rounded-lg p-4 py-2 transition-colors"
+      className="flex flex-col gap-2 rounded-lg bg-card p-4 py-2 text-card-foreground transition-colors hover:bg-card-accent"
     >
       <div className="flex items-center gap-2">
         <Avatar className="h-6 w-6">
@@ -33,8 +32,8 @@ export function RecentCommentListItem({
         </Avatar>
         <span className="text-sm font-semibold">{nickname}</span>
       </div>
-      <p className="text-foreground line-clamp-2 text-sm">{content}</p>
-      <p className="text-muted-foreground text-xs">{postTitle}</p>
+      <p className="line-clamp-2 text-sm text-foreground">{content}</p>
+      <p className="text-xs text-muted-foreground">{postTitle}</p>
     </Link>
   );
 }

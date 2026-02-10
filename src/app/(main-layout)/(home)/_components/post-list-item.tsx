@@ -22,7 +22,7 @@ export function PostListItem({ index, post }: PostCardProps) {
     <article>
       <Link
         href={`/posts/${post.slug}`}
-        className="active:scale-97 group block py-6 duration-300 ease-in-out"
+        className="group block py-6 duration-300 ease-in-out active:scale-97"
       >
         <div className="mb-1.5 flex items-center gap-1">
           {post.frontmatter.tags?.map((tag) => (
@@ -31,13 +31,13 @@ export function PostListItem({ index, post }: PostCardProps) {
         </div>
         <div className="flex gap-5">
           <div className="flex-1">
-            <h2 className="text-foreground group-hover:text-primary xs:text-xl mb-1.5 text-base font-semibold transition-colors">
+            <h2 className="mb-1.5 text-base font-semibold text-foreground transition-colors group-hover:text-primary xs:text-xl">
               {post.frontmatter.title}
             </h2>
-            <p className="text-muted-foreground mb-4 text-sm sm:text-base">
+            <p className="mb-4 text-sm text-muted-foreground sm:text-base">
               {post.frontmatter.summary}
             </p>
-            <p className="text-muted-foreground text-xs sm:text-sm">
+            <p className="text-xs text-muted-foreground sm:text-sm">
               {post.frontmatter.createdTime &&
                 new Date(post.frontmatter.createdTime).toLocaleDateString(
                   "ko-KR",
@@ -50,8 +50,8 @@ export function PostListItem({ index, post }: PostCardProps) {
                 )}
             </p>
           </div>
-          <div className="bg-card h-16.25 w-22.5 sm:h-22.5 sm:w-32.5 group overflow-hidden rounded">
-            <div className="group-hover:scale-120 relative h-full w-full transition-transform duration-300">
+          <div className="group h-16.25 w-22.5 overflow-hidden rounded bg-card sm:h-22.5 sm:w-32.5">
+            <div className="relative h-full w-full transition-transform duration-300 group-hover:scale-120">
               {post.frontmatter.thumbnail && (
                 <Image
                   fetchPriority={index === 0 ? "high" : "auto"}
@@ -75,19 +75,19 @@ export function PostListItemSkeleton() {
   return (
     <article className="py-6">
       <div className="mb-1.5 flex items-center gap-1">
-        <div className="bg-muted h-5 w-12 animate-pulse rounded-full" />
-        <div className="bg-muted h-5 w-16 animate-pulse rounded-full" />
+        <div className="h-5 w-12 animate-pulse rounded-full bg-muted" />
+        <div className="h-5 w-16 animate-pulse rounded-full bg-muted" />
       </div>
       <div className="flex gap-5">
         <div className="flex-1">
-          <div className="xs:h-7 bg-muted mb-1.5 h-6 w-3/4 animate-pulse rounded" />
+          <div className="mb-1.5 h-6 w-3/4 animate-pulse rounded bg-muted xs:h-7" />
           <div className="mb-4 space-y-2">
-            <div className="bg-muted h-4 w-full animate-pulse rounded sm:h-5" />
-            <div className="bg-muted h-4 w-5/6 animate-pulse rounded sm:h-5" />
+            <div className="h-4 w-full animate-pulse rounded bg-muted sm:h-5" />
+            <div className="h-4 w-5/6 animate-pulse rounded bg-muted sm:h-5" />
           </div>
-          <div className="bg-muted h-3 w-32 animate-pulse rounded sm:h-4" />
+          <div className="h-3 w-32 animate-pulse rounded bg-muted sm:h-4" />
         </div>
-        <div className="bg-muted h-16.25 w-22.5 sm:h-22.5 sm:w-32.5 animate-pulse rounded" />
+        <div className="h-16.25 w-22.5 animate-pulse rounded bg-muted sm:h-22.5 sm:w-32.5" />
       </div>
     </article>
   );

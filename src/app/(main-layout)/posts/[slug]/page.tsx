@@ -32,8 +32,8 @@ export default async function Page({
 
   return (
     <Shell className="relative gap-10 md:flex md:justify-evenly">
-      <div className="min-w-0 max-w-3xl">
-        <div className="bg-card rounded-lg">
+      <div className="max-w-3xl min-w-0">
+        <div className="rounded-lg bg-card">
           <Image
             className="mb-8 h-auto w-full rounded-lg"
             width={1200}
@@ -43,11 +43,11 @@ export default async function Page({
           />
         </div>
         <div className="space-y-5">
-          <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1]">
+          <h1 className="text-3xl leading-tight font-bold tracking-tighter md:text-5xl lg:leading-[1.1]">
             {frontmatter.title}
           </h1>
           <div className="space-y-3">
-            <div className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm">
+            <div className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
               <time dateTime={frontmatter.createdTime} className="block">
                 {formatDate(frontmatter.createdTime)}
               </time>
@@ -59,14 +59,14 @@ export default async function Page({
             </div>
           </div>
         </div>
-        <article className="prose dark:prose-invert prose-headings:scroll-m-20 prose-a:font-normal prose-a:text-primary prose-a:underline-offset-4 prose-code:text-sm prose-code:font-medium mb-10 mt-14 max-w-full">
+        <article className="prose mt-14 mb-10 max-w-full dark:prose-invert prose-headings:scroll-m-20 prose-a:font-normal prose-a:text-primary prose-a:underline-offset-4 prose-code:text-sm prose-code:font-medium">
           <Post />
         </article>
-        <div id="comments" className="border-t pb-20 pt-8">
+        <div id="comments" className="border-t pt-8 pb-20">
           <div>
             <div className="mb-4 flex items-center justify-between gap-2">
               <div className="font-medium">댓글 {0}</div>
-              <div className="text-muted-foreground text-sm">
+              <div className="text-sm text-muted-foreground">
                 댓글 관련 문의: kimjihyo0325@gmail.com
               </div>
             </div>

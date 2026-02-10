@@ -29,7 +29,7 @@ export function TableOfContentsMobile({
     <>
       {isOpen && (
         <div
-          className="animate-fade-in bg-background/80 fixed inset-0 z-50 flex size-full flex-col items-center justify-center overflow-y-auto backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex size-full animate-fade-in flex-col items-center justify-center overflow-y-auto bg-background/80 backdrop-blur-sm"
           onClick={() => setIsOpen(false)}
         >
           <div onClick={(e) => e.stopPropagation()}>
@@ -48,7 +48,7 @@ export function TableOfContentsMobile({
         </div>
       )}
       <Button
-        className="fixed bottom-4 right-4 z-40 sm:hidden"
+        className="fixed right-4 bottom-4 z-40 sm:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
         목차
@@ -68,8 +68,8 @@ function TocLink({ node, isActive, onClick }: TocLinkProps) {
     <a
       href={`#${node.id}`}
       className={cn(
-        "hover:text-foreground inline-block text-sm no-underline transition-colors",
-        isActive ? "text-foreground font-semibold" : "text-muted-foreground",
+        "inline-block text-sm no-underline transition-colors hover:text-foreground",
+        isActive ? "font-semibold text-foreground" : "text-muted-foreground",
       )}
       onClick={onClick}
     >

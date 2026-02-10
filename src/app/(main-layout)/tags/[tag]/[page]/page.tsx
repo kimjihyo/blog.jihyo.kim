@@ -49,7 +49,10 @@ export default async function TagPaginatedPage({
 
   const allTags = getAllTags();
   const startIndex = (page - 1) * PAGE_SIZE;
-  const paginatedPosts = filteredPosts.slice(startIndex, startIndex + PAGE_SIZE);
+  const paginatedPosts = filteredPosts.slice(
+    startIndex,
+    startIndex + PAGE_SIZE,
+  );
 
   const delta = 2;
   const startPage = Math.max(1, page - delta);
@@ -63,13 +66,13 @@ export default async function TagPaginatedPage({
   return (
     <Shell className="flex flex-col">
       <div className="flex justify-evenly">
-        <div className="mb-10 flex max-w-2xl flex-1 flex-col lg:pr-6 lg:pt-2">
+        <div className="mb-10 flex max-w-2xl flex-1 flex-col lg:pt-2 lg:pr-6">
           <div className="mb-6">
             <div className="mb-4 flex items-baseline gap-3">
               <h1 className="text-2xl font-bold">
                 {tag === ALL_TAG ? "전체 글" : tag}
               </h1>
-              <span className="text-muted-foreground text-sm">
+              <span className="text-sm text-muted-foreground">
                 {totalPostCount}개의 글
               </span>
             </div>

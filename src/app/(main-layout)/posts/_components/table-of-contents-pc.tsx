@@ -44,10 +44,10 @@ export function TableOfContentsPc({ tocEntries }: TableOfContentsProps) {
 
   return (
     <div className="sticky top-24 hidden h-fit border-l pl-6 lg:block">
-      <p className="font-medium leading-8">목차</p>
+      <p className="leading-8 font-medium">목차</p>
       <div
         ref={tocCursorElementRef}
-        className="bg-primary ease-in-out-material absolute -left-px top-0 hidden h-6 w-0.5 transition-transform duration-300"
+        className="absolute top-0 -left-px hidden h-6 w-0.5 bg-primary transition-transform duration-300 ease-in-out-material"
       />
       <TOCTree
         tree={tocEntriesWithOrder}
@@ -57,7 +57,7 @@ export function TableOfContentsPc({ tocEntries }: TableOfContentsProps) {
             key={node.id}
             href={`#${node.id}`}
             className={cn(
-              "text-muted-foreground hover:text-foreground inline-block text-sm no-underline transition-colors",
+              "inline-block text-sm text-muted-foreground no-underline transition-colors hover:text-foreground",
               isActive ? "text-foreground" : "text-muted-foreground",
             )}
           >

@@ -32,17 +32,17 @@ export function SiteFooter() {
           </section>
         </section>
         <section>
-          <span className="text-muted-foreground text-sm">
+          <span className="text-sm text-muted-foreground">
             With design inspiration from toss.tech
           </span>
         </section>
         <section className="flex items-center space-x-4">
-          <div className="text-muted-foreground flex-1 text-left text-sm leading-loose">
+          <div className="flex-1 text-left text-sm leading-loose text-muted-foreground">
             Built by{" "}
             <Link
               aria-label="Home"
               href="/"
-              className="hover:text-foreground font-semibold transition-colors"
+              className="font-semibold transition-colors hover:text-foreground"
             >
               Jihyo Kim{" "}
             </Link>
@@ -56,7 +56,7 @@ export function SiteFooter() {
               aria-label="GitHub"
             >
               <Icons.github
-                className="text-muted-foreground size-4"
+                className="size-4 text-muted-foreground"
                 aria-hidden="true"
               />
             </a>

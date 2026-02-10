@@ -12,9 +12,9 @@ export default function Page() {
   return (
     <Shell className="flex flex-col">
       <div className="flex justify-evenly">
-        <div className="mb-10 flex max-w-2xl flex-1 flex-col lg:pr-6 lg:pt-2">
+        <div className="mb-10 flex max-w-2xl flex-1 flex-col lg:pt-2 lg:pr-6">
           <div className="hidden items-center gap-1 lg:flex">
-            <span className="text-muted-foreground text-sm font-semibold">
+            <span className="text-sm font-semibold text-muted-foreground">
               최신 글
             </span>
           </div>
@@ -26,7 +26,7 @@ export default function Page() {
           <div className="mt-6 flex justify-center">
             <Link
               href="/tags/all/1"
-              className="text-primary hover:text-primary/80 text-sm font-semibold transition-colors"
+              className="text-sm font-semibold text-primary transition-colors hover:text-primary/80"
             >
               전체 글 보기 →
             </Link>
@@ -34,7 +34,7 @@ export default function Page() {
         </div>
         <div className="hidden w-80 border-l px-6 py-2 lg:flex lg:flex-col lg:gap-8">
           <div>
-            <div className="text-muted-foreground mb-4 text-sm font-semibold">
+            <div className="mb-4 text-sm font-semibold text-muted-foreground">
               태그
             </div>
             <ul className="flex flex-wrap gap-2">
@@ -48,7 +48,7 @@ export default function Page() {
             </ul>
           </div>
           <div>
-            <div className="text-muted-foreground mb-4 text-sm font-semibold">
+            <div className="mb-4 text-sm font-semibold text-muted-foreground">
               최근 댓글
             </div>
             <RecentCommentList />

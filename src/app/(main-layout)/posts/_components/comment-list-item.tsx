@@ -7,20 +7,20 @@ export function CommentListItem({
   comment: typeof commentsTable.$inferSelect;
 }) {
   return (
-    <li className="bg-card text-card-foreground rounded-lg p-4">
+    <li className="rounded-lg bg-card p-4 text-card-foreground">
       <div className="flex items-start gap-3">
         <Avatar>
           <AvatarImage src={comment.avatar} className="bg-sky-100" />
           <AvatarFallback>{comment.nickname[0]}</AvatarFallback>
         </Avatar>
         <div className="flex flex-col gap-1.5">
-          <p className="text-xs font-medium leading-none sm:text-sm">
+          <p className="text-xs leading-none font-medium sm:text-sm">
             {comment.nickname}
           </p>
-          <p className="text-foreground/90 text-sm sm:text-base">
+          <p className="text-sm text-foreground/90 sm:text-base">
             {comment.content}
           </p>
-          <p className="text-muted-foreground text-xs">
+          <p className="text-xs text-muted-foreground">
             {comment.createdAt.toLocaleString("ko-KR", {
               year: "numeric",
               month: "long",

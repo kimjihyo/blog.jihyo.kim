@@ -31,45 +31,43 @@ export default async function Image() {
   );
 
   return new ImageResponse(
-    (
-      // ImageResponse JSX element
+    // ImageResponse JSX element
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: "100%",
+        backgroundImage: "linear-gradient(to right, #60a5fa, #1d4ed8)",
+        fontFamily: "Pretendard",
+      }}
+    >
       <div
         style={{
           display: "flex",
+          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          width: "100%",
-          height: "100%",
-          backgroundImage: "linear-gradient(to right, #60a5fa, #1d4ed8)",
-          fontFamily: "Pretendard",
+          width: `${CONTENT_WIDTH}px`,
+          height: `${CONTENT_HEIGHT}px`,
+          padding: "0px 120px",
         }}
       >
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            width: `${CONTENT_WIDTH}px`,
-            height: `${CONTENT_HEIGHT}px`,
-            padding: "0px 120px",
+            fontSize: "85px",
+            color: "white",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              fontSize: "85px",
-              color: "white",
-            }}
-          >
-            <span style={{ fontWeight: 900 }}>blog</span>
-            <span style={{ fontWeight: 700, opacity: 0.6 }}>.jihyo.kim</span>
-          </div>
+          <span style={{ fontWeight: 900 }}>blog</span>
+          <span style={{ fontWeight: 700, opacity: 0.6 }}>.jihyo.kim</span>
         </div>
       </div>
-    ),
+    </div>,
     // ImageResponse options
     {
       // For convenience, we can re-use the exported opengraph-image
