@@ -20,27 +20,8 @@ export function CommentForm({ slug }: CommentFormProps) {
     submitComment,
     null,
   );
-  const nicknameInputRef = React.useRef<HTMLInputElement>(null);
-  const defaultNickname = React.useRef(generateRandomNickname());
-
-  React.useEffect(() => {
-    const saved = localStorage.getItem("comment-nickname");
-    if (saved && nicknameInputRef.current) {
-      nicknameInputRef.current.value = saved;
-    }
-  }, []);
-
   return (
-    <form
-      action={(formData) => {
-        const nickname = formData.get("nickname") as string;
-        const avatar = formData.get("avatar") as string;
-        if (nickname) localStorage.setItem("comment-nickname", nickname);
-        if (avatar) localStorage.setItem("comment-avatar", avatar);
-        formAction(formData);
-      }}
-      className="flex flex-col"
-    >
+    <form action={formAction} className="flex flex-col">
       <div>
         <div className="mb-3">
           <div className="flex w-full space-x-2">
@@ -48,35 +29,7 @@ export function CommentForm({ slug }: CommentFormProps) {
               <AvatarButton />
             </div>
             <div className="flex flex-1 flex-col gap-1.5">
-              <div
-                className={cn(
-                  "flex h-12 w-60 items-center gap-2",
-                  "flex rounded-md border border-input px-3 py-1 shadow-xs transition-colors outline-none hover:border-primary dark:bg-input/30",
-                  "has-focus-visible:border-ring has-focus-visible:ring-[3px] has-focus-visible:ring-ring/50",
-                  formState?.errors?.nickname && "border-destructive",
-                )}
-              >
-                <input
-                  ref={nicknameInputRef}
-                  type="text"
-                  name="nickname"
-                  placeholder="닉네임"
-                  className="h-full min-w-0 text-base focus:outline-none"
-                  defaultValue={defaultNickname.current}
-                />
-                <Button
-                  type="button"
-                  variant="secondary"
-                  onClick={() => {
-                    if (nicknameInputRef.current) {
-                      nicknameInputRef.current.value = generateRandomNickname();
-                      defaultNickname.current = nicknameInputRef.current.value;
-                    }
-                  }}
-                >
-                  랜덤 변경
-                </Button>
-              </div>
+              <NicknameField hasError={Boolean(formState?.errors?.nickname)} />
               {formState?.errors?.nickname && (
                 <p className="px-3 text-sm text-destructive">
                   {formState.errors.nickname[0]}
@@ -116,11 +69,10 @@ export function CommentForm({ slug }: CommentFormProps) {
 }
 
 function AvatarButton() {
-  const [avatar, setAvatar] = React.useState(generateRandomAvatar());
+  const [avatar, setAvatar] = React.useState("");
 
-  React.useEffect(() => {
-    const saved = localStorage.getItem("comment-avatar");
-    if (saved) setAvatar(saved);
+  React.useLayoutEffect(() => {
+    setAvatar(localStorage.getItem("comment-avatar") ?? generateRandomAvatar());
   }, []);
 
   return (
@@ -128,7 +80,9 @@ function AvatarButton() {
       role="button"
       className="group cursor-pointer transition-opacity hover:opacity-80"
       onClick={() => {
-        setAvatar(generateRandomAvatar());
+        const newAvatar = generateRandomAvatar();
+        setAvatar(newAvatar);
+        localStorage.setItem("comment-avatar", newAvatar);
       }}
     >
       <Avatar className="size-10 transition-transform group-active:scale-95">
@@ -136,6 +90,51 @@ function AvatarButton() {
         <AvatarFallback></AvatarFallback>
       </Avatar>
       <input type="hidden" name="avatar" value={avatar} />
+    </div>
+  );
+}
+
+interface NicknameFieldProps {
+  hasError?: boolean;
+}
+
+function NicknameField({ hasError }: NicknameFieldProps) {
+  const [nickname, setNickname] = React.useState("");
+
+  React.useLayoutEffect(() => {
+    setNickname(
+      localStorage.getItem("comment-nickname") ?? generateRandomNickname(),
+    );
+  }, []);
+
+  return (
+    <div
+      className={cn(
+        "flex h-12 w-60 items-center gap-2",
+        "flex rounded-md border border-input px-3 py-1 shadow-xs transition-colors outline-none hover:border-primary dark:bg-input/30",
+        "has-focus-visible:border-ring has-focus-visible:ring-[3px] has-focus-visible:ring-ring/50",
+        hasError && "border-destructive",
+      )}
+    >
+      <input
+        type="text"
+        name="nickname"
+        placeholder="닉네임"
+        value={nickname}
+        className="h-full min-w-0 text-base focus:outline-none"
+        onChange={(e) => setNickname(e.target.value)}
+      />
+      <Button
+        type="button"
+        variant="secondary"
+        onClick={() => {
+          const newNickname = generateRandomNickname();
+          setNickname(newNickname);
+          localStorage.setItem("comment-nickname", newNickname);
+        }}
+      >
+        랜덤 변경
+      </Button>
     </div>
   );
 }
