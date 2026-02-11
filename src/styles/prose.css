@@ -2,7 +2,43 @@
   --tw-prose-body: var(--foreground);
   --tw-prose-headings: var(--foreground);
   --tw-prose-links: var(--foreground);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-quotes: var(--foreground);
+  --tw-prose-quote-borders: var(--border);
   --tw-prose-pre-bg: var(--code-block-bg);
+  --tw-prose-invert-bold: var(--foreground);
+  --tw-prose-invert-quotes: var(--foreground);
+  --tw-prose-invert-quote-borders: var(--border);
+}
+
+.prose
+  :where(blockquote):not(
+    :where([class~="not-prose"], [class~="not-prose"] *)
+  ) {
+  font-style: normal;
+  color: var(--muted-foreground);
+  background-color: var(--accent);
+  border-left-width: 3px;
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 1rem 1.25rem;
+}
+
+.prose
+  :where(blockquote p):not(
+    :where([class~="not-prose"], [class~="not-prose"] *)
+  ) {
+  margin: 0;
+}
+
+.prose
+  :where(blockquote p:first-of-type):not(
+    :where([class~="not-prose"], [class~="not-prose"] *)
+  )::before,
+.prose
+  :where(blockquote p:last-of-type):not(
+    :where([class~="not-prose"], [class~="not-prose"] *)
+  )::after {
+  content: none;
 }
 
 .prose

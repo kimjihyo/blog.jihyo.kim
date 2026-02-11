@@ -2,7 +2,6 @@ import * as React from "react";
 import { Shell } from "@/components/shell";
 import { getBlogPosts } from "../utils";
 import { Metadata } from "next";
-import { Image } from "@/components/ui/image";
 import { Badge } from "@/components/ui/badge";
 import { formatDate } from "@/lib/utils";
 import { TableOfContentsPc } from "../_components/table-of-contents-pc";
@@ -33,15 +32,6 @@ export default async function Page({
   return (
     <Shell className="relative gap-10 md:flex md:justify-evenly">
       <div className="max-w-3xl min-w-0">
-        <div className="rounded-lg bg-card">
-          <Image
-            className="mb-8 h-auto w-full rounded-lg"
-            width={1200}
-            height={630}
-            alt=""
-            src={frontmatter.thumbnail}
-          />
-        </div>
         <div className="space-y-5">
           <h1 className="text-3xl leading-tight font-bold tracking-tighter md:text-5xl lg:leading-[1.1]">
             {frontmatter.title}
