@@ -2,81 +2,104 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-const CONTENT_ASPECT_RATIO = 130 / 90;
-const CONTENT_HEIGHT = 630;
-const CONTENT_WIDTH = CONTENT_HEIGHT * CONTENT_ASPECT_RATIO;
-
-const BACKGROUND_ASPECT_RATIO = 1200 / 630;
-const BACKGROUND_HEIGHT = 630;
-const BACKGROUND_WIDTH = BACKGROUND_HEIGHT * BACKGROUND_ASPECT_RATIO;
-
-// Image metadata
-export const alt = "Jihyo Kim";
+export const alt =
+  "김지효의 기록 보관소 — 개발 경험과 기술적 회고를 기록하는 블로그";
 export const size = {
-  width: BACKGROUND_WIDTH,
-  height: BACKGROUND_HEIGHT,
+  width: 1200,
+  height: 630,
 };
-
 export const contentType = "image/png";
 
-// Image generation
 export default async function Image() {
-  // Font loading, process.cwd() is Next.js project directory
-  const pretendardsemibold = await readFile(
+  const pretendardSemiBold = await readFile(
     join(process.cwd(), "src/assets/fonts/Pretendard-semibold.ttf"),
   );
-
   const pretendardBlack = await readFile(
     join(process.cwd(), "src/assets/fonts/Pretendard-Black.ttf"),
   );
 
   return new ImageResponse(
-    // ImageResponse JSX element
     <div
       style={{
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        flexDirection: "column",
+        justifyContent: "space-between",
         width: "100%",
         height: "100%",
-        backgroundImage: "linear-gradient(to right, #60a5fa, #1d4ed8)",
+        backgroundImage: "linear-gradient(to bottom right, #60a5fa, #1d4ed8)",
         fontFamily: "Pretendard",
+        padding: "60px 80px",
       }}
     >
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          width: `${CONTENT_WIDTH}px`,
-          height: `${CONTENT_HEIGHT}px`,
-          padding: "0px 120px",
+          gap: "20px",
         }}
       >
         <div
           style={{
             display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            fontSize: "85px",
+            fontSize: "56px",
+            fontWeight: 900,
             color: "white",
+            lineHeight: 1.3,
           }}
         >
-          <span style={{ fontWeight: 900 }}>blog</span>
-          <span style={{ fontWeight: 700, opacity: 0.6 }}>.jihyo.kim</span>
+          김지효의 기록 보관소
+        </div>
+        <div
+          style={{
+            display: "flex",
+            fontSize: "26px",
+            fontWeight: 700,
+            color: "rgba(255, 255, 255, 0.75)",
+            lineHeight: 1.6,
+          }}
+        >
+          개발 경험과 기술적 회고를 기록하고 공유합니다
+        </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            fontSize: "24px",
+            color: "rgba(255, 255, 255, 0.7)",
+            fontWeight: 700,
+          }}
+        >
+          <span style={{ fontWeight: 900, color: "white" }}>blog</span>
+          <span>.jihyo.kim</span>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            fontSize: "20px",
+            fontWeight: 700,
+            color: "white",
+            backgroundColor: "rgba(255, 255, 255, 0.2)",
+            padding: "10px 28px",
+            borderRadius: "999px",
+          }}
+        >
+          블로그 방문하기 →
         </div>
       </div>
     </div>,
-    // ImageResponse options
     {
-      // For convenience, we can re-use the exported opengraph-image
-      // size config to also set the ImageResponse's width and height.
       ...size,
       fonts: [
         {
           name: "Pretendard",
-          data: pretendardsemibold,
+          data: pretendardSemiBold,
           style: "normal",
           weight: 700,
         },

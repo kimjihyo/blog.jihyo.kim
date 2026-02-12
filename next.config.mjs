@@ -21,6 +21,12 @@ const nextConfig = {
       },
     ],
   },
+  outputFileTracingIncludes: {
+    "/opengraph-image": ["./src/assets/fonts/**/*"],
+    "/posts/\\[slug\\]/opengraph-image*": ["./src/assets/fonts/**/*"],
+    "/icon-192.png": ["./src/assets/fonts/**/*"],
+    "/icon-512.png": ["./src/assets/fonts/**/*"],
+  },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
