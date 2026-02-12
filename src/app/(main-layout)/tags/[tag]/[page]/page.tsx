@@ -168,14 +168,30 @@ export async function generateMetadata({
 }: {
   params: Promise<{ tag: string; page: string }>;
 }): Promise<Metadata> {
-  const { tag: rawTag, page } = await params;
+  const { tag: rawTag, page: pageStr } = await params;
   const tag = decodeURIComponent(rawTag);
+  const page = parseInt(pageStr, 10);
   const label = tag === ALL_TAG ? "전체 글" : `${tag} 태그`;
+  const filteredPosts = getPostsForTag(tag);
+  const totalPages = Math.ceil(filteredPosts.length / PAGE_SIZE);
+
   return {
     title: `${label} - ${page}페이지`,
     description: `${label} 목록 ${page}페이지`,
     alternates: {
       canonical: `/tags/${rawTag}/${page}`,
+      ...(page > 1 || page < totalPages
+        ? {
+            other: {
+              ...(page > 1
+                ? { prev: `/tags/${rawTag}/${page - 1}` }
+                : {}),
+              ...(page < totalPages
+                ? { next: `/tags/${rawTag}/${page + 1}` }
+                : {}),
+            },
+          }
+        : {}),
     },
   };
 }
