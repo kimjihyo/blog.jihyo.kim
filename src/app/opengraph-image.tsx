@@ -12,7 +12,7 @@ export const contentType = "image/png";
 
 export default async function Image() {
   const pretendardSemiBold = await readFile(
-    join(process.cwd(), "src/assets/fonts/Pretendard-semibold.ttf"),
+    join(process.cwd(), "src/assets/fonts/Pretendard-SemiBold.ttf"),
   );
   const pretendardBlack = await readFile(
     join(process.cwd(), "src/assets/fonts/Pretendard-Black.ttf"),
