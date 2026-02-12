@@ -110,5 +110,10 @@ export async function generateMetadata({
       title: frontmatter.title,
       description: frontmatter.summary,
     },
+    twitter: {
+      card: "summary_large_image",
+      title: frontmatter.title,
+      description: frontmatter.summary,
+    },
   };
 }

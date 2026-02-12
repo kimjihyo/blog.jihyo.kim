@@ -34,6 +34,12 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     siteName: siteConfig.name,
   },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    creator: "@kimjihyo0325",
+  },
   icons: {
     icon: "/favicon.ico",
   },
