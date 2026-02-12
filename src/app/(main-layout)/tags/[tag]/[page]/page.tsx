@@ -174,5 +174,8 @@ export async function generateMetadata({
   return {
     title: `${label} - ${page}페이지`,
     description: `${label} 목록 ${page}페이지`,
+    alternates: {
+      canonical: `/tags/${rawTag}/${page}`,
+    },
   };
 }

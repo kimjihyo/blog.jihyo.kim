@@ -4,6 +4,9 @@ import { SearchClient } from "./_components/search-client";
 export const metadata: Metadata = {
   title: "검색",
   description: "블로그 글 검색",
+  alternates: {
+    canonical: "/search",
+  },
 };
 
 export default function SearchPage() {

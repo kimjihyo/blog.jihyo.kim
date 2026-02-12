@@ -7,6 +7,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "태그",
   description: "모든 태그 목록",
+  alternates: {
+    canonical: "/tags",
+  },
 };
 
 export default function TagsPage() {

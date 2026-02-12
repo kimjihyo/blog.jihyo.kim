@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
   alternates: {
-    canonical: "/",
+    canonical: siteConfig.url,
   },
   verification: {
     google: "wVEPS5qlRFBKhKAzxd8vSVKupU92v7STVgJzvm15tNo",
