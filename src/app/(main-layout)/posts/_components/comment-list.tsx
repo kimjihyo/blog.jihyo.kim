@@ -17,17 +17,24 @@ export async function CommentList({ slug }: CommentsProps) {
     .orderBy(desc(commentsTable.createdAt));
 
   return (
-    <ul className="flex flex-col gap-4">
-      {comments.map((comment) => (
-        <CommentListItem key={comment.id} comment={comment} />
-      ))}
-    </ul>
+    <div>
+      <div className="mb-4 font-medium">댓글 {comments.length}</div>
+      <ul className="flex flex-col gap-4">
+        {comments.map((comment) => (
+          <CommentListItem key={comment.id} comment={comment} />
+        ))}
+      </ul>
+    </div>
   );
 }
 
 export function CommentListSkeleton() {
   return (
-    <ul className="flex flex-col gap-4">
+    <div>
+      <div className="mb-4">
+        <div className="h-5 w-14 animate-pulse rounded bg-foreground/5" />
+      </div>
+      <ul className="flex flex-col gap-4">
       {Array.from({ length: 3 }).map((_, i) => (
         <li key={i} className="rounded-lg bg-card p-4 text-card-foreground">
           <div className="flex items-start gap-3">
@@ -41,6 +48,7 @@ export function CommentListSkeleton() {
           </div>
         </li>
       ))}
-    </ul>
+      </ul>
+    </div>
   );
 }

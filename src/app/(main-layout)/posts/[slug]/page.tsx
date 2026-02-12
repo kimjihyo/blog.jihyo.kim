@@ -84,12 +84,6 @@ export default async function Page({
         </article>
         <div id="comments" className="border-t border-border pt-8 pb-20">
           <div>
-            <div className="mb-4 flex items-center justify-between gap-2">
-              <div className="font-medium">댓글 {0}</div>
-              <div className="text-sm text-muted-foreground">
-                댓글 관련 문의: kimjihyo0325@gmail.com
-              </div>
-            </div>
             <React.Suspense>
               <CommentForm slug={slug} />
             </React.Suspense>
