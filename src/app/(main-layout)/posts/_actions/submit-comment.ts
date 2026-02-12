@@ -1,9 +1,12 @@
 "use server";
 
 import { z } from "zod";
+import { after } from "next/server";
 import { revalidatePath } from "next/cache";
 import { db } from "@/db";
 import { commentsTable } from "@/db/schema";
+import { getBlogPosts } from "../utils";
+import { siteConfig } from "@/config/site";
 
 interface CommentFormState {
   errors?: {
@@ -48,6 +51,8 @@ export async function submitComment(
 
     revalidatePath(`posts/${validatedFields.data.postSlug}`);
 
+    after(() => sendDiscordNotification(validatedFields.data));
+
     return {
       success: true,
       message: "댓글이 성공적으로 등록되었습니다.",
@@ -57,5 +62,39 @@ export async function submitComment(
       success: false,
       message: "댓글 등록에 실패했습니다.",
     };
+  }
+}
+
+async function sendDiscordNotification(data: {
+  nickname: string;
+  content: string;
+  postSlug: string;
+}) {
+  const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
+  if (!webhookUrl) return;
+
+  const env = process.env.NODE_ENV === "production" ? "프로덕션" : "개발";
+  const post = getBlogPosts().find((p) => p.slug === data.postSlug);
+  const postTitle = post?.frontmatter.title ?? data.postSlug;
+  const postUrl = `${siteConfig.url}/posts/${data.postSlug}`;
+
+  const content = [
+    `[${env}] 새 댓글이 등록되었습니다`,
+    "",
+    `닉네임: ${data.nickname}`,
+    `포스트: ${postTitle}`,
+    `댓글: ${data.content}`,
+    "",
+    postUrl,
+  ].join("\n");
+
+  try {
+    await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content }),
+    });
+  } catch {
+    // 웹훅 실패 시 댓글 등록에 영향 없도록 에러 무시
   }
 }
