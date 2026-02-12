@@ -18,7 +18,6 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: ["nextjs", "react", "kimjihyo", "kimjihyo0325"],
   authors: [
     {
       name: "Jihyo Kim",
