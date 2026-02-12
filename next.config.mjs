@@ -9,6 +9,7 @@ const withBundleAnalyzer = createNextBundleAnalyzer({
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
+  poweredByHeader: false,
   cacheComponents: true,
   serverExternalPackages: ["drizzle-orm"],
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
