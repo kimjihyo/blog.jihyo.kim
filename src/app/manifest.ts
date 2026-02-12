@@ -3,8 +3,9 @@ import type { MetadataRoute } from "next";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "김지효의 기록 보관소",
-    short_name: "김지효의 기록 보관소",
+    short_name: "기록 보관소",
     description: "개발, 사담, 회고 등 개인적인 생각을 정리합니다.",
+    lang: "ko",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",
@@ -14,6 +15,16 @@ export default function manifest(): MetadataRoute.Manifest {
         src: "/favicon.ico",
         sizes: "32x32",
         type: "image/x-icon",
+      },
+      {
+        src: "/icon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        src: "/icon-512.png",
+        sizes: "512x512",
+        type: "image/png",
       },
     ],
   };
