@@ -9,6 +9,7 @@ import { TableOfContentsMobile } from "../_components/table-of-contents-mobile";
 import { notFound } from "next/navigation";
 import { CommentForm } from "../_components/comment-form";
 import { CommentList, CommentListSkeleton } from "../_components/comment-list";
+import { siteConfig } from "@/config/site";
 
 export default async function Page({
   params,
@@ -29,8 +30,37 @@ export default async function Page({
     tableOfContents,
   } = await import(`@/../content/${slug}.mdx`);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: frontmatter.title,
+    description: frontmatter.summary,
+    datePublished: frontmatter.createdTime,
+    dateModified: frontmatter.updatedTime,
+    url: `${siteConfig.url}/posts/${slug}`,
+    author: {
+      "@type": "Person",
+      name: "Jihyo Kim",
+      url: siteConfig.url,
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Jihyo Kim",
+      url: siteConfig.url,
+    },
+    keywords: frontmatter.tags,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${siteConfig.url}/posts/${slug}`,
+    },
+  };
+
   return (
     <Shell className="relative gap-10 md:flex md:justify-evenly">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="max-w-3xl min-w-0">
         <div className="space-y-5">
           <h1 className="text-3xl leading-tight font-bold tracking-tighter md:text-5xl lg:leading-[1.1]">
