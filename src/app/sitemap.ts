@@ -1,29 +1,33 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 import { getBlogPosts, getAllTags } from "./(main-layout)/posts/utils";
+import { siteConfig } from "@/config/site";
 
 const PAGE_SIZE = 8;
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://blog.jihyo.kim";
   const allPosts = getBlogPosts();
   const allTags = getAllTags();
 
+  // 가장 최근 포스트의 수정일을 정적 라우트의 lastModified로 사용
+  const latestPostDate = allPosts[0]?.frontmatter.updatedTime
+    ? new Date(allPosts[0].frontmatter.updatedTime)
+    : new Date();
+
   const staticRoutes: MetadataRoute.Sitemap = [
     {
-      url: baseUrl,
-      lastModified: new Date(),
+      url: siteConfig.url,
+      lastModified: latestPostDate,
       changeFrequency: "daily",
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/tags`,
-      lastModified: new Date(),
+      url: `${siteConfig.url}/tags`,
+      lastModified: latestPostDate,
       changeFrequency: "weekly",
       priority: 0.5,
     },
     {
-      url: `${baseUrl}/search`,
-      lastModified: new Date(),
+      url: `${siteConfig.url}/search`,
       changeFrequency: "monthly",
       priority: 0.3,
     },
@@ -34,8 +38,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const allPaginationRoutes: MetadataRoute.Sitemap = Array.from(
     { length: allTotalPages },
     (_, i) => ({
-      url: `${baseUrl}/tags/all/${i + 1}`,
-      lastModified: new Date(),
+      url: `${siteConfig.url}/tags/all/${i + 1}`,
+      lastModified: latestPostDate,
       changeFrequency: "daily" as const,
       priority: 0.6,
     }),
@@ -45,18 +49,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const tagPaginationRoutes: MetadataRoute.Sitemap = allTags.flatMap((tag) => {
     const totalPages = Math.ceil(tag.count / PAGE_SIZE);
     return Array.from({ length: totalPages }, (_, i) => ({
-      url: `${baseUrl}/tags/${encodeURIComponent(tag.name)}/${i + 1}`,
-      lastModified: new Date(),
+      url: `${siteConfig.url}/tags/${encodeURIComponent(tag.name)}/${i + 1}`,
+      lastModified: latestPostDate,
       changeFrequency: "weekly" as const,
       priority: 0.5,
     }));
   });
 
   const postRoutes: MetadataRoute.Sitemap = allPosts.map((post) => ({
-    url: `${baseUrl}/posts/${post.slug}`.replace(/\/$/, ""),
+    url: `${siteConfig.url}/posts/${post.slug}`,
     changeFrequency: "daily" as const,
     priority: 0.7,
-    lastModified: post.frontmatter.updatedTime || new Date(),
+    lastModified: post.frontmatter.updatedTime
+      ? new Date(post.frontmatter.updatedTime)
+      : undefined,
   }));
 
   return [
