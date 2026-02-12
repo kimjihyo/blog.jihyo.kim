@@ -107,8 +107,13 @@ export async function generateMetadata({
       canonical: `/posts/${slug}`,
     },
     openGraph: {
+      type: "article",
       title: frontmatter.title,
       description: frontmatter.summary,
+      publishedTime: frontmatter.createdTime,
+      modifiedTime: frontmatter.updatedTime,
+      authors: ["Jihyo Kim"],
+      tags: frontmatter.tags,
     },
     twitter: {
       card: "summary_large_image",
