@@ -87,7 +87,7 @@
     "vite-tsconfig-paths": "^6.1.0",
     "vitest": "^4.0.18"
   },
-  "packageManager": "pnpm@10.24.0",
+  "packageManager": "pnpm@10.29.3",
   "pnpm": {
     "onlyBuiltDependencies": [
       "@parcel/watcher",
