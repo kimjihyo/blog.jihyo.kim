@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
-import Image, { ImageProps } from "next/image";
+import Image from "next/image";
+import { ImageLightbox } from "@/components/image-lightbox";
 
 const components = {
   blockquote: ({ children }) => (
@@ -36,15 +37,7 @@ const components = {
       </code>
     );
   },
-  img: (props) => (
-    <Image
-      width={800}
-      height={600}
-      sizes="100vw"
-      className="my-3 h-auto w-full rounded-md"
-      {...(props as ImageProps)}
-    />
-  ),
+  img: (props) => <ImageLightbox {...props} />,
 } satisfies MDXComponents;
 
 export function useMDXComponents(): MDXComponents {
