@@ -5,7 +5,16 @@ import { ImageLightbox } from "../image-lightbox";
 vi.mock("next/image", () => ({
   __esModule: true,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  default: ({ width, height, sizes, fill, priority, quality, loader, ...rest }: Record<string, unknown>) => {
+  default: ({
+    width,
+    height,
+    sizes,
+    fill,
+    priority,
+    quality,
+    loader,
+    ...rest
+  }: Record<string, unknown>) => {
     // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
     return <img {...(rest as React.ComponentProps<"img">)} />;
   },
@@ -17,9 +26,7 @@ beforeEach(() => {
   ) {
     this.setAttribute("open", "");
   });
-  HTMLDialogElement.prototype.close = vi.fn(function (
-    this: HTMLDialogElement,
-  ) {
+  HTMLDialogElement.prototype.close = vi.fn(function (this: HTMLDialogElement) {
     this.removeAttribute("open");
   });
 });
@@ -68,9 +75,10 @@ describe("ImageLightbox", () => {
       fireEvent.click(thumbnail);
     });
 
-    const dialog = document.querySelector("dialog")!;
+    // dialog 내부의 backdrop overlay div를 클릭
+    const backdropOverlay = document.querySelector("dialog > div:first-child")!;
     act(() => {
-      fireEvent.click(dialog);
+      fireEvent.click(backdropOverlay);
     });
 
     expect(document.querySelector("dialog")).not.toBeInTheDocument();

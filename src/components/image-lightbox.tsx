@@ -34,15 +34,6 @@ export function ImageLightbox({
     setIsOpen(false);
   }, []);
 
-  const handleBackdropClick = useCallback(
-    (e: React.MouseEvent<HTMLDialogElement>) => {
-      if (e.target === dialogRef.current) {
-        close();
-      }
-    },
-    [close],
-  );
-
   return (
     <>
       <Image
@@ -58,16 +49,19 @@ export function ImageLightbox({
         createPortal(
           <dialog
             ref={dialogRef}
-            onClick={handleBackdropClick}
             onClose={close}
-            className="bg-background/0 fixed inset-0 m-0 flex h-dvh max-h-dvh w-dvw max-w-full items-center justify-center p-4 backdrop:bg-black/80 backdrop:backdrop-blur-sm"
+            className="fixed inset-0 m-0 flex h-dvh max-h-dvh w-dvw max-w-full items-center justify-center bg-background/0 backdrop:bg-black/80 backdrop:backdrop-blur-sm"
           >
-            <div className="relative h-[90vh] w-[90vw]">
+            <div className="absolute inset-0" onClick={close} />
+            <div
+              className="pointer-events-none relative z-10 h-[90vh] w-[90vw]"
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
                 type="button"
                 onClick={close}
                 aria-label="닫기"
-                className="bg-background/80 text-foreground absolute -top-3 -right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full text-lg shadow-md backdrop-blur-sm"
+                className="pointer-events-auto absolute -top-3 -right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-background/80 text-lg text-foreground shadow-md backdrop-blur-sm"
               >
                 ✕
               </button>
@@ -76,7 +70,7 @@ export function ImageLightbox({
                 alt={alt}
                 fill
                 sizes="90vw"
-                className="rounded-lg object-contain"
+                className="pointer-events-auto rounded-lg object-contain"
               />
             </div>
           </dialog>,
