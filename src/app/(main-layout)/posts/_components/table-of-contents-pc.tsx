@@ -43,7 +43,7 @@ export function TableOfContentsPc({ tocEntries }: TableOfContentsProps) {
   }
 
   return (
-    <div className="sticky top-24 hidden h-fit border-l border-border pl-6 lg:block">
+    <div className="sticky top-24 hidden h-fit w-80 border-l border-border pl-6 lg:block">
       <p className="leading-8 font-medium">목차</p>
       <div
         ref={tocCursorElementRef}

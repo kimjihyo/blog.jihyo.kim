@@ -56,12 +56,12 @@ export default async function Page({
   };
 
   return (
-    <Shell className="relative gap-10 md:flex md:justify-evenly">
+    <Shell className="relative gap-10 md:flex">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="max-w-3xl min-w-0">
+      <div className="min-w-0 flex-1">
         <div className="space-y-5">
           <h1 className="text-3xl leading-tight font-bold tracking-tighter md:text-5xl lg:leading-[1.1]">
             {frontmatter.title}
