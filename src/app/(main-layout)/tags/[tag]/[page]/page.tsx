@@ -65,76 +65,72 @@ export default async function TagPaginatedPage({
 
   return (
     <Shell className="flex flex-col">
-      <div className="flex justify-evenly">
-        <div className="mb-10 flex max-w-2xl flex-1 flex-col lg:pt-2 lg:pr-6">
-          <div className="mb-6">
-            <div className="mb-4 flex items-baseline gap-3">
-              <h1 className="text-2xl font-bold">
-                {tag === ALL_TAG ? "전체 글" : tag}
-              </h1>
-              <span className="text-sm text-muted-foreground">
-                {totalPostCount}개의 글
-              </span>
-            </div>
-            <ul className="flex flex-wrap gap-2">
-              <li>
+      <div className="mb-10 flex flex-1 flex-col lg:pt-2 lg:pr-6">
+        <div className="mb-6">
+          <div className="mb-4 flex items-baseline gap-3">
+            <h1 className="text-2xl font-bold">
+              {tag === ALL_TAG ? "전체 글" : tag}
+            </h1>
+            <span className="text-sm text-muted-foreground">
+              {totalPostCount}개의 글
+            </span>
+          </div>
+          <ul className="flex flex-wrap gap-2">
+            <li>
+              <Badge
+                asChild
+                size="lg"
+                variant={tag === ALL_TAG ? "primary" : "default"}
+              >
+                <Link href={`/tags/all/1`}>전체</Link>
+              </Badge>
+            </li>
+            {allTags.map((t) => (
+              <li key={t.name}>
                 <Badge
                   asChild
+                  variant={t.name === tag ? "primary" : "default"}
                   size="lg"
-                  variant={tag === ALL_TAG ? "primary" : "default"}
                 >
-                  <Link href={`/tags/all/1`}>전체</Link>
+                  <Link href={`/tags/${t.name}/1`}>{t.name}</Link>
                 </Badge>
               </li>
-              {allTags.map((t) => (
-                <li key={t.name}>
-                  <Badge
-                    asChild
-                    variant={t.name === tag ? "primary" : "default"}
-                    size="lg"
-                  >
-                    <Link href={`/tags/${t.name}/1`}>{t.name}</Link>
-                  </Badge>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="animate-fade-in">
-            {paginatedPosts.map((post, index) => (
-              <PostListItem key={post.slug} index={index} post={post} />
             ))}
-          </div>
-          {totalPages > 1 && (
-            <Pagination className="mt-6">
-              <PaginationContent>
-                <PaginationItem>
-                  <PaginationPrevious
-                    href={page === 1 ? "" : `/tags/${rawTag}/${page - 1}`}
-                    aria-disabled={page === 1}
-                  />
-                </PaginationItem>
-                {pageNumbers.map((pageNum) => (
-                  <PaginationItem key={pageNum}>
-                    <PaginationLink
-                      href={`/tags/${rawTag}/${pageNum}`}
-                      isActive={pageNum === page}
-                    >
-                      {pageNum}
-                    </PaginationLink>
-                  </PaginationItem>
-                ))}
-                <PaginationItem>
-                  <PaginationNext
-                    href={
-                      page >= totalPages ? "" : `/tags/${rawTag}/${page + 1}`
-                    }
-                    aria-disabled={page >= totalPages}
-                  />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
-          )}
+          </ul>
         </div>
+        <div className="animate-fade-in">
+          {paginatedPosts.map((post, index) => (
+            <PostListItem key={post.slug} index={index} post={post} />
+          ))}
+        </div>
+        {totalPages > 1 && (
+          <Pagination className="mt-6">
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  href={page === 1 ? "" : `/tags/${rawTag}/${page - 1}`}
+                  aria-disabled={page === 1}
+                />
+              </PaginationItem>
+              {pageNumbers.map((pageNum) => (
+                <PaginationItem key={pageNum}>
+                  <PaginationLink
+                    href={`/tags/${rawTag}/${pageNum}`}
+                    isActive={pageNum === page}
+                  >
+                    {pageNum}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+              <PaginationItem>
+                <PaginationNext
+                  href={page >= totalPages ? "" : `/tags/${rawTag}/${page + 1}`}
+                  aria-disabled={page >= totalPages}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        )}
       </div>
     </Shell>
   );
@@ -183,9 +179,7 @@ export async function generateMetadata({
       ...(page > 1 || page < totalPages
         ? {
             other: {
-              ...(page > 1
-                ? { prev: `/tags/${rawTag}/${page - 1}` }
-                : {}),
+              ...(page > 1 ? { prev: `/tags/${rawTag}/${page - 1}` } : {}),
               ...(page < totalPages
                 ? { next: `/tags/${rawTag}/${page + 1}` }
                 : {}),

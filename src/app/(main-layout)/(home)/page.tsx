@@ -12,8 +12,8 @@ export default function Page() {
 
   return (
     <Shell className="flex flex-col">
-      <div className="flex justify-evenly">
-        <div className="mb-10 flex max-w-2xl flex-1 flex-col lg:pt-2 lg:pr-6">
+      <div className="flex">
+        <div className="mb-10 flex flex-1 flex-col lg:pt-2 lg:pr-6">
           <div className="hidden items-center gap-1 lg:flex">
             <span className="text-sm font-semibold text-muted-foreground">
               최신 글
