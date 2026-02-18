@@ -62,7 +62,7 @@ export function ImageLightbox({
             onClose={close}
             className="bg-background/0 fixed inset-0 m-0 flex h-dvh max-h-dvh w-dvw max-w-full items-center justify-center p-4 backdrop:bg-black/80 backdrop:backdrop-blur-sm"
           >
-            <div className="relative max-h-[90vh] max-w-[90vw]">
+            <div className="relative h-[90vh] w-[90vw]">
               <button
                 type="button"
                 onClick={close}
@@ -74,10 +74,9 @@ export function ImageLightbox({
               <Image
                 {...props}
                 alt={alt}
-                width={1600}
-                height={1200}
+                fill
                 sizes="90vw"
-                className="max-h-[90vh] w-auto max-w-[90vw] rounded-lg object-contain"
+                className="rounded-lg object-contain"
               />
             </div>
           </dialog>,
