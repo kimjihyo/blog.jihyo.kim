@@ -45,6 +45,16 @@ export function SiteFooter() {
                 aria-hidden="true"
               />
             </a>
+            <a
+              href="/rss.xml"
+              className={buttonVariants({ variant: "ghost", size: "icon" })}
+              aria-label="RSS 피드"
+            >
+              <Icons.rss
+                className="size-4 text-muted-foreground"
+                aria-hidden="true"
+              />
+            </a>
             <ModeSwitch />
           </div>
         </section>
