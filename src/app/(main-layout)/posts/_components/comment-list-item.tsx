@@ -10,7 +10,7 @@ export function CommentListItem({
     <li className="rounded-lg bg-card p-4 text-card-foreground">
       <div className="flex items-start gap-3">
         <Avatar>
-          <AvatarImage src={comment.avatar} className="bg-sky-100" />
+          <AvatarImage src={comment.avatar} className="bg-muted" />
           <AvatarFallback>{comment.nickname[0]}</AvatarFallback>
         </Avatar>
         <div className="flex flex-col gap-1.5">

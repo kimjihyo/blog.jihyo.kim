@@ -86,7 +86,7 @@ function AvatarButton() {
       }}
     >
       <Avatar className="size-10 transition-transform group-active:scale-95">
-        <AvatarImage src={avatar} className="bg-sky-100" />
+        <AvatarImage src={avatar} className="bg-muted" />
         <AvatarFallback></AvatarFallback>
       </Avatar>
       <input type="hidden" name="avatar" value={avatar} />

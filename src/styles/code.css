@@ -14,7 +14,7 @@
   }
 
   .light [data-highlighted-line] {
-    @apply border-l-2 border-blue-600 bg-primary/10!;
+    @apply border-l-2 border-primary bg-primary/10!;
   }
 
   .light [data-highlighted-line] span {

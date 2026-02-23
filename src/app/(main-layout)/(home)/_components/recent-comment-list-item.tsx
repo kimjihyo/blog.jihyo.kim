@@ -26,7 +26,7 @@ export function RecentCommentListItem({
           <AvatarImage
             alt="avatar-image"
             src={avatarImgSrc}
-            className="bg-sky-100"
+            className="bg-muted"
           />
           <AvatarFallback>{nickname[0]}</AvatarFallback>
         </Avatar>
