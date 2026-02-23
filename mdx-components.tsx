@@ -1,5 +1,4 @@
 import type { MDXComponents } from "mdx/types";
-import Image from "next/image";
 import { ImageLightbox } from "@/components/image-lightbox";
 
 const components = {
@@ -10,7 +9,7 @@ const components = {
     <figcaption {...props}>{children}</figcaption>
   ),
   pre: ({ children, ...props }) => (
-    <pre className="px-0! relative overflow-x-auto rounded-lg" {...props}>
+    <pre className="relative overflow-x-auto rounded-lg px-0!" {...props}>
       {children}
     </pre>
   ),
@@ -20,7 +19,7 @@ const components = {
     if (isInline) {
       return (
         <code
-          className="bg-muted text-primary rounded px-1.5 py-0.5"
+          className="rounded bg-muted px-1.5 py-0.5 text-primary"
           {...props}
         >
           {children}

@@ -111,7 +111,7 @@ function NicknameField({ hasError }: NicknameFieldProps) {
     <div
       className={cn(
         "flex h-12 w-60 items-center gap-2",
-        "flex rounded-md border border-input px-3 py-1 shadow-xs transition-colors outline-none hover:border-primary dark:bg-input/30",
+        "flex rounded-md border border-input bg-input/30 px-3 py-1 transition-colors outline-none hover:border-primary dark:bg-input/30",
         "has-focus-visible:border-ring has-focus-visible:ring-[3px] has-focus-visible:ring-ring/50",
         hasError && "border-destructive",
       )}

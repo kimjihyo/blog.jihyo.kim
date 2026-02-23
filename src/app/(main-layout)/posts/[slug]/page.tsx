@@ -63,7 +63,7 @@ export default async function Page({
       />
       <div className="min-w-0 flex-1">
         <div className="space-y-5">
-          <h1 className="text-3xl leading-tight font-bold tracking-tighter md:text-5xl lg:leading-[1.1]">
+          <h1 className="text-3xl leading-tight font-semibold tracking-tighter md:text-5xl lg:leading-[1.1]">
             {frontmatter.title}
           </h1>
           <div className="space-y-3">

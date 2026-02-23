@@ -4,43 +4,30 @@
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
+  --color-background: var(--bg);
+  --color-foreground: var(--tx);
   --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
+  --color-input: var(--bg-2);
+  --color-border: var(--ui);
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
+  --color-muted-foreground: var(--tx-2);
+  --color-muted: var(--bg-2);
+  --color-secondary-foreground: var(--tx-2);
+  --color-secondary: var(--bg-2);
+  --color-primary-foreground: var(--primary-tx);
   --color-primary: var(--primary);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --color-card-accent: var(--card-accent);
+  --color-card-foreground: var(--tx-2);
+  --color-card: var(--bg-2);
+  --color-card-accent: var(--ui);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-badge-default: var(--badge-default);
-  --color-badge-default-accent: var(--badge-default-accent);
-  --color-badge-default-foreground: var(--badge-default-foreground);
+  --color-badge-default: var(--bg-2);
+  --color-badge-default-accent: var(--ui);
+  --color-badge-default-foreground: var(--tx-2);
 }

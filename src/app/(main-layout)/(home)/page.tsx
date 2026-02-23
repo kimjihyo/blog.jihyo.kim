@@ -15,9 +15,7 @@ export default function Page() {
       <div className="flex">
         <div className="mb-10 flex flex-1 flex-col lg:pt-2 lg:pr-6">
           <div className="hidden items-center gap-1 lg:flex">
-            <span className="text-sm font-semibold text-muted-foreground">
-              최신 글
-            </span>
+            <span className="text-sm text-muted-foreground">최신 글</span>
           </div>
           <div>
             {posts.map((post, index) => (
@@ -32,9 +30,7 @@ export default function Page() {
         </div>
         <div className="hidden w-80 border-l border-border px-6 py-2 lg:flex lg:flex-col lg:gap-8">
           <div>
-            <div className="mb-4 text-sm font-semibold text-muted-foreground">
-              태그
-            </div>
+            <div className="mb-4 text-sm text-muted-foreground">태그</div>
             <ul className="flex flex-wrap gap-2">
               {tags.map((tag) => (
                 <li key={tag.name}>
@@ -46,9 +42,7 @@ export default function Page() {
             </ul>
           </div>
           <div>
-            <div className="mb-4 text-sm font-semibold text-muted-foreground">
-              최근 댓글
-            </div>
+            <div className="mb-4 text-sm text-muted-foreground">최근 댓글</div>
             <RecentCommentList />
           </div>
         </div>

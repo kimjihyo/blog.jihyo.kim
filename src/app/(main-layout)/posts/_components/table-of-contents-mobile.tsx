@@ -69,7 +69,7 @@ function TocLink({ node, isActive, onClick }: TocLinkProps) {
       href={`#${node.id}`}
       className={cn(
         "inline-block text-sm no-underline transition-colors hover:text-foreground",
-        isActive ? "font-semibold text-foreground" : "text-muted-foreground",
+        isActive ? "font-medium text-foreground" : "text-muted-foreground",
       )}
       onClick={onClick}
     >

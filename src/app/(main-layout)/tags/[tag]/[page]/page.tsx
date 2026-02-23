@@ -68,7 +68,7 @@ export default async function TagPaginatedPage({
       <div className="mb-10 flex flex-1 flex-col lg:pt-2 lg:pr-6">
         <div className="mb-6">
           <div className="mb-4 flex items-baseline gap-3">
-            <h1 className="text-2xl font-bold">
+            <h1 className="text-2xl font-medium">
               {tag === ALL_TAG ? "전체 글" : tag}
             </h1>
             <span className="text-sm text-muted-foreground">

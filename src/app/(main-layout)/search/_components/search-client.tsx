@@ -102,7 +102,7 @@ export function SearchClient() {
                             <Badge key={tag}>{tag}</Badge>
                           ))}
                         </div>
-                        <h2 className="mb-1.5 text-base font-semibold text-foreground transition-colors group-hover:text-primary xs:text-xl">
+                        <h2 className="mb-1.5 text-base font-medium text-foreground transition-colors group-hover:text-primary xs:text-xl">
                           {entry.title}
                         </h2>
                         <p className="text-sm text-muted-foreground sm:text-base">

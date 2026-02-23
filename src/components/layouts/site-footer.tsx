@@ -3,9 +3,7 @@ import { siteConfig } from "@/config/site";
 import { buttonVariants } from "../ui/button";
 import { Icons } from "../icons";
 import { Shell } from "../shell";
-import Image from "next/image";
 import { ModeSwitch } from "./mode-switch";
-import { cn } from "@/lib/utils";
 
 export function SiteFooter() {
   return (
@@ -13,21 +11,8 @@ export function SiteFooter() {
       <Shell className="flex max-w-7xl flex-col gap-2">
         <section className="flex flex-col gap-10 lg:flex-row lg:gap-20">
           <section>
-            <Link
-              href="/"
-              aria-label="Home"
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "flex items-center space-x-2",
-              )}
-            >
-              <Image
-                src="/profile.png"
-                alt=""
-                width={32}
-                height={32}
-                className="rounded-full"
-              />
+            <Link href="/" aria-label="Home">
+              김지효
             </Link>
           </section>
         </section>
@@ -42,7 +27,7 @@ export function SiteFooter() {
             <Link
               aria-label="Home"
               href="/"
-              className="font-semibold transition-colors hover:text-foreground"
+              className="font-medium transition-colors hover:text-foreground"
             >
               Jihyo Kim{" "}
             </Link>

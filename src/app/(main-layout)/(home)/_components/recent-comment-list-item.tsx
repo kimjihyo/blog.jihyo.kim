@@ -30,7 +30,7 @@ export function RecentCommentListItem({
           />
           <AvatarFallback>{nickname[0]}</AvatarFallback>
         </Avatar>
-        <span className="text-sm font-semibold">{nickname}</span>
+        <span className="text-sm font-medium">{nickname}</span>
       </div>
       <p className="line-clamp-2 text-sm text-foreground">{content}</p>
       <p className="text-xs text-muted-foreground">{postTitle}</p>

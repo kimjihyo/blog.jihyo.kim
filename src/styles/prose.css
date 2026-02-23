@@ -12,15 +12,26 @@
 }
 
 .prose
-  :where(blockquote):not(
-    :where([class~="not-prose"], [class~="not-prose"] *)
-  ) {
+  :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   font-style: normal;
   color: var(--muted-foreground);
   background-color: var(--accent);
   border-left-width: 3px;
   border-radius: 0 0.5rem 0.5rem 0;
   padding: 1rem 1.25rem;
+}
+
+.prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  font-weight: 600;
+}
+
+.prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  font-weight: 600;
+}
+
+.prose
+  :where(strong):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  font-weight: 600;
 }
 
 .prose

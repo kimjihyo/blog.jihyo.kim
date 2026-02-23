@@ -21,7 +21,7 @@ export default function TagsPage() {
       <div className="flex justify-evenly">
         <div className="flex max-w-2xl flex-1 flex-col lg:pt-2 lg:pr-6">
           <div className="mb-8">
-            <h1 className="mb-2 text-2xl font-bold">태그</h1>
+            <h1 className="mb-2 text-2xl font-medium">태그</h1>
             <p className="text-sm text-muted-foreground">
               {tags.length}개의 태그, {allPosts.length}개의 글
             </p>
