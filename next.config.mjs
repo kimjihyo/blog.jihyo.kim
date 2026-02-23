@@ -1,5 +1,10 @@
 import createNextBundleAnalyzer from "@next/bundle-analyzer";
 import createMDX from "@next/mdx";
+import { createRequire } from "module";
+
+const require = createRequire(import.meta.url);
+const flexokiDark = require("./src/styles/flexoki-dark-color-theme.json");
+const flexokiLight = require("./src/styles/flexoki-light-color-theme.json");
 
 const withBundleAnalyzer = createNextBundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
@@ -37,8 +42,8 @@ const withMDX = createMDX({
         "rehype-pretty-code",
         {
           theme: {
-            dark: "github-dark",
-            light: "github-light",
+            dark: flexokiDark,
+            light: flexokiLight,
           },
           keepBackground: false,
           bypassInlineCode: false,
