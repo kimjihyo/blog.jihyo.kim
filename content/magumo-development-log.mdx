@@ -1,0 +1,100 @@
+---
+tags: ["Claude Code", "바이브코딩"]
+createdTime: "2026-02-24T00:00:00Z"
+thumbnail: "https://res.cloudinary.com/dab33vdij/image/upload/v1771916820/magumo-demo2_iyz5ey.png"
+summary: "여자친구의 아이디어 한 줄에서 시작해 Claude Code로 AI 메모 그루핑 앱을 2시간 만에 만들어봤다."
+updatedTime: "2026-02-24T00:00:00Z"
+title: "2시간 바이브코딩으로 AI 메모 그루핑 앱 만들기"
+---
+
+## 시작은 여자친구의 아이디어 한 줄
+
+여자친구가 카카오톡으로 이런 메시지를 보냈다.
+
+> "카카오톡 같은 막 쓰는 메모장인데, 우다다다닥 보내면 AI가 자동으로 그루핑해줌"
+
+단순하지만 꽤 괜찮은 아이디어였다. 마침 바이브코딩으로 뭔가 만들어보고 싶었던 참이라, 내 취향대로 얼마나 완성도 높게 구현할 수 있는지 실험해보기로 했다.
+
+## 기술 스택
+
+* AI Agent: Claude Code (Opus 4.6)
+* MCP: Playwright MCP, Next.js Devtools
+* Agent Skills: frontend-design, React Best Practices
+* Frontend/Backend: Next.js
+* Database: Supabase
+* Hosting: Vercel
+* Grouping LLM: Claude API
+
+## 개발하면서 느낀 것들
+
+### React Best Practices 스킬 — 생각보다 체감이 없었다
+
+솔직히 말하면, 이 스킬을 등록해도 에이전트가 스스로 알아서 Next.js스럽게 코드를 짜진 않았다. `page.tsx` 전체를 클라이언트 컴포넌트로 만들고 마치 일반 CRA 프로젝트처럼 구현하는 식이었다. 실제로 에이전트가 작성한 [`page.tsx`](https://github.com/kimjihyo/magumo/blob/a4f2bdbff52315b8f1bb8a8447c2fd089bba3440/app/page.tsx)를 보면, 서버 컴포넌트임에도 불구하고 모든 로직을 `MemoApp`이라는 단일 클라이언트 컴포넌트에 위임하고 있다.
+
+```tsx
+import { MemoApp } from "@/components/memo-app";
+
+export default function Home() {
+  return (
+    <div className="flex flex-col h-dvh max-w-lg mx-auto bg-[#F6F6F0] relative overflow-hidden">
+      <div className="absolute top-[-60px] right-[-40px] w-[180px] h-[180px] rounded-full bg-duo-green/8 blur-2xl pointer-events-none" />
+      <div className="absolute bottom-[100px] left-[-60px] w-[200px] h-[200px] rounded-full bg-duo-yellow/10 blur-2xl pointer-events-none" />
+      {/* 엄청 큰 괴물 클라이언트 컴포넌트 */}
+      <MemoApp /> 
+    </div>
+  );
+}
+```
+
+결국 내가 직접 "Client Component 범위를 최소화하고, `page.tsx`는 Server Component로 유지해라"고 짚어줘야 그제서야 방향을 잡았다. Server Actions나 Server Components 같은 최신 패턴은 명시적으로 요청하지 않으면 잘 활용하지 않는다는 인상을 받았다. 이후에는 이런 컨벤션을 `CLAUDE.md`에 명문화해두고 리팩토링을 진행할 예정이다.
+
+TailwindCSS 쪽도 비슷한 문제가 있었다. arbitrary value나 `px` 단위를 남발하는 경향이 있는데, [`group-card.tsx`](https://github.com/kimjihyo/magumo/blob/a4f2bdbff52315b8f1bb8a8447c2fd089bba3440/components/group-card.tsx)를 보면 그 경향이 잘 드러난다. shadcn/ui를 사용하면서도 `cn` 같은 유틸리티 함수를 활용하지 않고, 클래스 병합을 단순 문자열 연결로 처리한 것도 아쉬운 부분이었다.
+
+```tsx
+<motion.div
+  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+  animate={{ opacity: 1, y: 0, scale: 1 }}
+  transition={{
+    type: "spring",
+    stiffness: 350,
+    damping: 25,
+    delay: index * 0.08,
+  }}
+  whileHover={{ scale: 1.02, y: -2 }}
+  whileTap={{ scale: 0.98 }}
+  className={`bg-white rounded-2xl border-2 border-[#E5E5E0] ${colors.shadow} mb-4 overflow-hidden cursor-pointer transition-shadow hover:shadow-[0_4px_0_#D5D5D0]`}
+>
+  {/* 중략 */}
+</motion.div>
+```
+
+Ground Rule을 명시적으로 지정해주지 않으면 기본적으로 깔끔하게 짜이지 않는다는 걸 이번에 다시 확인했다.
+
+### frontend-design 스킬 — 이건 진짜 잘한다
+
+반면 frontend-design 스킬은 체감이 확실했다. 스킬을 등록하고 "듀오링고 스타일로 디자인해줘"라고 하자, 에이전트가 알아서 `motion` 라이브러리를 설치하고 인터랙티브한 애니메이션을 붙였다. SVG 아이콘도 직접 만들어서 사용했고, UI 결과물도 실제로 듀오링고스럽게 나왔다. 위 `group-card.tsx`의 `motion.div` 코드가 그 결과물 중 하나다. 디자인 방향성을 레퍼런스로 제시하면 에이전트가 알아서 구현 수단을 찾아내는 방식이 인상적이었다.
+
+![](https://res.cloudinary.com/dab33vdij/image/upload/v1771916820/magumo-demo2_iyz5ey.png)
+
+
+![](https://res.cloudinary.com/dab33vdij/image/upload/v1771916820/magumo-demo3_hrk8oh.png)
+
+### UI 버그는 잦았지만, 고치는 건 빨랐다
+
+기능적인 버그는 크게 없었는데, UI 버그는 꽤 자주 등장했다. 채팅 UI에서 스크롤이 안 된다거나, 메시지 전송 시 화면이 깜빡인다거나, 한글 입력이 분리돼서 전송되는 문제 같은 것들이었다.
+
+원인을 추적해보니, Playwright MCP를 쓰더라도 에이전트가 정적인 이미지 스냅샷으로만 결과를 확인하고 있었기 때문이었다. 문제 상황을 설명해주자 slow typing 같은 동적인 테스트 방식으로 전환해서 짧은 시간 안에 버그를 잡아냈다.
+
+## 마무리
+
+총 개발 시간은 약 2시간. 바이브코딩 특성상 에이전트를 믿고 맡기기보다, 방향을 잡아주고 컨벤션을 명시해주는 역할이 여전히 중요하다는 걸 다시 한번 확인했다.
+
+코드를 보면서 방향을 잡아주긴 했지만, 실제로 내가 직접 작성한 코드는 단 한 줄도 없다.
+
+기획도 처음부터 구체적으로 설명할 필요가 없었다. 애매한 부분은 에이전트가 되려 나에게 질문을 던지며 아이디어를 함께 구체화해 나갔다. UI 버그를 설명할 때도 마찬가지였다. 두루뭉술하게 말해도 Playwright MCP와 nextjs-devtools MCP 덕분에 에이전트가 직접 실행해보며 문제를 찾아냈다.
+
+결국 필요한 건 약간의 개발 지식(앞으로는 그마저도 없어도 될 것 같다)과 확고한 취향, 그리고 AI Slop에 대한 불편함을 느끼고 완성도를 끌어올리려는 태도다. 그것만 있으면 적은 비용과 시간으로 어떤 아이디어든 실제 제품으로 만들어낼 수 있다.
+
+이 경험을 하면서 최근에 읽은 [No Skill. No Taste](https://blog.kinglycrow.com/no-skill-no-taste/) 라는 글이 떠올랐다. LLM 덕분에 누구나 앱을 만들 수 있는 시대가 됐지만, 진짜 장벽은 오히려 더 본질적인 곳으로 이동했다. 제품 완성도에 대한 집착, 그리고 만드는 사람의 취향. 장인 정신 같은 면모는 여전히, 어쩌면 지금 더 중요하다. 그렇지 않으면 요즘 쏟아지는 수많은 AI Slop 중 하나로 묻혀버릴 뿐이다.
+
+바이브코딩 전체 과정을 녹화했는데 시간이 된다면 민감한 정보는 마스킹해서 편집해서 공유해볼 수 있도록 하겠다.
