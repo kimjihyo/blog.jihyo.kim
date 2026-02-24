@@ -1,0 +1,4 @@
+# External skills installed via `npx skills add` — do not version control
+vercel-composition-patterns/
+vercel-react-best-practices/
+web-design-guidelines/
