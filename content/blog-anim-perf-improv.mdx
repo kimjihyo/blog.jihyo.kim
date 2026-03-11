@@ -144,14 +144,17 @@ DevTools의 “Paint flashing”이나 Performance 탭에서 보이는 Paint는 
 
 동일한 애니메이션(`translateY` + `scale` + `opacity`, 4초, linear)을 `will-change: transform` 유무로 나누어 트레이싱을 수집했다. 카테고리는 `cc`, `gpu`, `blink`, `blink.animations`, `disabled-by-default-cc` 등을 포함했다.
 
-| 지표 | will-change 없음 | will-change 있음 | 배율 |
-|---|---|---|---|
-| **Raster tasks** | **490** | **32** | **15.3x** |
-| **Raster duration** | **87.0ms** | **5.0ms** | **17.4x** |
-| GPU raster events | 245 | 16 | 15.3x |
-| Paint events | 0 | 0 | 동일 |
+**`will-change: transform` 없음:**
+- Raster tasks: **490회**
+- Raster duration: **87.0ms**
+- Paint events: **0회**
 
-양쪽 모두 Paint는 0이다. 그러나 **Raster 작업은 15배 이상 차이**가 났다. `will-change: transform`이 없으면 애니메이션 도중 매 프레임 타일을 다시 래스터라이징하고 있었다.
+**`will-change: transform` 있음:**
+- Raster tasks: **32회**
+- Raster duration: **5.0ms**
+- Paint events: **0회**
+
+양쪽 모두 Paint는 0이다. 그러나 **Raster 작업은 약 15배 차이**가 났다. `will-change: transform`이 없으면 애니메이션 도중 매 프레임 타일을 다시 래스터라이징하고 있었다.
 
 ### 원인: Re-rastering
 
